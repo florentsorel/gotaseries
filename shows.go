@@ -15,10 +15,6 @@ type showInterface interface {
 	ListWithCtx(ctx context.Context) ([]Show, error)
 }
 
-func (s *showService) DisplayToto(id int) (*Show, error) {
-	return s.display(context.TODO(), id)
-}
-
 type showsResponse struct {
 	Shows  []Show `json:"shows"`
 	Errors Errors `json:"errors"`
