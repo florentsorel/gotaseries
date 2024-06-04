@@ -9,10 +9,10 @@ import (
 type showService service
 
 type showInterface interface {
-	Display(id int) (*Show, error)
-	DisplayWithCtx(ctx context.Context, id int) (*Show, error)
-	List() ([]Show, error)
-	ListWithCtx(ctx context.Context) ([]Show, error)
+	Display(id int, params map[string]string) (*Show, error)
+	DisplayWithCtx(ctx context.Context, id int, params map[string]string) (*Show, error)
+	List(params map[string]string) ([]Show, error)
+	ListWithCtx(ctx context.Context, params map[string]string) ([]Show, error)
 }
 
 type showsResponse struct {
@@ -25,25 +25,25 @@ type showResponse struct {
 	Errors Errors `json:"errors"`
 }
 
-type Year int
+type year int
 
-type SeasonsDetail struct {
+type seasonsDetail struct {
 	Number   int `json:"number"`
 	Episodes int `json:"episodes"`
 }
 
-type Showrunner struct {
+type showrunner struct {
 	ID      int    `json:"id,string"`
 	Name    string `json:"name"`
 	Picture string `json:"picture"`
 }
 
-type Platforms struct {
-	Svods []Svod `json:"svods"`
-	Svod  *Svod  `json:"svod"`
+type platforms struct {
+	Svods []svod `json:"svods"`
+	Svod  *svod  `json:"svod"`
 }
 
-type Svod struct {
+type svod struct {
 	ID        int     `json:"id"`
 	Name      string  `json:"name"`
 	Tag       *string `json:"tag"`
@@ -66,16 +66,16 @@ type Show struct {
 	OriginalTitle  string          `json:"original_title"`
 	Description    string          `json:"description"`
 	Seasons        int8            `json:"seasons,string"`
-	SeasonsDetails []SeasonsDetail `json:"seasons_details"`
+	SeasonsDetails []seasonsDetail `json:"seasons_details"`
 	Episodes       int             `json:"episodes,string"`
 	Followers      int64           `json:"followers,string"`
 	Comments       int64           `json:"comments"`
 	Similars       int             `json:"similars,string"`
 	Characters     int             `json:"characters,string"`
-	Creation       Year            `json:"creation,string"`
-	Showrunner     *Showrunner     `json:"showrunner"`
-	Showrunners    []Showrunner    `json:"showrunners"`
-	Genres         Genres          `json:"genres"`
+	Creation       year            `json:"creation,string"`
+	Showrunner     *showrunner     `json:"showrunner"`
+	Showrunners    []showrunner    `json:"showrunners"`
+	Genres         genres          `json:"genres"`
 	Length         int             `json:"length,string"`
 	Network        string          `json:"network"`
 	Country        string          `json:"country"`
@@ -97,7 +97,7 @@ type Show struct {
 			Height int    `json:"height,string"`
 		} `json:"clearlogo"`
 	} `json:"images"`
-	Aliases     Alias `json:"aliases"`
+	Aliases     alias `json:"aliases"`
 	SocialLinks []struct {
 		Type       string `json:"type"`
 		ExternalID string `json:"external_id"`
@@ -105,11 +105,11 @@ type Show struct {
 	NextTrailer     *string    `json:"next_trailer"`
 	NextTrailerHost *string    `json:"next_trailer_host"`
 	ResourceURL     string     `json:"resource_url"`
-	Platforms       *Platforms `json:"platforms"`
+	Platforms       *platforms `json:"platforms"`
 }
 
-func (s *showService) display(ctx context.Context, id int) (*Show, error) {
-	req, err := s.client.newRequest(http.MethodGet, fmt.Sprintf("/shows/display?id=%d", id))
+func (s *showService) display(ctx context.Context, id int, params map[string]string) (*Show, error) {
+	req, err := s.client.newRequest(http.MethodGet, fmt.Sprintf("/shows/display?id=%d", id), params)
 	if err != nil {
 		return nil, err
 	}
@@ -131,16 +131,16 @@ func (s *showService) display(ctx context.Context, id int) (*Show, error) {
 	return &show.Show, nil
 }
 
-func (s *showService) Display(id int) (*Show, error) {
-	return s.display(context.TODO(), id)
+func (s *showService) Display(id int, params map[string]string) (*Show, error) {
+	return s.display(context.TODO(), id, params)
 }
 
-func (s *showService) DisplayWithCtx(ctx context.Context, id int) (*Show, error) {
-	return s.display(ctx, id)
+func (s *showService) DisplayWithCtx(ctx context.Context, id int, params map[string]string) (*Show, error) {
+	return s.display(ctx, id, params)
 }
 
-func (s *showService) list(ctx context.Context) ([]Show, error) {
-	req, err := s.client.newRequest(http.MethodGet, "/shows/list")
+func (s *showService) list(ctx context.Context, params map[string]string) ([]Show, error) {
+	req, err := s.client.newRequest(http.MethodGet, "/shows/list", params)
 	if err != nil {
 		return nil, err
 	}
@@ -158,10 +158,10 @@ func (s *showService) list(ctx context.Context) ([]Show, error) {
 	return shows.Shows, nil
 }
 
-func (s *showService) List() ([]Show, error) {
-	return s.list(context.TODO())
+func (s *showService) List(params map[string]string) ([]Show, error) {
+	return s.list(context.TODO(), params)
 }
 
-func (s *showService) ListWithCtx(ctx context.Context) ([]Show, error) {
-	return s.list(ctx)
+func (s *showService) ListWithCtx(ctx context.Context, params map[string]string) ([]Show, error) {
+	return s.list(ctx, params)
 }
