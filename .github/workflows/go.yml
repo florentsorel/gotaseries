@@ -45,4 +45,4 @@ jobs:
       - name: Install dependencies
         run: go mod download
       - name: Run test
-        run: go test -v
+        run: go test

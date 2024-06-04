@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 )
 
-type Alias map[int]string
+type alias map[int]string
 
-type Genres []string
+type genres []string
 
-func (a *Alias) UnmarshalJSON(data []byte) error {
+func (a *alias) UnmarshalJSON(data []byte) error {
 	if string(data) == "[]" {
 		*a = map[int]string{}
 		return nil
@@ -25,7 +25,7 @@ func (a *Alias) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (g *Genres) UnmarshalJSON(data []byte) error {
+func (g *genres) UnmarshalJSON(data []byte) error {
 	if string(data) == "[]" {
 		*g = []string{}
 		return nil

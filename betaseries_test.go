@@ -54,10 +54,28 @@ func TestNewRequest(t *testing.T) {
 	client.userAgent = "gotaseries-user-agent"
 	client.apiKey = "api_key"
 
-	req, err := client.newRequest("GET", "/test")
+	req, err := client.newRequest("GET", "/test", nil)
 	assert.NoError(t, err)
 
 	assert.Equal(t, "http://api.test.com/test", req.URL.String())
+	assert.Equal(t, "gotaseries-user-agent", req.Header.Get("User-Agent"))
+	assert.Equal(t, "api_key", req.Header.Get("X-BetaSeries-Key"))
+	assert.Equal(t, "3.0", req.Header.Get("X-BetaSeries-Version"))
+}
+
+func TestNewRequestWithParams(t *testing.T) {
+	client := NewClient("api_key")
+	apiURL, err := url.Parse("http://api.test.com")
+	assert.NoError(t, err)
+
+	client.baseURL = *apiURL
+	client.userAgent = "gotaseries-user-agent"
+	client.apiKey = "api_key"
+
+	req, err := client.newRequest("GET", "/test", map[string]string{"key": "value", "key2": "value2"})
+	assert.NoError(t, err)
+
+	assert.Equal(t, "http://api.test.com/test?key=value&key2=value2", req.URL.String())
 	assert.Equal(t, "gotaseries-user-agent", req.Header.Get("User-Agent"))
 	assert.Equal(t, "api_key", req.Header.Get("X-BetaSeries-Key"))
 	assert.Equal(t, "3.0", req.Header.Get("X-BetaSeries-Version"))

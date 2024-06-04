@@ -1,0 +1,220 @@
+{
+  "show": {
+    "id": 1161,
+    "thetvdb_id": 121361,
+    "imdb_id": "tt0944947",
+    "themoviedb_id": 1399,
+    "slug": "gameofthrones",
+    "title": "Game of Thrones",
+    "original_title": "Game of Thrones",
+    "description": "Il y a très longtemps, à une époque oubliée, une force a détruit l'équilibre des saisons. Dans un pays où l'été peut durer plusieurs années et l'hiver toute une vie, des forces sinistres et surnaturelles se pressent aux portes du Royaume des Sept Couronnes. La confrérie de la Garde de Nuit, protégeant le Royaume de toute créature pouvant provenir d'au-delà du Mur protecteur, n'a plus les ressources nécessaires pour assurer la sécurité de tous. Après un été de dix années, un hiver rigoureux s'abat sur le Royaume avec la promesse d'un avenir des plus sombres. Pendant ce temps, complots et rivalités se jouent sur le continent pour s'emparer du Trône de Fer, le symbole du pouvoir absolu.",
+    "seasons": "8",
+    "seasons_details": [
+      {
+        "number": 1,
+        "episodes": 10
+      },
+      {
+        "number": 2,
+        "episodes": 10
+      },
+      {
+        "number": 3,
+        "episodes": 10
+      },
+      {
+        "number": 4,
+        "episodes": 10
+      },
+      {
+        "number": 5,
+        "episodes": 10
+      },
+      {
+        "number": 6,
+        "episodes": 10
+      },
+      {
+        "number": 7,
+        "episodes": 7
+      },
+      {
+        "number": 8,
+        "episodes": 7
+      }
+    ],
+    "episodes": "74",
+    "followers": "237241",
+    "comments": 1542,
+    "similars": "61",
+    "characters": "79",
+    "creation": "2011",
+    "showrunner": {
+      "id": "14604",
+      "name": "David Benioff",
+      "picture": "https://pictures.betaseries.com/persons/xvNN5huL0X8yJ7h3IZfGG4O2zBD.jpg"
+    },
+    "showrunners": [
+      {
+        "id": "14604",
+        "name": "David Benioff",
+        "slug": "david-benioff",
+        "picture": "https://pictures.betaseries.com/persons/xvNN5huL0X8yJ7h3IZfGG4O2zBD.jpg"
+      },
+      {
+        "id": "15100",
+        "name": "D. B. Weiss",
+        "slug": "d-b-weiss",
+        "picture": "https://pictures.betaseries.com/persons/2RMejaT793U9KRk2IEbFfteQntE.jpg"
+      }
+    ],
+    "genres": {
+      "Action": "Action",
+      "Adventure": "Aventure",
+      "Drama": "Drame",
+      "Fantasy": "Fantastique"
+    },
+    "length": "52",
+    "network": "HBO",
+    "country": "États-Unis",
+    "rating": "TV-MA",
+    "status": "Ended",
+    "language": "en",
+    "notes": {
+      "total": 19747,
+      "mean": 4.66932,
+      "user": 0
+    },
+    "in_account": false,
+    "images": {
+      "show": "https://pictures.betaseries.com/fonds/show/1161_1521643782.jpg",
+      "banner": "https://pictures.betaseries.com/fonds/banner/1161_1502049726.jpg",
+      "box": "https://pictures.betaseries.com/fonds/box/1161_1502049726.jpg",
+      "poster": "https://pictures.betaseries.com/fonds/poster/4d09984be7bf0c385b21e2974bc12e8b.jpg",
+      "clearlogo": {
+        "url": "https://pictures.betaseries.com/clearlogo/en/1161_62748344.png",
+        "width": "800",
+        "height": "310"
+      }
+    },
+    "aliases": {
+      "1900": "Le Trône De Fer",
+      "6432": "Game of Thrones",
+      "14224": "Juego de Tronos",
+      "32708": "Il Trono di Spade",
+      "32709": "Gra o tron",
+      "32710": "Игра престолов",
+      "93496": "A Guerra dos Tronos"
+    },
+    "social_links": [
+      {
+        "type": "facebook",
+        "external_id": "GameOfThrones"
+      },
+      {
+        "type": "twitter",
+        "external_id": "GameOfThrones"
+      },
+      {
+        "type": "instagram",
+        "external_id": "gameofthrones"
+      }
+    ],
+    "user": {
+      "archived": false,
+      "favorited": false,
+      "remaining": 0,
+      "status": 0,
+      "last": "S00E00",
+      "tags": null,
+      "next": {
+        "id": null,
+        "code": "S00E00",
+        "date": null,
+        "title": null,
+        "image": null
+      },
+      "friends_watching": []
+    },
+    "next_trailer": "x86esn8",
+    "next_trailer_host": "dailymotion",
+    "resource_url": "https://www.betaseries.com/serie/gameofthrones",
+    "platforms": {
+      "svods": [
+        {
+          "id": 52,
+          "name": "HBO Go",
+          "tag": null,
+          "color": "#3B8DD0",
+          "link_url": "https://www.betaseries.com/link/1161/52/us",
+          "available": {
+            "last": 8,
+            "first": 1
+          },
+          "logo": null
+        },
+        {
+          "id": 281,
+          "name": "HBO Max",
+          "tag": null,
+          "color": "#7515D9",
+          "link_url": "https://www.betaseries.com/link/1161/281/us",
+          "available": {
+            "last": 8,
+            "first": 1
+          },
+          "logo": "https://pictures.betaseries.com/platforms/281.jpg"
+        },
+        {
+          "id": 32,
+          "name": "HBO Now",
+          "tag": null,
+          "color": "#3B8DD0",
+          "link_url": "https://www.betaseries.com/link/1161/32/us",
+          "available": {
+            "last": 8,
+            "first": 1
+          },
+          "logo": null
+        },
+        {
+          "id": 206,
+          "name": "HBO Now Amazon Channel",
+          "tag": null,
+          "color": "#3B8DD0",
+          "link_url": "https://www.betaseries.com/link/1161/206/us",
+          "available": {
+            "last": 8,
+            "first": 1
+          },
+          "logo": null
+        },
+        {
+          "id": 378,
+          "name": "Spectrum On Demand",
+          "tag": null,
+          "color": "#3B8DD0",
+          "link_url": "https://www.betaseries.com/link/1161/378/us",
+          "available": {
+            "last": 8,
+            "first": 1
+          },
+          "logo": null
+        }
+      ],
+      "svod": {
+        "id": 52,
+        "name": "HBO Go",
+        "tag": null,
+        "color": "#3B8DD0",
+        "link_url": "https://www.betaseries.com/link/1161/52/us",
+        "available": {
+          "last": 8,
+          "first": 1
+        },
+        "logo": null
+      }
+    }
+  },
+  "errors": []
+}

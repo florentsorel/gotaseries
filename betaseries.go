@@ -10,7 +10,18 @@ import (
 const (
 	baseURL = "https://api.betaseries.com/api"
 	version = "3.0"
+
+	LocaleFR locale = "fr"
+	LocaleEN locale = "en"
+	LocaleDE locale = "de"
+	LocaleES locale = "es"
+	LocaleIT locale = "it"
+	LocaleNL locale = "nl"
+	LocalePL locale = "pl"
+	LocalePT locale = "pt"
 )
+
+type locale string
 
 type service struct {
 	client *Client
@@ -20,6 +31,7 @@ type Client struct {
 	baseURL    url.URL
 	userAgent  string
 	apiKey     string
+	Locale     locale
 	httpClient *http.Client
 
 	common service
@@ -40,6 +52,7 @@ func NewClient(apiKey string) *Client {
 		baseURL:    *u,
 		userAgent:  "gotaseries/" + version,
 		apiKey:     apiKey,
+		Locale:     "",
 		httpClient: httpClient,
 	}
 
@@ -49,11 +62,25 @@ func NewClient(apiKey string) *Client {
 	return c
 }
 
-func (c *Client) newRequest(method, url string) (*http.Request, error) {
+func (c *Client) newRequest(method, url string, params map[string]string) (*http.Request, error) {
 	u, err := c.baseURL.Parse(url)
 	if err != nil {
 		return nil, err
 	}
+
+	q := u.Query()
+
+	if c.Locale != "" {
+		q.Add("locale", string(c.Locale))
+	}
+
+	if len(params) > 0 {
+		for k, v := range params {
+			q.Set(k, v)
+		}
+	}
+
+	u.RawQuery = q.Encode()
 
 	req, err := http.NewRequest(method, u.String(), nil)
 	if err != nil {
