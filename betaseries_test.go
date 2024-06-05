@@ -1,6 +1,7 @@
 package gotaseries
 
 import (
+	"context"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -54,7 +55,7 @@ func TestNewRequest(t *testing.T) {
 	client.userAgent = "gotaseries-user-agent"
 	client.apiKey = "api_key"
 
-	req, err := client.newRequest("GET", "/test", nil)
+	req, err := client.newRequest(context.Background(), "GET", "/test", ShowsListParams{})
 	assert.NoError(t, err)
 
 	assert.Equal(t, "http://api.test.com/test", req.URL.String())
@@ -72,10 +73,10 @@ func TestNewRequestWithParams(t *testing.T) {
 	client.userAgent = "gotaseries-user-agent"
 	client.apiKey = "api_key"
 
-	req, err := client.newRequest("GET", "/test", map[string]string{"key": "value", "key2": "value2"})
+	req, err := client.newRequest(context.Background(), "GET", "/test", ShowsDisplayParams{ID: Int(1161)})
 	assert.NoError(t, err)
 
-	assert.Equal(t, "http://api.test.com/test?key=value&key2=value2", req.URL.String())
+	assert.Equal(t, "http://api.test.com/test?id=1161", req.URL.String())
 	assert.Equal(t, "gotaseries-user-agent", req.Header.Get("User-Agent"))
 	assert.Equal(t, "api_key", req.Header.Get("X-BetaSeries-Key"))
 	assert.Equal(t, "3.0", req.Header.Get("X-BetaSeries-Version"))

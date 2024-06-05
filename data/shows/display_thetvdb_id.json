@@ -1,0 +1,147 @@
+{
+  "show": {
+    "id": 481,
+    "thetvdb_id": 81189,
+    "imdb_id": "tt0903747",
+    "themoviedb_id": 1396,
+    "slug": "breakingbad",
+    "title": "Breaking Bad",
+    "original_title": "Breaking Bad",
+    "description": "La vie de Walter White, professeur de chimie dans un lycée, est bouleversée lorsqu'il apprend qu'il est atteint d'un cancer en phase terminale. Une nouvelle qui le sort de la torpeur de son quotidien et l'amène à prendre des mesures radicales pour anticiper l'avenir de sa famille.",
+    "seasons": "5",
+    "seasons_details": [
+      {
+        "number": 1,
+        "episodes": 7
+      },
+      {
+        "number": 2,
+        "episodes": 13
+      },
+      {
+        "number": 3,
+        "episodes": 13
+      },
+      {
+        "number": 4,
+        "episodes": 13
+      },
+      {
+        "number": 5,
+        "episodes": 17
+      }
+    ],
+    "episodes": "63",
+    "followers": "139407",
+    "comments": 881,
+    "similars": "35",
+    "characters": "19",
+    "creation": "2008",
+    "showrunner": {
+      "id": "24911",
+      "name": "Vince Gilligan",
+      "picture": "https://pictures.betaseries.com/persons/z3E0DhBg1V1PZVEtS9vfFPzOWYB.jpg"
+    },
+    "showrunners": [
+      {
+        "id": "24911",
+        "name": "Vince Gilligan",
+        "slug": "vince-gilligan",
+        "picture": "https://pictures.betaseries.com/persons/z3E0DhBg1V1PZVEtS9vfFPzOWYB.jpg"
+      }
+    ],
+    "genres": {
+      "Crime": "Crime",
+      "Drama": "Drame",
+      "Thriller": "Thriller",
+      "Western": "Western"
+    },
+    "length": "47",
+    "network": "AMC",
+    "country": "États-Unis",
+    "rating": "TV-MA",
+    "status": "Ended",
+    "language": "en",
+    "notes": {
+      "total": 12478,
+      "mean": 4.7219,
+      "user": 0
+    },
+    "in_account": false,
+    "images": {
+      "show": "https://pictures.betaseries.com/fonds/show/481_1362690759.jpg",
+      "banner": "https://pictures.betaseries.com/fonds/banner/481_1362330654.jpg",
+      "box": "https://pictures.betaseries.com/fonds/box/481_1362330654.jpg",
+      "poster": "https://pictures.betaseries.com/fonds/poster/287956ed96886a8debc1b42c82a0a828.jpg",
+      "clearlogo": {
+        "url": "https://pictures.betaseries.com/clearlogo/en/481_62748451.png",
+        "width": "800",
+        "height": "300"
+      }
+    },
+    "aliases": {
+      "1726": "Breaking Bad",
+      "5119": "Breaking Bad : Le Chimiste",
+      "32704": "Во все тяжкие",
+      "120578": "Ruptura Total"
+    },
+    "social_links": [
+      {
+        "type": "facebook",
+        "external_id": "BreakingBad"
+      },
+      {
+        "type": "twitter",
+        "external_id": "BreakingBad_AMC"
+      }
+    ],
+    "user": {
+      "archived": false,
+      "favorited": false,
+      "remaining": 0,
+      "status": 0,
+      "last": "S00E00",
+      "tags": null,
+      "next": {
+        "id": null,
+        "code": "S00E00",
+        "date": null,
+        "title": null,
+        "image": null
+      },
+      "friends_watching": []
+    },
+    "next_trailer": "x86esgb",
+    "next_trailer_host": "dailymotion",
+    "resource_url": "https://www.betaseries.com/serie/breakingbad",
+    "platforms": {
+      "svods": [
+        {
+          "id": 1,
+          "name": "Netflix",
+          "tag": null,
+          "color": "#000000",
+          "link_url": "https://www.betaseries.com/link/481/1/us",
+          "available": {
+            "last": 5,
+            "first": 1
+          },
+          "logo": "https://pictures.betaseries.com/platforms/1.jpg"
+        }
+      ],
+      "svod": {
+        "id": 1,
+        "name": "Netflix",
+        "tag": null,
+        "color": "#000000",
+        "link_url": "https://www.betaseries.com/link/481/1/us",
+        "available": {
+          "last": 5,
+          "first": 1
+        },
+        "logo": "https://pictures.betaseries.com/platforms/1.jpg"
+      }
+    }
+  },
+  "errors": []
+}

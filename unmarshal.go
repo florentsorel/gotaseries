@@ -6,8 +6,6 @@ import (
 
 type alias map[int]string
 
-type genres []string
-
 func (a *alias) UnmarshalJSON(data []byte) error {
 	if string(data) == "[]" {
 		*a = map[int]string{}
@@ -25,24 +23,26 @@ func (a *alias) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (g *genres) UnmarshalJSON(data []byte) error {
+type genres []string
+
+func (genres *genres) UnmarshalJSON(data []byte) error {
 	if string(data) == "[]" {
-		*g = []string{}
+		*genres = []string{}
 		return nil
 	}
 
-	var genres map[string]string
+	var g map[string]string
 
-	if err := json.Unmarshal(data, &genres); err != nil {
+	if err := json.Unmarshal(data, &g); err != nil {
 		return err
 	}
 
 	var result []string
-	for _, value := range genres {
+	for _, value := range g {
 		result = append(result, value)
 	}
 
-	*g = result
+	*genres = result
 
 	return nil
 }

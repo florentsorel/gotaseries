@@ -2,17 +2,14 @@ package gotaseries
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 )
 
 type showService service
 
 type showInterface interface {
-	Display(id int, params map[string]string) (*Show, error)
-	DisplayWithCtx(ctx context.Context, id int, params map[string]string) (*Show, error)
-	List(params map[string]string) ([]Show, error)
-	ListWithCtx(ctx context.Context, params map[string]string) ([]Show, error)
+	Display(ctx context.Context, params ShowsDisplayParams) (*Show, error)
+	List(ctx context.Context, params ShowsListParams) ([]Show, error)
 }
 
 type showsResponse struct {
@@ -56,9 +53,10 @@ type svod struct {
 	Logo *string `json:"logo"`
 }
 
+// Show represents a TV show.
 type Show struct {
 	ID             int             `json:"id"`
-	TvdbID         int             `json:"thetvdb_id"`
+	TheTvdbID      int             `json:"thetvdb_id"`
 	ImdbID         string          `json:"imdb_id"`
 	MoviedbID      int             `json:"themoviedb_id"`
 	Slug           string          `json:"slug"`
@@ -108,14 +106,24 @@ type Show struct {
 	Platforms       *platforms `json:"platforms"`
 }
 
-func (s *showService) display(ctx context.Context, id int, params map[string]string) (*Show, error) {
-	req, err := s.client.newRequest(http.MethodGet, fmt.Sprintf("/shows/display?id=%d", id), params)
+// Display returns the detail of a TV show with a [ShowsDisplayParams] parameter.
+//
+// Example:
+//
+//	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+//	defer cancel()
+//
+//	shows, err := client.Shows.Display(ctx, ShowsDisplayParams{
+//		ID: gotaseries.Int(1161),
+//	})
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("%+v\n", show)
+func (s *showService) Display(ctx context.Context, params ShowsDisplayParams) (*Show, error) {
+	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/display", params)
 	if err != nil {
 		return nil, err
-	}
-
-	if ctx != nil {
-		req = req.WithContext(ctx)
 	}
 
 	var show showResponse
@@ -131,22 +139,23 @@ func (s *showService) display(ctx context.Context, id int, params map[string]str
 	return &show.Show, nil
 }
 
-func (s *showService) Display(id int, params map[string]string) (*Show, error) {
-	return s.display(context.TODO(), id, params)
-}
-
-func (s *showService) DisplayWithCtx(ctx context.Context, id int, params map[string]string) (*Show, error) {
-	return s.display(ctx, id, params)
-}
-
-func (s *showService) list(ctx context.Context, params map[string]string) ([]Show, error) {
-	req, err := s.client.newRequest(http.MethodGet, "/shows/list", params)
+// List returns a list of TV shows with a [ShowsListParams] parameter.
+//
+// Example:
+//
+//	shows, err := client.Shows.List(context.Background(), ShowsListParams{
+//		Order: gotaseries.String("popularity"),
+//	})
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	for _, show := range shows {
+//		fmt.Printf("%s\n", show.Title)
+//	}
+func (s *showService) List(ctx context.Context, params ShowsListParams) ([]Show, error) {
+	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/list", params)
 	if err != nil {
 		return nil, err
-	}
-
-	if ctx != nil {
-		req = req.WithContext(ctx)
 	}
 
 	var shows showsResponse
@@ -156,12 +165,4 @@ func (s *showService) list(ctx context.Context, params map[string]string) ([]Sho
 	}
 
 	return shows.Shows, nil
-}
-
-func (s *showService) List(params map[string]string) ([]Show, error) {
-	return s.list(context.TODO(), params)
-}
-
-func (s *showService) ListWithCtx(ctx context.Context, params map[string]string) ([]Show, error) {
-	return s.list(ctx, params)
 }

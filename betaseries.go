@@ -1,32 +1,25 @@
 package gotaseries
 
 import (
+	"context"
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"reflect"
+	"strconv"
 	"time"
 )
 
 const (
 	baseURL = "https://api.betaseries.com/api"
 	version = "3.0"
-
-	LocaleFR locale = "fr"
-	LocaleEN locale = "en"
-	LocaleDE locale = "de"
-	LocaleES locale = "es"
-	LocaleIT locale = "it"
-	LocaleNL locale = "nl"
-	LocalePL locale = "pl"
-	LocalePT locale = "pt"
 )
-
-type locale string
 
 type service struct {
 	client *Client
 }
 
+// Client represents a BetaSeries client.
 type Client struct {
 	baseURL    url.URL
 	userAgent  string
@@ -38,6 +31,7 @@ type Client struct {
 	Shows  showInterface
 }
 
+// NewClient returns a new BetaSeries client. You need to provide an API key.
 func NewClient(apiKey string) *Client {
 	u, err := url.Parse(baseURL)
 	if err != nil {
@@ -62,30 +56,18 @@ func NewClient(apiKey string) *Client {
 	return c
 }
 
-func (c *Client) newRequest(method, url string, params map[string]string) (*http.Request, error) {
-	u, err := c.baseURL.Parse(url)
+func (c *Client) newRequest(ctx context.Context, method, url string, params any) (*http.Request, error) {
+	u, err := c.buildURL(url, params)
 	if err != nil {
 		return nil, err
 	}
-
-	q := u.Query()
-
-	if c.Locale != "" {
-		q.Add("locale", string(c.Locale))
-	}
-
-	if len(params) > 0 {
-		for k, v := range params {
-			q.Set(k, v)
-		}
-	}
-
-	u.RawQuery = q.Encode()
 
 	req, err := http.NewRequest(method, u.String(), nil)
 	if err != nil {
 		return nil, err
 	}
+
+	req = req.WithContext(ctx)
 
 	req.Header.Set("User-Agent", c.userAgent)
 	req.Header.Set("X-BetaSeries-Version", version)
@@ -104,4 +86,45 @@ func (c *Client) do(req *http.Request, v interface{}) error {
 	err = json.NewDecoder(res.Body).Decode(v)
 
 	return err
+}
+
+func (c *Client) buildURL(urlStr string, params any) (*url.URL, error) {
+	u, err := c.baseURL.Parse(urlStr)
+	if err != nil {
+		return nil, err
+	}
+
+	v := reflect.ValueOf(params)
+	paramMap := make(map[string]any, v.NumField())
+	for i := 0; i < v.NumField(); i++ {
+		if v.Field(i).IsNil() {
+			continue
+		}
+		tag := v.Type().Field(i).Tag.Get("url")
+		if tag != "" {
+			paramMap[tag] = v.Field(i).Elem().Interface()
+		}
+	}
+
+	q := u.Query()
+	if c.Locale != "" {
+		q.Add("locale", c.Locale.String())
+	}
+
+	if len(paramMap) > 0 {
+		for k, value := range paramMap {
+			switch val := value.(type) {
+			case int:
+				q.Set(k, strconv.Itoa(val))
+			case string:
+				q.Set(k, val)
+			case locale:
+				q.Set(k, val.String())
+			}
+		}
+	}
+
+	u.RawQuery = q.Encode()
+
+	return u, nil
 }
