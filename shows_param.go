@@ -2,7 +2,7 @@ package gotaseries
 
 import "time"
 
-// ShowsDisplayParams represents a parameter to the `Display` method.
+// ShowsDisplayParams represents a parameter to the [ShowService.Display] method.
 type ShowsDisplayParams struct {
 	ID        *int    `url:"id"`
 	TheTvdbID *int    `url:"thetvdb_id"`
@@ -11,7 +11,7 @@ type ShowsDisplayParams struct {
 	Locale    *locale `url:"locale"`
 }
 
-// ShowsListParams represents a parameter to the `List` method.
+// ShowsListParams represents a parameter to the [ShowService.List] method.
 type ShowsListParams struct {
 	Order     *order     `url:"order"`
 	Since     *time.Time `url:"since"`

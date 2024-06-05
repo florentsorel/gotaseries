@@ -16,7 +16,7 @@ const (
 	OrderFollowers    order = "followers"
 )
 
-// Display returns the detail of a TV show with a [ShowsDisplayParams] parameter.
+// Display returns information about a series.
 //
 // Example:
 //
@@ -49,7 +49,7 @@ func (s *ShowService) Display(ctx context.Context, params ShowsDisplayParams) (*
 	return &show.Show, nil
 }
 
-// List returns a list of TV shows with a [ShowsListParams] parameter.
+// List returns a list of all series.
 //
 // Example:
 //
