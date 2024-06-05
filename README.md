@@ -24,14 +24,14 @@ import (
 
 func main() {
 	betaseries := gotaseries.NewClient("YOUR_API_KEY")
-	// You can set locale for each request globally instead of passing it to each request params
+	// You can set locale for each request globally instead of passing it to each params
 	betaseries.Locale = gotaseries.LocaleEN
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	show, err := betaseries.Shows.Display(ctx, gotaseries.ShowsDisplayParams{
-		ID: gotaseries.Int(1161),
+		ID:     gotaseries.Int(1161),
 		Locale: gotaseries.Locale(gotaseries.LocaleFR),
 	})
 	if err != nil {
@@ -40,8 +40,10 @@ func main() {
 
 	fmt.Printf("%+v\n", show)
 
+	date, _ := time.Parse("2006-01-02", "2024-04-03")
 	shows, err := betaseries.Shows.List(context.Background(), gotaseries.ShowsListParams{
-		Order: gotaseries.String("popularity"),
+		Order: gotaseries.Order(gotaseries.OrderPopularity),
+		Since: gotaseries.Time(date),
 	})
 	if err != nil {
 		log.Fatalln(err)
@@ -259,8 +261,8 @@ func main() {
   - [ ] Rate a series (POST /shows/note) - Token
   - [ ] Delete a series rating (DELETE /shows/note) - Token
   - [ ] Search for a series, with member information if a token is provided (GET shows/search)
-  - [ ] Display information about a series (GET /shows/display)
-  - [ ] Display the list of all series (GET /shows/list)
+  - [x] Display information about a series (GET /shows/display)
+  - [x] Display the list of all series (GET /shows/list)
   - [ ] Display a random series (GET /shows/random)
   - [ ] Display episodes of a series (GET /shows/episodes)
   - [ ] Add a series to the member's account (POST /shows/show) - Token

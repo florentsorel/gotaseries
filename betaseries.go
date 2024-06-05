@@ -80,7 +80,7 @@ func (c *Client) newRequest(ctx context.Context, method, url string, params any)
 	return req, nil
 }
 
-func (c *Client) do(req *http.Request, v interface{}) error {
+func (c *Client) do(req *http.Request, v any) error {
 	res, err := c.httpClient.Do(req)
 	if err != nil {
 		return err
@@ -118,12 +118,19 @@ func (c *Client) buildURL(urlStr string, params any) (*url.URL, error) {
 	if len(paramMap) > 0 {
 		for k, value := range paramMap {
 			switch val := value.(type) {
+			case bool:
+				q.Set(k, strconv.FormatBool(val))
 			case int:
 				q.Set(k, strconv.Itoa(val))
 			case string:
 				q.Set(k, val)
+			case time.Time:
+				timestamp := strconv.Itoa(int(val.Unix()))
+				q.Set(k, timestamp)
 			case locale:
 				q.Set(k, val.String())
+			case order:
+				q.Set(k, string(val))
 			}
 		}
 	}

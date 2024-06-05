@@ -8,6 +8,14 @@ import (
 // ShowService hold methods to call Betaseries API.
 type ShowService Service
 
+type order string
+
+const (
+	OrderAlphabetical order = "alphabetical"
+	OrderPopularity   order = "popularity"
+	OrderFollowers    order = "followers"
+)
+
 // Display returns the detail of a TV show with a [ShowsDisplayParams] parameter.
 //
 // Example:

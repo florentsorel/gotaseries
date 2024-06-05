@@ -84,3 +84,43 @@ func TestShowService_Display(t *testing.T) {
 		})
 	}
 }
+
+func TestShowService_List(t *testing.T) {
+	testCases := []struct {
+		url    string
+		params ShowsListParams
+		file   string
+	}{
+		{
+			url: "shows/list?order=popularity",
+			params: ShowsListParams{
+				Order: Order(OrderPopularity),
+			},
+			file: "data/shows/list_order_popularity.json",
+		},
+		{
+			url: "shows/list?locale=en&starting=game",
+			params: ShowsListParams{
+				Starting: String("game"),
+				Locale:   Locale(LocaleEN),
+			},
+			file: "data/shows/list_starting_locale.json",
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.url, func(t *testing.T) {
+			data, err := os.ReadFile(tc.file)
+			assert.NoError(t, err)
+
+			ts, bc := setup(t, fmt.Sprintf("/%s", tc.url), string(data))
+			defer ts.Close()
+
+			show, err := bc.Shows.List(context.Background(), tc.params)
+			assert.NoError(t, err)
+
+			assert.Equal(t, 2, len(show))
+			assert.NotEmpty(t, show)
+		})
+	}
+}
