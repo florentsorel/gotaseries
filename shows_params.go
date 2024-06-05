@@ -1,6 +1,6 @@
 package gotaseries
 
-// ShowsDisplayParams represents the parameters to the Display and DisplayWithCtx methods.
+// ShowsDisplayParams represents the parameters to the Display method.
 type ShowsDisplayParams struct {
 	ID        *int    `url:"id"`
 	TheTvdbID *int    `url:"thetvdb_id"`
@@ -9,7 +9,7 @@ type ShowsDisplayParams struct {
 	Locale    *locale `url:"locale"`
 }
 
-// ShowsListParams represents the parameters to the List and ListWithCtx methods.
+// ShowsListParams represents the parameters to the List method.
 type ShowsListParams struct {
 	Order  *string `url:"order"`
 	Locale *locale `url:"locale"`

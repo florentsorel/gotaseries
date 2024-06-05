@@ -5,12 +5,7 @@ import (
 	"net/http"
 )
 
-type showService service
-
-type showInterface interface {
-	Display(ctx context.Context, params ShowsDisplayParams) (*Show, error)
-	List(ctx context.Context, params ShowsListParams) ([]Show, error)
-}
+type ShowService service
 
 type showsResponse struct {
 	Shows  []Show `json:"shows"`
@@ -120,7 +115,7 @@ type Show struct {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("%+v\n", show)
-func (s *showService) Display(ctx context.Context, params ShowsDisplayParams) (*Show, error) {
+func (s *ShowService) Display(ctx context.Context, params ShowsDisplayParams) (*Show, error) {
 	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/display", params)
 	if err != nil {
 		return nil, err
@@ -152,7 +147,7 @@ func (s *showService) Display(ctx context.Context, params ShowsDisplayParams) (*
 //	for _, show := range shows {
 //		fmt.Printf("%s\n", show.Title)
 //	}
-func (s *showService) List(ctx context.Context, params ShowsListParams) ([]Show, error) {
+func (s *ShowService) List(ctx context.Context, params ShowsListParams) ([]Show, error) {
 	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/list", params)
 	if err != nil {
 		return nil, err
