@@ -3,6 +3,7 @@ package gotaseries
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -15,7 +16,7 @@ const (
 	version = "3.0"
 )
 
-type service struct {
+type Service struct {
 	client *Client
 }
 
@@ -27,7 +28,7 @@ type Client struct {
 	Locale     locale
 	httpClient *http.Client
 
-	common service
+	common Service
 	Shows  *ShowService
 }
 
@@ -67,6 +68,9 @@ func (c *Client) newRequest(ctx context.Context, method, url string, params any)
 		return nil, err
 	}
 
+	if ctx == nil {
+		return nil, fmt.Errorf("context cannot be nil")
+	}
 	req = req.WithContext(ctx)
 
 	req.Header.Set("User-Agent", c.userAgent)
