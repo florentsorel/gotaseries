@@ -28,7 +28,7 @@ func setup(t *testing.T, expectedURL string, expectedJSON string) (*httptest.Ser
 	}
 
 	c.common.client = c
-	c.Shows = (*showService)(&c.common)
+	c.Shows = (*ShowService)(&c.common)
 
 	return ts, c
 }

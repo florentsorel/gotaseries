@@ -19,7 +19,7 @@ type service struct {
 	client *Client
 }
 
-// Client represents a BetaSeries client.
+// Client represents a Betaseries client.
 type Client struct {
 	baseURL    url.URL
 	userAgent  string
@@ -28,10 +28,10 @@ type Client struct {
 	httpClient *http.Client
 
 	common service
-	Shows  showInterface
+	Shows  *ShowService
 }
 
-// NewClient returns a new BetaSeries client. You need to provide an API key.
+// NewClient returns a new Betaseries client. You need to provide an API key.
 func NewClient(apiKey string) *Client {
 	u, err := url.Parse(baseURL)
 	if err != nil {
@@ -51,7 +51,7 @@ func NewClient(apiKey string) *Client {
 	}
 
 	c.common.client = c
-	c.Shows = (*showService)(&c.common)
+	c.Shows = (*ShowService)(&c.common)
 
 	return c
 }
