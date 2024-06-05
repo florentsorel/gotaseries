@@ -13,14 +13,16 @@ import (
 func TestShowService_Display(t *testing.T) {
 	testCases := []struct {
 		url      string
-		params   map[string]string
+		params   ShowsDisplayParams
 		file     string
 		expected Show
 	}{
 		{
-			url:    "shows/display?id=1161",
-			params: nil,
-			file:   "data/shows/display_1161.json",
+			url: "shows/display?id=1161",
+			params: ShowsDisplayParams{
+				ID: Int(1161),
+			},
+			file: "data/shows/display_id.json",
 			expected: Show{
 				ID:          1161,
 				Title:       "Game of Thrones",
@@ -29,14 +31,31 @@ func TestShowService_Display(t *testing.T) {
 			},
 		},
 		{
-			url:    "shows/display?id=1161&locale=en",
-			params: map[string]string{"locale": "en"},
-			file:   "data/shows/display_1161_en.json",
+			url: "shows/display?id=1161&locale=en",
+			params: ShowsDisplayParams{
+				ID:     Int(1161),
+				Locale: Locale(LocaleEN),
+			},
+			file: "data/shows/display_id_locale.json",
 			expected: Show{
 				ID:          1161,
 				Title:       "Game of Thrones",
 				Seasons:     8,
 				Description: "Seven noble families fight for control of the mythical land of Westeros",
+			},
+		},
+		{
+			url: "shows/display?id=1161&thetvdb_id=81189",
+			params: ShowsDisplayParams{
+				ID:        Int(1161),
+				TheTvdbID: Int(81189),
+			},
+			file: "data/shows/display_thetvdb_id.json",
+			expected: Show{
+				ID:          481,
+				Title:       "Breaking Bad",
+				Seasons:     5,
+				Description: "La vie de Walter White, professeur de chimie dans un lycé",
 			},
 		},
 	}
@@ -49,7 +68,7 @@ func TestShowService_Display(t *testing.T) {
 			ts, bc := setup(t, fmt.Sprintf("/%s", tc.url), string(data))
 			defer ts.Close()
 
-			show, err := bc.Shows.Display(1161, tc.params)
+			show, err := bc.Shows.Display(context.Background(), tc.params)
 			assert.NoError(t, err)
 
 			assert.Equal(t, tc.expected.ID, show.ID)
@@ -60,7 +79,7 @@ func TestShowService_Display(t *testing.T) {
 			ctx, cancel := context.WithTimeout(context.Background(), 1*time.Microsecond)
 			defer cancel()
 
-			_, err = bc.Shows.DisplayWithCtx(ctx, 1161, tc.params)
+			_, err = bc.Shows.Display(ctx, tc.params)
 			assert.Contains(t, err.Error(), "context deadline exceeded")
 		})
 	}

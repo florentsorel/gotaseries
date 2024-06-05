@@ -26,18 +26,23 @@ func main() {
 	betaseries := gotaseries.NewClient("YOUR_API_KEY")
 	// You can set locale for each request globally instead of passing it to each request params
 	betaseries.Locale = gotaseries.LocaleEN
-    
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-    
-	show, err := betaseries.Shows.DisplayWithCtx(ctx, 1161, map[string]string{"locale": "es"})
+
+	show, err := betaseries.Shows.Display(ctx, gotaseries.ShowsDisplayParams{
+		ID: gotaseries.Int(1161),
+		Locale: gotaseries.Locale(gotaseries.LocaleFR),
+	})
 	if err != nil {
 		log.Fatalln(err)
 	}
-    
+
 	fmt.Printf("%+v\n", show)
-	
-	shows, err := betaseries.Shows.ListWithCtx(ctx, nil)
+
+	shows, err := betaseries.Shows.List(context.Background(), gotaseries.ShowsListParams{
+		Order: gotaseries.String("popularity"),
+	})
 	if err != nil {
 		log.Fatalln(err)
 	}
