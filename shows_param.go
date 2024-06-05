@@ -1,5 +1,7 @@
 package gotaseries
 
+import "time"
+
 // ShowsDisplayParams represents a parameter to the `Display` method.
 type ShowsDisplayParams struct {
 	ID        *int    `url:"id"`
@@ -11,6 +13,15 @@ type ShowsDisplayParams struct {
 
 // ShowsListParams represents a parameter to the `List` method.
 type ShowsListParams struct {
-	Order  *string `url:"order"`
-	Locale *locale `url:"locale"`
+	Order     *order     `url:"order"`
+	Since     *time.Time `url:"since"`
+	Recent    *bool      `url:"recent"`
+	Starting  *string    `url:"starting"`
+	Start     *int       `url:"start"`
+	Limit     *int       `url:"limit"`
+	Filter    *string    `url:"filter"`
+	Platforms *int       `url:"platforms"`
+	Country   *string    `url:"country"`
+	Summary   *bool      `url:"summary"`
+	Locale    *locale    `url:"locale"`
 }

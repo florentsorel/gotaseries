@@ -51,7 +51,7 @@ type Show struct {
 	Title          string          `json:"title"`
 	OriginalTitle  string          `json:"original_title"`
 	Description    string          `json:"description"`
-	Seasons        int8            `json:"seasons,string"`
+	Seasons        int             `json:"seasons,string"`
 	SeasonsDetails []seasonsDetail `json:"seasons_details"`
 	Episodes       int             `json:"episodes,string"`
 	Followers      int64           `json:"followers,string"`
@@ -92,4 +92,11 @@ type Show struct {
 	NextTrailerHost *string    `json:"next_trailer_host"`
 	ResourceURL     string     `json:"resource_url"`
 	Platforms       *platforms `json:"platforms"`
+}
+
+type ShowSummary struct {
+	ID        int    `json:"id"`
+	TheTvdbID int    `json:"thetvdb_id"`
+	Slug      string `json:"slug"`
+	Title     string `json:"title"`
 }
