@@ -5,7 +5,6 @@ import (
 	"net/http"
 )
 
-// ShowService hold methods to call Betaseries API.
 type ShowService Service
 
 type order string
@@ -64,6 +63,26 @@ func (s *ShowService) Display(ctx context.Context, params ShowsDisplayParams) (*
 //	}
 func (s *ShowService) List(ctx context.Context, params ShowsListParams) ([]Show, error) {
 	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/list", params)
+	if err != nil {
+		return nil, err
+	}
+
+	var shows showsResponse
+	err = s.client.do(req, &shows)
+	if err != nil {
+		return nil, err
+	}
+
+	if err = shows.Errors.Err(); err != nil {
+		return nil, err
+	}
+
+	return shows.Shows, nil
+}
+
+// Random returns random series.
+func (s *ShowService) Random(ctx context.Context, params ShowsRandomParams) ([]Show, error) {
+	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/random", params)
 	if err != nil {
 		return nil, err
 	}

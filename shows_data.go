@@ -26,19 +26,22 @@ type showrunner struct {
 type platforms struct {
 	Svods []svod `json:"svods"`
 	Svod  *svod  `json:"svod"`
+	Vods  []svod `json:"vod"`
+}
+
+type available struct {
+	Last  int `json:"last,omitempty"`
+	First int `json:"first,omitempty"`
 }
 
 type svod struct {
-	ID        int     `json:"id"`
-	Name      string  `json:"name"`
-	Tag       *string `json:"tag"`
-	Color     string  `json:"color"`
-	LinkURL   string  `json:"link_url"`
-	Available struct {
-		Last  int `json:"last,omitempty"`
-		First int `json:"first,omitempty"`
-	} `json:"available"`
-	Logo *string `json:"logo"`
+	ID        int       `json:"id"`
+	Name      string    `json:"name"`
+	Tag       *string   `json:"tag"`
+	Color     string    `json:"color"`
+	LinkURL   string    `json:"link_url"`
+	Available available `json:"available"`
+	Logo      *string   `json:"logo"`
 }
 
 // Show represents a TV show.
@@ -55,6 +58,7 @@ type Show struct {
 	SeasonsDetails []seasonsDetail `json:"seasons_details"`
 	Episodes       int             `json:"episodes,string"`
 	Followers      int64           `json:"followers,string"`
+	Poster         string          `json:"poster"`
 	Comments       int64           `json:"comments"`
 	Similars       int             `json:"similars,string"`
 	Characters     int             `json:"characters,string"`
@@ -92,11 +96,4 @@ type Show struct {
 	NextTrailerHost *string    `json:"next_trailer_host"`
 	ResourceURL     string     `json:"resource_url"`
 	Platforms       *platforms `json:"platforms"`
-}
-
-type ShowSummary struct {
-	ID        int    `json:"id"`
-	TheTvdbID int    `json:"thetvdb_id"`
-	Slug      string `json:"slug"`
-	Title     string `json:"title"`
 }

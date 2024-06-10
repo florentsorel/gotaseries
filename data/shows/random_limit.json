@@ -1,0 +1,33 @@
+{
+  "shows": [
+    {
+      "id": 2152,
+      "thetvdb_id": 164521,
+      "imdb_id": "tt1592254",
+      "themoviedb_id": 32736,
+      "title": "The Defenders",
+      "seasons": "1",
+      "episodes": "18",
+      "followers": "706",
+      "creation": "2010",
+      "poster": "https://pictures.betaseries.com/fonds/poster/880f2fd6315a539f8ab251bf92147af9.jpg",
+      "platforms": null,
+      "resource_url": "https://www.betaseries.com/serie/the-defenders-2010"
+    },
+    {
+      "id": 32716,
+      "thetvdb_id": 420382,
+      "imdb_id": "",
+      "themoviedb_id": 113193,
+      "title": "Heroes (2022)",
+      "seasons": "1",
+      "episodes": "38",
+      "followers": "43",
+      "creation": "2022",
+      "poster": "https://pictures.betaseries.com/fonds/poster/8a34e1a3b9fd6b39e5ee693c4fec1caa.jpg",
+      "platforms": null,
+      "resource_url": "https://www.betaseries.com/serie/heroes-2022"
+    }
+  ],
+  "errors": []
+}
