@@ -124,3 +124,49 @@ func TestShowService_List(t *testing.T) {
 		})
 	}
 }
+
+func TestShowService_Random(t *testing.T) {
+	data, err := os.ReadFile("data/shows/random_limit.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/random?nb=2"), string(data))
+	defer ts.Close()
+
+	shows, err := bc.Shows.Random(context.Background(), ShowsRandomParams{
+		Number: Int(2),
+	})
+	assert.NoError(t, err)
+
+	expected := []Show{
+		{
+			ID:          2152,
+			TheTvdbID:   164521,
+			ImdbID:      "tt1592254",
+			MoviedbID:   32736,
+			Title:       "The Defenders",
+			Seasons:     1,
+			Episodes:    18,
+			Followers:   706,
+			Creation:    2010,
+			Poster:      "https://pictures.betaseries.com/fonds/poster/880f2fd6315a539f8ab251bf92147af9.jpg",
+			Platforms:   nil,
+			ResourceURL: "https://www.betaseries.com/serie/the-defenders-2010",
+		},
+		{
+			ID:          32716,
+			TheTvdbID:   420382,
+			ImdbID:      "",
+			MoviedbID:   113193,
+			Title:       "Heroes (2022)",
+			Seasons:     1,
+			Episodes:    38,
+			Followers:   43,
+			Creation:    2022,
+			Poster:      "https://pictures.betaseries.com/fonds/poster/8a34e1a3b9fd6b39e5ee693c4fec1caa.jpg",
+			Platforms:   nil,
+			ResourceURL: "https://www.betaseries.com/serie/heroes-2022",
+		},
+	}
+
+	assert.Equal(t, expected, shows)
+}
