@@ -17,13 +17,13 @@ func Int(v int) *int {
 	return &v
 }
 
-// Locale returns a pointer value for the locale value passed in.
-func Locale(v locale) *locale {
+// Locale returns a pointer value for the LocaleType value passed in.
+func Locale(v LocaleType) *LocaleType {
 	return &v
 }
 
-// Order returns a pointer value for the order value passed in.
-func Order(v order) *order {
+// Order returns a pointer value for the OrderType value passed in.
+func Order(v OrderType) *OrderType {
 	return &v
 }
 

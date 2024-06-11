@@ -25,7 +25,7 @@ type Client struct {
 	baseURL    url.URL
 	userAgent  string
 	apiKey     string
-	Locale     locale
+	Locale     LocaleType
 	httpClient *http.Client
 
 	common Service
@@ -127,9 +127,9 @@ func (c *Client) buildURL(urlStr string, params any) (*url.URL, error) {
 			case time.Time:
 				timestamp := strconv.Itoa(int(val.Unix()))
 				q.Set(k, timestamp)
-			case locale:
+			case LocaleType:
 				q.Set(k, val.String())
-			case order:
+			case OrderType:
 				q.Set(k, string(val))
 			}
 		}

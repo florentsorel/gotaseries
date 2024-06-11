@@ -1,18 +1,18 @@
 package gotaseries
 
 const (
-	LocaleFR locale = "fr"
-	LocaleEN locale = "en"
-	LocaleDE locale = "de"
-	LocaleES locale = "es"
-	LocaleIT locale = "it"
-	LocaleNL locale = "nl"
-	LocalePL locale = "pl"
-	LocalePT locale = "pt"
+	LocaleFR LocaleType = "fr"
+	LocaleEN LocaleType = "en"
+	LocaleDE LocaleType = "de"
+	LocaleES LocaleType = "es"
+	LocaleIT LocaleType = "it"
+	LocaleNL LocaleType = "nl"
+	LocalePL LocaleType = "pl"
+	LocalePT LocaleType = "pt"
 )
 
-type locale string
+type LocaleType string
 
-func (l locale) String() string {
+func (l LocaleType) String() string {
 	return string(l)
 }

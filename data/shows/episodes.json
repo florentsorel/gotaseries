@@ -1,0 +1,405 @@
+{
+  "episodes": [
+    {
+      "id": 281009,
+      "thetvdb_id": 3254641,
+      "youtube_id": null,
+      "title": "Winter Is Coming",
+      "season": 1,
+      "episode": 1,
+      "code": "S01E01",
+      "global": 1,
+      "description": "Sur le continent de Westeros, un jeune patrouilleur de la Garde de Nuit, chargée de veiller sur le Mur, est condamné à mort pour désertion par Eddard Stark, seigneur de Winterfell et Gardien du Nord. Mais de sombres nouvelles arrivent de Port-Réal, la capitale des Sept Couronnes : Jon Arryn, ami intime d'Eddard et Main du roi Robert Baratheon, vient de mourir. Le roi Robert et sa cour entreprennent alors un voyage vers Winterfell, pour gratifier son ami Eddard de la charge de Main du roi. Pendant ce temps, les descendants des rois Targaryen en exil, renversés par Robert, fomentent leur retour en Westeros par un jeu d'alliance avec les Dothrakis, une tribu de guerriers nomades. Alors qu'à Winterfell les festivités vont bon train durant le séjour du roi, Brandon, l'un des fils d'Eddard Stark, fait une découverte qui lui attire les foudres de la famille royale…",
+      "director": "Tim Van Patten",
+      "writers": [
+        "David Benioff",
+        "D. B. Weiss"
+      ],
+      "special": 0,
+      "comments": 107,
+      "show_slug": "gameofthrones",
+      "resource_url": "https://www.betaseries.com/episode/gameofthrones/s01e01",
+      "note": {
+        "total": 8499,
+        "mean": 4.4326,
+        "user": 0,
+        "moyenne": 4.4326
+      },
+      "user": {
+        "seen": false,
+        "seen_date": null,
+        "hidden": false,
+        "downloaded": false
+      },
+      "date": "2011-04-17",
+      "seen_total": 186383,
+      "releasesSvod": {
+        "displayOriginal": true,
+        "releases": []
+      },
+      "show": {
+        "id": 1161,
+        "thetvdb_id": 121361,
+        "title": "Game of Thrones",
+        "in_account": false
+      },
+      "platform_links": [
+        {
+          "platform_id": "31",
+          "platform": "Amazon Video",
+          "color": "#3B8DD0",
+          "type": "vod",
+          "day": null,
+          "date": null,
+          "logo": null,
+          "link": "https://www.betaseries.com/link/2327460"
+        },
+        {
+          "platform_id": "6",
+          "platform": "Apple iTunes",
+          "color": "#3B8DD0",
+          "type": "vod",
+          "day": null,
+          "date": null,
+          "logo": null,
+          "link": "https://www.betaseries.com/link/2327453"
+        },
+        {
+          "platform_id": "40",
+          "platform": "FandangoNOW",
+          "color": "#3B8DD0",
+          "type": "vod",
+          "day": null,
+          "date": null,
+          "logo": null,
+          "link": "https://www.betaseries.com/link/2327464"
+        },
+        {
+          "platform_id": "7",
+          "platform": "Google Play Movies",
+          "color": "#3B8DD0",
+          "type": "vod",
+          "day": null,
+          "date": null,
+          "logo": null,
+          "link": "https://www.betaseries.com/link/2327820"
+        },
+        {
+          "platform_id": "52",
+          "platform": "HBO Go",
+          "color": "#3B8DD0",
+          "type": "svod",
+          "day": null,
+          "date": null,
+          "logo": null,
+          "link": "https://www.betaseries.com/link/2327463"
+        },
+        {
+          "platform_id": "281",
+          "platform": "HBO Max",
+          "color": "#7515D9",
+          "type": "svod",
+          "day": null,
+          "date": null,
+          "logo": "https://pictures.betaseries.com/platforms/281.jpg",
+          "link": "https://www.betaseries.com/link/59180242"
+        },
+        {
+          "platform_id": "32",
+          "platform": "HBO Now",
+          "color": "#3B8DD0",
+          "type": "svod",
+          "day": null,
+          "date": null,
+          "logo": null,
+          "link": "https://www.betaseries.com/link/2327465"
+        },
+        {
+          "platform_id": "206",
+          "platform": "HBO Now Amazon Channel",
+          "color": "#3B8DD0",
+          "type": "svod",
+          "day": null,
+          "date": null,
+          "logo": null,
+          "link": "https://www.betaseries.com/link/5224777"
+        },
+        {
+          "platform_id": "378",
+          "platform": "Spectrum On Demand",
+          "color": "#3B8DD0",
+          "type": "svod",
+          "day": null,
+          "date": null,
+          "logo": null,
+          "link": "https://www.betaseries.com/link/60373686"
+        },
+        {
+          "platform_id": "41",
+          "platform": "Vudu",
+          "color": "#3B8DD0",
+          "type": "vod",
+          "day": null,
+          "date": null,
+          "logo": null,
+          "link": "https://www.betaseries.com/link/2327459"
+        }
+      ],
+      "subtitles": [
+        {
+          "id": 975356,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.s01.e01.winter.is.coming.(2011).eng.1cd.(9403451).zip",
+          "date": "2023-01-22 15:29:05",
+          "url": "https://www.betaseries.com/srt/975356",
+          "quality": 1
+        },
+        {
+          "id": 855388,
+          "language": "VO",
+          "source": "tvsubtitles",
+          "file": "Game of Thrones_1x01_720p.BluRay.ShAaNiG.com.en.zip",
+          "date": "2020-07-25 16:27:33",
+          "url": "https://www.betaseries.com/srt/855388",
+          "quality": 1
+        },
+        {
+          "id": 770318,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.s01.e01.winter.is.coming.(2011).eng.1cd.(7705910).zip",
+          "date": "2019-04-01 23:24:19",
+          "url": "https://www.betaseries.com/srt/770318",
+          "quality": 1
+        },
+        {
+          "id": 725978,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.s01.e01.winter.is.coming.(2011).eng.1cd.(7459627).zip",
+          "date": "2018-08-24 14:33:47",
+          "url": "https://www.betaseries.com/srt/725978",
+          "quality": 1
+        },
+        {
+          "id": 710901,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.s01.e01.winter.is.coming.(2011).eng.1cd.(7324335).zip",
+          "date": "2018-04-12 12:59:09",
+          "url": "https://www.betaseries.com/srt/710901",
+          "quality": 1
+        },
+        {
+          "id": 673802,
+          "language": "VF",
+          "source": "addic7ed",
+          "file": "Game of Thrones - 01x01 - Winter is Coming.EBP.French.C.orig.Addic7ed.com.srt",
+          "date": "2017-08-25 01:46:21",
+          "url": "https://www.betaseries.com/srt/673802",
+          "quality": 3
+        },
+        {
+          "id": 673798,
+          "language": "VF",
+          "source": "addic7ed",
+          "file": "Game of Thrones - 01x01 - Winter is Coming.CTU.French.C.orig.Addic7ed.com.srt",
+          "date": "2017-08-25 01:46:21",
+          "url": "https://www.betaseries.com/srt/673798",
+          "quality": 3
+        },
+        {
+          "id": 673794,
+          "language": "VF",
+          "source": "addic7ed",
+          "file": "Game of Thrones - 01x01 - Winter is Coming.FEVER.French.C.orig.Addic7ed.com.srt",
+          "date": "2017-08-25 01:46:21",
+          "url": "https://www.betaseries.com/srt/673794",
+          "quality": 3
+        },
+        {
+          "id": 663950,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.s01.e01.winter.is.coming.(2011).eng.1cd.(7028689).zip",
+          "date": "2017-07-02 10:31:43",
+          "url": "https://www.betaseries.com/srt/663950",
+          "quality": 1
+        },
+        {
+          "id": 547719,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.s01.e01.winter.is.coming.(2011).eng.1cd.(6371143).zip",
+          "date": "2015-11-07 11:36:44",
+          "url": "https://www.betaseries.com/srt/547719",
+          "quality": 1
+        },
+        {
+          "id": 544616,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.winter.is.coming.(2011).eng.1cd.(6354668).zip",
+          "date": "2015-10-25 20:21:25",
+          "url": "https://www.betaseries.com/srt/544616",
+          "quality": 1
+        },
+        {
+          "id": 542812,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.winter.is.coming.(2011).eng.1cd.(6345014).zip",
+          "date": "2015-10-18 17:19:48",
+          "url": "https://www.betaseries.com/srt/542812",
+          "quality": 1
+        },
+        {
+          "id": 533617,
+          "language": "VF",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.winter.is.coming.(2011).fre.1cd.(6296717).zip",
+          "date": "2015-09-06 22:45:35",
+          "url": "https://www.betaseries.com/srt/533617",
+          "quality": 1
+        },
+        {
+          "id": 530550,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.winter.is.coming.(2011).eng.1cd.(6286273).zip",
+          "date": "2015-08-28 22:09:54",
+          "url": "https://www.betaseries.com/srt/530550",
+          "quality": 1
+        },
+        {
+          "id": 530185,
+          "language": "VO",
+          "source": "tvsubtitles",
+          "file": "Game of Thrones_1x01_1080p.HDTV.HI.en.zip",
+          "date": "2015-08-27 13:57:11",
+          "url": "https://www.betaseries.com/srt/530185",
+          "quality": 1
+        },
+        {
+          "id": 458093,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.winter.is.coming.(2011).eng.1cd.(5735653).zip",
+          "date": "2014-06-26 08:17:56",
+          "url": "https://www.betaseries.com/srt/458093",
+          "quality": 1
+        },
+        {
+          "id": 456388,
+          "language": "VO",
+          "source": "opensubtitles",
+          "file": "game.of.thrones.winter.is.coming.(2011).eng.1cd.(5720372).zip",
+          "date": "2014-06-11 23:31:54",
+          "url": "https://www.betaseries.com/srt/456388",
+          "quality": 1
+        },
+        {
+          "id": 440602,
+          "language": "VF",
+          "source": "tvsubtitles",
+          "file": "Game of Thrones_1x01_720p.BluRay.anoXmous.fr.zip",
+          "date": "2014-01-05 23:09:33",
+          "url": "https://www.betaseries.com/srt/440602",
+          "quality": 1
+        },
+        {
+          "id": 387399,
+          "language": "VO",
+          "source": "podnapisi",
+          "file": "Game of Thrones S01E01.zip",
+          "date": "2012-08-03 18:08:02",
+          "url": "https://www.betaseries.com/srt/387399",
+          "quality": 1
+        },
+        {
+          "id": 372157,
+          "language": "VO",
+          "source": "podnapisi",
+          "file": "Game.of.Thrones.S01E01.Winter.Is.Coming.720p.BluRay.DTS.x264-HDC.zip",
+          "date": "2012-03-22 05:23:47",
+          "url": "https://www.betaseries.com/srt/372157",
+          "quality": 1
+        },
+        {
+          "id": 366088,
+          "language": "VO",
+          "source": "podnapisi",
+          "file": "Game.of.Thrones.S01E01.720p.BluRay.X264-REWARD_eng.zip",
+          "date": "2012-02-01 23:46:48",
+          "url": "https://www.betaseries.com/srt/366088",
+          "quality": 1
+        },
+        {
+          "id": 338803,
+          "language": "VOVF",
+          "source": "usub",
+          "file": "Game.of.Thrones.1x01.ENFR.FBK.zip",
+          "date": "2011-04-19 17:13:18",
+          "url": "https://www.betaseries.com/srt/338803",
+          "quality": 5
+        },
+        {
+          "id": 338703,
+          "language": "VF",
+          "source": "tvsubtitles",
+          "file": "Game of Thrones_1x01_fr.zip",
+          "date": "2011-04-18 23:03:06",
+          "url": "https://www.betaseries.com/srt/338703",
+          "quality": 1
+        },
+        {
+          "id": 338678,
+          "language": "VF",
+          "source": "tvsubtitles",
+          "file": "Game of Thrones_1x01_HDTV.FEVER.fr.zip",
+          "date": "2011-04-18 17:09:02",
+          "url": "https://www.betaseries.com/srt/338678",
+          "quality": 1
+        },
+        {
+          "id": 338675,
+          "language": "VO",
+          "source": "tvsubtitles",
+          "file": "Game of Thrones_1x01_HDTV.LOL.en.zip",
+          "date": "2011-04-18 16:13:07",
+          "url": "https://www.betaseries.com/srt/338675",
+          "quality": 1
+        },
+        {
+          "id": 338658,
+          "language": "VO",
+          "source": "tvsubtitles",
+          "file": "Game of Thrones_1x01_720p HDTV.en(1).zip",
+          "date": "2011-04-18 09:48:18",
+          "url": "https://www.betaseries.com/srt/338658",
+          "quality": 1
+        },
+        {
+          "id": 338651,
+          "language": "VO",
+          "source": "tvsubtitles",
+          "file": "Game of Thrones_1x01_HDTV.en.zip",
+          "date": "2011-04-18 08:33:25",
+          "url": "https://www.betaseries.com/srt/338651",
+          "quality": 1
+        },
+        {
+          "id": 338648,
+          "language": "VO",
+          "source": "tvsubtitles",
+          "file": "Game of Thrones_1x01_720p HDTV.en.zip",
+          "date": "2011-04-18 08:22:19",
+          "url": "https://www.betaseries.com/srt/338648",
+          "quality": 1
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

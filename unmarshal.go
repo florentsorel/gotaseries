@@ -2,11 +2,12 @@ package gotaseries
 
 import (
 	"encoding/json"
+	"time"
 )
 
-type alias map[int]string
+type Alias map[int]string
 
-func (a *alias) UnmarshalJSON(data []byte) error {
+func (a *Alias) UnmarshalJSON(data []byte) error {
 	if string(data) == "[]" {
 		*a = map[int]string{}
 		return nil
@@ -23,9 +24,9 @@ func (a *alias) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type genres []string
+type Genres []string
 
-func (genres *genres) UnmarshalJSON(data []byte) error {
+func (genres *Genres) UnmarshalJSON(data []byte) error {
 	if string(data) == "[]" {
 		*genres = []string{}
 		return nil
@@ -45,4 +46,59 @@ func (genres *genres) UnmarshalJSON(data []byte) error {
 	*genres = result
 
 	return nil
+}
+
+type BoolFromInt bool
+
+func (b *BoolFromInt) UnmarshalJSON(data []byte) error {
+	var intVal int
+	if err := json.Unmarshal(data, &intVal); err != nil {
+		return err
+	}
+	*b = intVal != 0
+	return nil
+}
+
+type Date time.Time
+
+func (d *Date) UnmarshalJSON(data []byte) error {
+	var date string
+	if err := json.Unmarshal(data, &date); err != nil {
+		return err
+	}
+
+	t, err := time.Parse("2006-01-02", date)
+	if err != nil {
+		return err
+	}
+
+	*d = Date(t)
+
+	return nil
+}
+
+func (d Date) String() string {
+	return time.Time(d).Format("2006-01-02")
+}
+
+type DateTime time.Time
+
+func (d *DateTime) UnmarshalJSON(data []byte) error {
+	var date string
+	if err := json.Unmarshal(data, &date); err != nil {
+		return err
+	}
+
+	t, err := time.Parse("2006-01-02 15:04:05", date)
+	if err != nil {
+		return err
+	}
+
+	*d = DateTime(t)
+
+	return nil
+}
+
+func (d DateTime) String() string {
+	return time.Time(d).Format("2006-01-02 15:04:05")
 }
