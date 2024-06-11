@@ -170,3 +170,55 @@ func TestShowService_Random(t *testing.T) {
 
 	assert.Equal(t, expected, shows)
 }
+
+func TestShowService_Episodes(t *testing.T) {
+	data, err := os.ReadFile("data/shows/episodes.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/episodes?episode=1&id=1161&season=1&subtitles=true"), string(data))
+	defer ts.Close()
+
+	episodes, err := bc.Shows.Episodes(context.Background(), ShowsEpisodesParams{
+		ID:        Int(1161),
+		Season:    Int(1),
+		Episode:   Int(1),
+		Subtitles: Bool(true),
+	})
+	assert.NoError(t, err)
+
+	d, err := time.Parse("2006-01-02", "2011-04-17")
+	assert.NoError(t, err)
+
+	subtitleDT, err := time.Parse("2006-01-02 15:04:05", "2023-01-22 15:29:05")
+	assert.NoError(t, err)
+
+	assert.Equal(t, 1, len(episodes))
+
+	assert.Equal(t, 281009, episodes[0].ID)
+	assert.Equal(t, "Winter Is Coming", episodes[0].Title)
+	assert.Equal(t, 1, episodes[0].Season)
+	assert.Equal(t, 1, episodes[0].Episode)
+	assert.Equal(t, "S01E01", episodes[0].Code)
+	assert.Equal(t, Date(d), episodes[0].Date)
+
+	assert.Equal(t, "", episodes[0].Show.Description)
+
+	assert.Equal(t, 975356, episodes[0].Subtitles[0].ID)
+	assert.Equal(t, "VO", episodes[0].Subtitles[0].Language)
+	assert.Equal(t, "opensubtitles", episodes[0].Subtitles[0].Source)
+	assert.Equal(t, "game.of.thrones.s01.e01.winter.is.coming.(2011).eng.1cd.(9403451).zip", episodes[0].Subtitles[0].File)
+	assert.Equal(t, DateTime(subtitleDT), episodes[0].Subtitles[0].Date)
+	assert.Equal(t, "https://www.betaseries.com/srt/975356", episodes[0].Subtitles[0].URL)
+	assert.Equal(t, 1, episodes[0].Subtitles[0].Quality)
+
+	assert.Equal(t, 8499, episodes[0].Note.Total)
+	assert.Equal(t, 4.4326, episodes[0].Note.Mean)
+
+	assert.Equal(t, 31, episodes[0].PlaformLinks[0].PlatformID)
+	assert.Equal(t, "Amazon Video", episodes[0].PlaformLinks[0].Platform)
+	assert.Equal(t, "#3B8DD0", episodes[0].PlaformLinks[0].Color)
+	assert.Equal(t, "vod", episodes[0].PlaformLinks[0].Type)
+	assert.Equal(t, "vod", episodes[0].PlaformLinks[0].Type)
+	assert.Equal(t, "vod", episodes[0].PlaformLinks[0].Type)
+	assert.Equal(t, "https://www.betaseries.com/link/2327460", episodes[0].PlaformLinks[0].Link)
+}
