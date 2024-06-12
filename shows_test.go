@@ -222,3 +222,88 @@ func TestShowService_Episodes(t *testing.T) {
 	assert.Equal(t, "vod", episodes[0].PlaformLinks[0].Type)
 	assert.Equal(t, "https://www.betaseries.com/link/2327460", episodes[0].PlaformLinks[0].Link)
 }
+
+func TestShowService_EpisodesNotFound(t *testing.T) {
+	data, err := os.ReadFile("data/shows/episodes_not_found.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/episodes"), string(data))
+	defer ts.Close()
+
+	_, err = bc.Shows.Episodes(context.Background(), ShowsEpisodesParams{})
+	assert.Error(t, err)
+
+	assert.Equal(t, err.Error(), "Code: 0, Message: You must send an \"id\" or a \"thetvdb_id\" parameter to this API request.\n")
+}
+
+func TestShowService_Similars(t *testing.T) {
+	data, err := os.ReadFile("data/shows/similars.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/similars?thetvdb_id=121361"), string(data))
+	defer ts.Close()
+
+	similars, err := bc.Shows.Similars(context.Background(), ShowsSimilarsParams{
+		TheTvdbID: Int(121361),
+	})
+	assert.NoError(t, err)
+
+	witcher := similars[2]
+
+	assert.Equal(t, 45, len(similars))
+
+	assert.Equal(t, 21591, witcher.ID)
+	assert.Equal(t, "The Witcher", witcher.Title)
+	assert.Equal(t, 20999, witcher.ShowID)
+	assert.Equal(t, 362696, witcher.TheTvdbID)
+	assert.Nil(t, witcher.Notes)
+	assert.Nil(t, witcher.Show)
+}
+
+func TestShowService_SimilarsWithShow(t *testing.T) {
+	data, err := os.ReadFile("data/shows/similars_with_show.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/similars?details=true&id=1161"), string(data))
+	defer ts.Close()
+
+	similars, err := bc.Shows.Similars(context.Background(), ShowsSimilarsParams{
+		ID:      Int(1161),
+		Details: Bool(true),
+	})
+	assert.NoError(t, err)
+
+	witcher := similars[2]
+
+	assert.Equal(t, 45, len(similars))
+
+	assert.Equal(t, 21591, witcher.ID)
+	assert.Equal(t, "The Witcher", witcher.Title)
+	assert.Equal(t, 20999, witcher.ShowID)
+	assert.Equal(t, 362696, witcher.TheTvdbID)
+	assert.Nil(t, witcher.Notes)
+	assert.NotNil(t, witcher.Show)
+	assert.Equal(t, 3, len(witcher.Show.SeasonsDetails))
+	assert.Equal(t, 33, witcher.Show.Episodes)
+}
+
+func TestShowService_Characters(t *testing.T) {
+	data, err := os.ReadFile("data/shows/characters.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/characters?id=1161"), string(data))
+	defer ts.Close()
+
+	characters, err := bc.Shows.Characters(context.Background(), ShowsCharactersParams{
+		ID: Int(1161),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 545, len(characters))
+
+	assert.Equal(t, 1161, characters[3].ShowID)
+	assert.Equal(t, 14605, characters[3].PersonID)
+	assert.Equal(t, "Daenerys Targaryen", characters[3].Name)
+	assert.Equal(t, "Emilia Clarke", characters[3].Actor)
+	assert.Equal(t, "https://pictures.betaseries.com/persons/wb8VfDPGpyqcFltnRcJR1Wj3h4Z.jpg", characters[3].Picture)
+}
