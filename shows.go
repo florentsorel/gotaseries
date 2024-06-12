@@ -151,6 +151,21 @@ type ShowsEpisodesParams struct {
 	Locale    *LocaleType `url:"locale"`
 }
 
+// ShowsSimilarsParams represents parameter to the [ShowService.Similars] method.
+type ShowsSimilarsParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	Details   *bool       `url:"details"`
+	Locale    *LocaleType `url:"locale"`
+}
+
+// ShowsCharactersParams represents parameter to the [ShowService.Characters] method.
+type ShowsCharactersParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	Locale    *LocaleType `url:"locale"`
+}
+
 // Display returns information about a series.
 //
 // Example:
@@ -216,7 +231,7 @@ func (s *ShowService) List(ctx context.Context, params ShowsListParams) ([]Show,
 	return shows.Shows, nil
 }
 
-// Random returns random series.
+// Random returns a list of random series.
 func (s *ShowService) Random(ctx context.Context, params ShowsRandomParams) ([]Show, error) {
 	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/random", params)
 	if err != nil {
@@ -254,4 +269,44 @@ func (s *ShowService) Episodes(ctx context.Context, params ShowsEpisodesParams) 
 	}
 
 	return episodes.Episodes, nil
+}
+
+// Similars returns a list of characters for the series.
+func (s *ShowService) Similars(ctx context.Context, params ShowsSimilarsParams) ([]SimilarShow, error) {
+	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/similars", params)
+	if err != nil {
+		return nil, err
+	}
+
+	var response similarsResponse
+	err = s.client.do(req, &response)
+	if err != nil {
+		return nil, err
+	}
+
+	if err = response.Errors.Err(); err != nil {
+		return nil, err
+	}
+
+	return response.Similars, nil
+}
+
+// Characters returns a list of characters for the series.
+func (s *ShowService) Characters(ctx context.Context, params ShowsCharactersParams) ([]CharacterShow, error) {
+	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/characters", params)
+	if err != nil {
+		return nil, err
+	}
+
+	var response charactersResponse
+	err = s.client.do(req, &response)
+	if err != nil {
+		return nil, err
+	}
+
+	if err = response.Errors.Err(); err != nil {
+		return nil, err
+	}
+
+	return response.Characters, nil
 }

@@ -1,0 +1,8 @@
+{
+  "errors": [
+    {
+      "code": 0,
+      "text": "You must send an \"id\" or a \"thetvdb_id\" parameter to this API request."
+    }
+  ]
+}
