@@ -287,6 +287,34 @@ func TestShowService_SimilarsWithShow(t *testing.T) {
 	assert.Equal(t, 33, witcher.Show.Episodes)
 }
 
+func TestShowService_Videos(t *testing.T) {
+	data, err := os.ReadFile("data/shows/videos.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/videos?id=1161"), string(data))
+	defer ts.Close()
+
+	videos, err := bc.Shows.Videos(context.Background(), ShowsVideosParams{
+		ID: Int(1161),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 41, len(videos))
+
+	video := videos[0]
+
+	datetime, err := time.Parse("2006-01-02 15:04:05", "2011-04-18 22:20:02")
+	assert.NoError(t, err)
+
+	assert.Equal(t, 1161, video.ShowID)
+	assert.Equal(t, "dailymotion", video.Host)
+	assert.Equal(t, "x87hfr9", video.Slug)
+	assert.Equal(t, "https://www.dailymotion.com/video/x87hfr9", video.URL)
+	assert.Equal(t, DateTime(datetime), video.Date)
+	assert.Equal(t, 0, video.Season)
+	assert.Equal(t, 0, video.Episode)
+}
+
 func TestShowService_Characters(t *testing.T) {
 	data, err := os.ReadFile("data/shows/characters.json")
 	assert.NoError(t, err)
@@ -306,4 +334,34 @@ func TestShowService_Characters(t *testing.T) {
 	assert.Equal(t, "Daenerys Targaryen", characters[3].Name)
 	assert.Equal(t, "Emilia Clarke", characters[3].Actor)
 	assert.Equal(t, "https://pictures.betaseries.com/persons/wb8VfDPGpyqcFltnRcJR1Wj3h4Z.jpg", characters[3].Picture)
+}
+
+func TestShowService_Pictures(t *testing.T) {
+	data, err := os.ReadFile("data/shows/pictures.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/pictures?format=hd&id=1161&order=-date"), string(data))
+	defer ts.Close()
+
+	pictures, err := bc.Shows.Pictures(context.Background(), ShowsPicturesParams{
+		ID:     Int(1161),
+		Order:  OrderDate(OrderDateDESC),
+		Format: Format(FormatHD),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 222, len(pictures))
+
+	picture := pictures[0]
+
+	datetime, err := time.Parse("2006-01-02 15:04:05", "2023-06-15 14:30:48")
+	assert.NoError(t, err)
+
+	assert.Equal(t, 149516, picture.ID)
+	assert.Equal(t, 1161, picture.ShowID)
+	assert.Equal(t, "https://pictures.betaseries.com/fonds/original/1161_63172304.jpg", picture.URL)
+	assert.Equal(t, 1920, picture.Width)
+	assert.Equal(t, 1080, picture.Height)
+	assert.Equal(t, DateTime(datetime), picture.Date)
+	assert.Equal(t, "none", picture.Picked)
 }
