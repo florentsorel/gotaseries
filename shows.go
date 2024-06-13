@@ -6,15 +6,15 @@ import (
 	"time"
 )
 
-type ShowService Service
-
-type OrderType string
-
 const (
 	OrderAlphabetical OrderType = "alphabetical"
 	OrderPopularity   OrderType = "popularity"
 	OrderFollowers    OrderType = "followers"
 )
+
+type ShowService Service
+
+type OrderType string
 
 type showsResponse struct {
 	Shows  []Show `json:"shows"`
@@ -110,7 +110,6 @@ type Show struct {
 	Platforms       *Platforms `json:"Platforms"`
 }
 
-// ShowsDisplayParams represents parameter to the [ShowService.Display] method.
 type ShowsDisplayParams struct {
 	ID        *int        `url:"id"`
 	TheTvdbID *int        `url:"thetvdb_id"`
@@ -119,7 +118,6 @@ type ShowsDisplayParams struct {
 	Locale    *LocaleType `url:"locale"`
 }
 
-// ShowsListParams represents parameter to the [ShowService.List] method.
 type ShowsListParams struct {
 	Order     *OrderType  `url:"order"`
 	Since     *time.Time  `url:"since"`
@@ -134,14 +132,12 @@ type ShowsListParams struct {
 	Locale    *LocaleType `url:"locale"`
 }
 
-// ShowsRandomParams represents parameter to the [ShowService.Random] method.
 type ShowsRandomParams struct {
 	Number  *int        `url:"nb"`
 	Summary *bool       `url:"summary"`
 	Locale  *LocaleType `url:"locale"`
 }
 
-// ShowsEpisodesParams represents parameter to the [ShowService.Episodes] method.
 type ShowsEpisodesParams struct {
 	ID        *int        `url:"id"`
 	TheTvdbID *int        `url:"thetvdb_id"`
@@ -151,7 +147,6 @@ type ShowsEpisodesParams struct {
 	Locale    *LocaleType `url:"locale"`
 }
 
-// ShowsSimilarsParams represents parameter to the [ShowService.Similars] method.
 type ShowsSimilarsParams struct {
 	ID        *int        `url:"id"`
 	TheTvdbID *int        `url:"thetvdb_id"`
@@ -159,11 +154,30 @@ type ShowsSimilarsParams struct {
 	Locale    *LocaleType `url:"locale"`
 }
 
-// ShowsCharactersParams represents parameter to the [ShowService.Characters] method.
+type ShowsVideosParams struct {
+	ID        *int           `url:"id"`
+	TheTvdbID *int           `url:"thetvdb_id"`
+	Order     *OrderDateType `url:"order"`
+	Start     *int           `url:"start"`
+	Limit     *int           `url:"limit"`
+	Details   *bool          `url:"details"`
+	Locale    *LocaleType    `url:"locale"`
+}
+
 type ShowsCharactersParams struct {
 	ID        *int        `url:"id"`
 	TheTvdbID *int        `url:"thetvdb_id"`
 	Locale    *LocaleType `url:"locale"`
+}
+
+type ShowsPicturesParams struct {
+	ID        *int           `url:"id"`
+	TheTvdbID *int           `url:"thetvdb_id"`
+	Order     *OrderDateType `url:"order"`
+	Start     *int           `url:"start"`
+	Limit     *int           `url:"limit"`
+	Format    *FormatType    `url:"format"`
+	Locale    *LocaleType    `url:"locale"`
 }
 
 // Display returns information about a series.
@@ -186,17 +200,17 @@ func (s *ShowService) Display(ctx context.Context, params ShowsDisplayParams) (*
 		return nil, err
 	}
 
-	var show showResponse
-	err = s.client.do(req, &show)
+	var response showResponse
+	err = s.client.do(req, &response)
 	if err != nil {
 		return nil, err
 	}
 
-	if err = show.Errors.Err(); err != nil {
+	if err = response.Errors.Err(); err != nil {
 		return nil, err
 	}
 
-	return &show.Show, nil
+	return &response.Show, nil
 }
 
 // List returns a list of all series.
@@ -218,17 +232,17 @@ func (s *ShowService) List(ctx context.Context, params ShowsListParams) ([]Show,
 		return nil, err
 	}
 
-	var shows showsResponse
-	err = s.client.do(req, &shows)
+	var response showsResponse
+	err = s.client.do(req, &response)
 	if err != nil {
 		return nil, err
 	}
 
-	if err = shows.Errors.Err(); err != nil {
+	if err = response.Errors.Err(); err != nil {
 		return nil, err
 	}
 
-	return shows.Shows, nil
+	return response.Shows, nil
 }
 
 // Random returns a list of random series.
@@ -238,17 +252,17 @@ func (s *ShowService) Random(ctx context.Context, params ShowsRandomParams) ([]S
 		return nil, err
 	}
 
-	var shows showsResponse
-	err = s.client.do(req, &shows)
+	var response showsResponse
+	err = s.client.do(req, &response)
 	if err != nil {
 		return nil, err
 	}
 
-	if err = shows.Errors.Err(); err != nil {
+	if err = response.Errors.Err(); err != nil {
 		return nil, err
 	}
 
-	return shows.Shows, nil
+	return response.Shows, nil
 }
 
 // Episodes returns a list of episodes for the series.
@@ -258,17 +272,17 @@ func (s *ShowService) Episodes(ctx context.Context, params ShowsEpisodesParams) 
 		return nil, err
 	}
 
-	var episodes episodesResponse
-	err = s.client.do(req, &episodes)
+	var response episodesResponse
+	err = s.client.do(req, &response)
 	if err != nil {
 		return nil, err
 	}
 
-	if err = episodes.Errors.Err(); err != nil {
+	if err = response.Errors.Err(); err != nil {
 		return nil, err
 	}
 
-	return episodes.Episodes, nil
+	return response.Episodes, nil
 }
 
 // Similars returns a list of characters for the series.
@@ -291,6 +305,26 @@ func (s *ShowService) Similars(ctx context.Context, params ShowsSimilarsParams) 
 	return response.Similars, nil
 }
 
+// Videos returns a list of videos for the series.
+func (s *ShowService) Videos(ctx context.Context, params ShowsVideosParams) ([]VideoShow, error) {
+	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/videos", params)
+	if err != nil {
+		return nil, err
+	}
+
+	var response videosShowResponse
+	err = s.client.do(req, &response)
+	if err != nil {
+		return nil, err
+	}
+
+	if err = response.Errors.Err(); err != nil {
+		return nil, err
+	}
+
+	return response.Videos, nil
+}
+
 // Characters returns a list of characters for the series.
 func (s *ShowService) Characters(ctx context.Context, params ShowsCharactersParams) ([]CharacterShow, error) {
 	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/characters", params)
@@ -298,7 +332,7 @@ func (s *ShowService) Characters(ctx context.Context, params ShowsCharactersPara
 		return nil, err
 	}
 
-	var response charactersResponse
+	var response charactersShowResponse
 	err = s.client.do(req, &response)
 	if err != nil {
 		return nil, err
@@ -309,4 +343,24 @@ func (s *ShowService) Characters(ctx context.Context, params ShowsCharactersPara
 	}
 
 	return response.Characters, nil
+}
+
+// Pictures returns a list of pictures for the series.
+func (s *ShowService) Pictures(ctx context.Context, params ShowsPicturesParams) ([]PictureShow, error) {
+	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/pictures", params)
+	if err != nil {
+		return nil, err
+	}
+
+	var response picturesShowResponse
+	err = s.client.do(req, &response)
+	if err != nil {
+		return nil, err
+	}
+
+	if err = response.Errors.Err(); err != nil {
+		return nil, err
+	}
+
+	return response.Pictures, nil
 }

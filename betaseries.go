@@ -131,6 +131,10 @@ func (c *Client) buildURL(urlStr string, params any) (*url.URL, error) {
 				q.Set(k, val.String())
 			case OrderType:
 				q.Set(k, string(val))
+			case OrderDateType:
+				q.Set(k, string(val))
+			case FormatType:
+				q.Set(k, string(val))
 			}
 		}
 	}

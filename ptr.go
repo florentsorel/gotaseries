@@ -17,6 +17,11 @@ func Int(v int) *int {
 	return &v
 }
 
+// Format returns a pointer value for the FormatType value passed in.
+func Format(v FormatType) *FormatType {
+	return &v
+}
+
 // Locale returns a pointer value for the LocaleType value passed in.
 func Locale(v LocaleType) *LocaleType {
 	return &v
@@ -24,6 +29,11 @@ func Locale(v LocaleType) *LocaleType {
 
 // Order returns a pointer value for the OrderType value passed in.
 func Order(v OrderType) *OrderType {
+	return &v
+}
+
+// OrderDate returns a pointer value for the OrderDateType value passed in.
+func OrderDate(v OrderDateType) *OrderDateType {
 	return &v
 }
 

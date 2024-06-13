@@ -1,6 +1,6 @@
 package gotaseries
 
-type charactersResponse struct {
+type charactersShowResponse struct {
 	Characters []CharacterShow `json:"characters"`
 	Errors     Errors          `json:"errors"`
 }

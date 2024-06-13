@@ -274,9 +274,9 @@ func main() {
   - [ ] Change the status of a received series recommendation (PUT /shows/recommendation) - Token
   - [ ] Retrieve recommendations received by the identified user (GET /shows/recommendation) - Token
   - [x] Retrieve series marked as similar (GET /shows/similars)
-  - [ ] Retrieve videos associated with the series (GET /shows/videos)
+  - [x] Retrieve videos associated with the series (GET /shows/videos)
   - [x] Retrieve characters of the series (GET /shows/characters)
-  - [ ] Retrieve images of the series (GET /shows/pictures)
+  - [x] Retrieve images of the series (GET /shows/pictures)
   - [ ] Retrieve the favorite series of the member (GET /shows/favorites) - Token or ID parameter
   - [ ] Add a favorite series to the profile of the identified member (POST /shows/favorite) - Token
   - [ ] Remove a favorite series from the profile of the identified member (DELETE /shows/favorite) - Token
