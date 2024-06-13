@@ -85,6 +85,19 @@ func TestShowService_Display(t *testing.T) {
 	}
 }
 
+func TestShowService_DisplayNotFound(t *testing.T) {
+	data, err := os.ReadFile("data/shows/no_series_found.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/display"), string(data))
+	defer ts.Close()
+
+	_, err = bc.Shows.Display(context.Background(), ShowsDisplayParams{})
+	assert.Error(t, err)
+
+	assert.Equal(t, err.Error(), "Code: 4001, Message: No series found.\n")
+}
+
 func TestShowService_List(t *testing.T) {
 	testCases := []struct {
 		url    string
@@ -315,6 +328,19 @@ func TestShowService_Videos(t *testing.T) {
 	assert.Equal(t, 0, video.Episode)
 }
 
+func TestShowService_VideosNotFound(t *testing.T) {
+	data, err := os.ReadFile("data/shows/no_series_found.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/videos"), string(data))
+	defer ts.Close()
+
+	_, err = bc.Shows.Videos(context.Background(), ShowsVideosParams{})
+	assert.Error(t, err)
+
+	assert.Equal(t, err.Error(), "Code: 4001, Message: No series found.\n")
+}
+
 func TestShowService_Characters(t *testing.T) {
 	data, err := os.ReadFile("data/shows/characters.json")
 	assert.NoError(t, err)
@@ -334,6 +360,19 @@ func TestShowService_Characters(t *testing.T) {
 	assert.Equal(t, "Daenerys Targaryen", characters[3].Name)
 	assert.Equal(t, "Emilia Clarke", characters[3].Actor)
 	assert.Equal(t, "https://pictures.betaseries.com/persons/wb8VfDPGpyqcFltnRcJR1Wj3h4Z.jpg", characters[3].Picture)
+}
+
+func TestShowService_CharactersNotFound(t *testing.T) {
+	data, err := os.ReadFile("data/shows/no_series_found.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/characters"), string(data))
+	defer ts.Close()
+
+	_, err = bc.Shows.Characters(context.Background(), ShowsCharactersParams{})
+	assert.Error(t, err)
+
+	assert.Equal(t, err.Error(), "Code: 4001, Message: No series found.\n")
 }
 
 func TestShowService_Pictures(t *testing.T) {
@@ -364,4 +403,17 @@ func TestShowService_Pictures(t *testing.T) {
 	assert.Equal(t, 1080, picture.Height)
 	assert.Equal(t, DateTime(datetime), picture.Date)
 	assert.Equal(t, "none", picture.Picked)
+}
+
+func TestShowService_PicturesNotFound(t *testing.T) {
+	data, err := os.ReadFile("data/shows/no_series_found.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, fmt.Sprintf("/%s", "shows/pictures"), string(data))
+	defer ts.Close()
+
+	_, err = bc.Shows.Pictures(context.Background(), ShowsPicturesParams{})
+	assert.Error(t, err)
+
+	assert.Equal(t, err.Error(), "Code: 4001, Message: No series found.\n")
 }

@@ -195,22 +195,11 @@ type ShowsPicturesParams struct {
 //	}
 //	fmt.Printf("%+v\n", show)
 func (s *ShowService) Display(ctx context.Context, params ShowsDisplayParams) (*Show, error) {
-	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/display", params)
-	if err != nil {
+	var res showResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/display", params, &res); err != nil {
 		return nil, err
 	}
-
-	var response showResponse
-	err = s.client.do(req, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	if err = response.Errors.Err(); err != nil {
-		return nil, err
-	}
-
-	return &response.Show, nil
+	return &res.Show, nil
 }
 
 // List returns a list of all series.
@@ -227,140 +216,63 @@ func (s *ShowService) Display(ctx context.Context, params ShowsDisplayParams) (*
 //		fmt.Printf("%s\n", show.Title)
 //	}
 func (s *ShowService) List(ctx context.Context, params ShowsListParams) ([]Show, error) {
-	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/list", params)
-	if err != nil {
+	var res showsResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/list", params, &res); err != nil {
 		return nil, err
 	}
-
-	var response showsResponse
-	err = s.client.do(req, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	if err = response.Errors.Err(); err != nil {
-		return nil, err
-	}
-
-	return response.Shows, nil
+	return res.Shows, nil
 }
 
 // Random returns a list of random series.
 func (s *ShowService) Random(ctx context.Context, params ShowsRandomParams) ([]Show, error) {
-	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/random", params)
-	if err != nil {
+	var res showsResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/random", params, &res); err != nil {
 		return nil, err
 	}
-
-	var response showsResponse
-	err = s.client.do(req, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	if err = response.Errors.Err(); err != nil {
-		return nil, err
-	}
-
-	return response.Shows, nil
+	return res.Shows, nil
 }
 
 // Episodes returns a list of episodes for the series.
 func (s *ShowService) Episodes(ctx context.Context, params ShowsEpisodesParams) ([]Episode, error) {
-	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/episodes", params)
-	if err != nil {
+	var res episodesResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/episodes", params, &res); err != nil {
 		return nil, err
 	}
-
-	var response episodesResponse
-	err = s.client.do(req, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	if err = response.Errors.Err(); err != nil {
-		return nil, err
-	}
-
-	return response.Episodes, nil
+	return res.Episodes, nil
 }
 
 // Similars returns a list of characters for the series.
 func (s *ShowService) Similars(ctx context.Context, params ShowsSimilarsParams) ([]SimilarShow, error) {
-	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/similars", params)
-	if err != nil {
+	var res similarsResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/similars", params, &res); err != nil {
 		return nil, err
 	}
-
-	var response similarsResponse
-	err = s.client.do(req, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	if err = response.Errors.Err(); err != nil {
-		return nil, err
-	}
-
-	return response.Similars, nil
+	return res.Similars, nil
 }
 
 // Videos returns a list of videos for the series.
 func (s *ShowService) Videos(ctx context.Context, params ShowsVideosParams) ([]VideoShow, error) {
-	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/videos", params)
-	if err != nil {
+	var res videosShowResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/videos", params, &res); err != nil {
 		return nil, err
 	}
-
-	var response videosShowResponse
-	err = s.client.do(req, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	if err = response.Errors.Err(); err != nil {
-		return nil, err
-	}
-
-	return response.Videos, nil
+	return res.Videos, nil
 }
 
 // Characters returns a list of characters for the series.
 func (s *ShowService) Characters(ctx context.Context, params ShowsCharactersParams) ([]CharacterShow, error) {
-	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/characters", params)
-	if err != nil {
+	var res charactersShowResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/characters", params, &res); err != nil {
 		return nil, err
 	}
-
-	var response charactersShowResponse
-	err = s.client.do(req, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	if err = response.Errors.Err(); err != nil {
-		return nil, err
-	}
-
-	return response.Characters, nil
+	return res.Characters, nil
 }
 
 // Pictures returns a list of pictures for the series.
 func (s *ShowService) Pictures(ctx context.Context, params ShowsPicturesParams) ([]PictureShow, error) {
-	req, err := s.client.newRequest(ctx, http.MethodGet, "/shows/pictures", params)
-	if err != nil {
+	var res picturesShowResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/pictures", params, &res); err != nil {
 		return nil, err
 	}
-
-	var response picturesShowResponse
-	err = s.client.do(req, &response)
-	if err != nil {
-		return nil, err
-	}
-
-	if err = response.Errors.Err(); err != nil {
-		return nil, err
-	}
-
-	return response.Pictures, nil
+	return res.Pictures, nil
 }
