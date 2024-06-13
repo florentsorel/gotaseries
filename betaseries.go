@@ -57,6 +57,24 @@ func NewClient(apiKey string) *Client {
 	return c
 }
 
+func (s *ShowService) doRequest(ctx context.Context, method, urlStr string, params any, response errorableResponse) error {
+	req, err := s.client.newRequest(ctx, method, urlStr, params)
+	if err != nil {
+		return err
+	}
+
+	err = s.client.do(req, response)
+	if err != nil {
+		return err
+	}
+
+	if err = response.GetErrors().Err(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (c *Client) newRequest(ctx context.Context, method, url string, params any) (*http.Request, error) {
 	u, err := c.buildURL(url, params)
 	if err != nil {
