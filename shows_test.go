@@ -85,6 +85,32 @@ func TestShowService_Display(t *testing.T) {
 	}
 }
 
+func TestShowService_DisplayWithToken(t *testing.T) {
+	data, err := os.ReadFile("data/shows/display_with_token.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "GET", fmt.Sprintf("/%s", "shows/display?id=807"), string(data))
+	defer ts.Close()
+
+	show, err := bc.Shows.Display(context.Background(), ShowsDisplayParams{
+		ID: Int(807),
+	})
+	assert.NoError(t, err)
+
+	_, err = time.Parse("2006-01-02", show.User.Next.Date.String())
+	assert.NoError(t, err)
+
+	assert.Equal(t, "Modern Family", show.Title)
+	assert.Equal(t, true, show.InAccount)
+	assert.Equal(t, false, show.User.Archived)
+	assert.Equal(t, 87.599999999999994315658113919198513031005859375, show.User.Status)
+	assert.Equal(t, "S10E09", show.User.Last)
+	assert.Equal(t, Int(1216277), show.User.Next.ID)
+	assert.Equal(t, "S10E10", show.User.Next.Code)
+	assert.Equal(t, "2018-12-12", show.User.Next.Date.String())
+	assert.Equal(t, "test user", show.User.FriendsWatching[0].Login)
+}
+
 func TestShowService_DisplayNotFound(t *testing.T) {
 	data, err := os.ReadFile("data/shows/no_series_found.json")
 	assert.NoError(t, err)
