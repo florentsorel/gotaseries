@@ -88,6 +88,7 @@ type Show struct {
 	Status         string          `json:"status"`
 	Language       string          `json:"language"`
 	Notes          Note            `json:"notes"`
+	InAccount      bool            `json:"in_account"`
 	Image          struct {
 		Show   string `json:"show"`
 		Banner string `json:"banner"`
@@ -104,6 +105,27 @@ type Show struct {
 		Type       string `json:"type"`
 		ExternalID string `json:"external_id"`
 	} `json:"social_links"`
+	User struct {
+		Archived  bool    `json:"archived"`
+		Favorited bool    `json:"favorited"`
+		Remaining int     `json:"remaining"`
+		Status    float64 `json:"status"`
+		Last      string  `json:"last"`
+		Tags      string  `json:"tags"`
+		Next      struct {
+			ID    *int    `json:"id"`
+			Code  string  `json:"code"`
+			Date  *Date   `json:"date"`
+			Title *string `json:"title"`
+			Image *string `json:"image"`
+		}
+		FriendsWatching []struct {
+			ID     int    `json:"id"`
+			Login  string `json:"login"`
+			Note   *int   `json:"note"`
+			Avatar string `json:"avatar"`
+		} `json:"friends_watching"`
+	}
 	NextTrailer     *string    `json:"next_trailer"`
 	NextTrailerHost *string    `json:"next_trailer_host"`
 	ResourceURL     string     `json:"resource_url"`
