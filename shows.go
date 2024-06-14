@@ -180,6 +180,25 @@ type ShowsPicturesParams struct {
 	Locale    *LocaleType    `url:"locale"`
 }
 
+type ShowsRecommendationParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	To        int         `url:"to"`
+	Comment   *string     `url:"comments"`
+	Locale    *LocaleType `url:"locale"`
+}
+
+type ShowsUpdateRecommendationParams struct {
+	ID     int                  `url:"id"`
+	Status RecommendationStatus `url:"status"`
+	Locale *LocaleType          `url:"locale"`
+}
+
+type ShowsDeleteRecommendationParams struct {
+	ID     int         `url:"id"`
+	Locale *LocaleType `url:"locale"`
+}
+
 // Display returns information about a series.
 //
 // Example:
@@ -275,4 +294,34 @@ func (s *ShowService) Pictures(ctx context.Context, params ShowsPicturesParams) 
 		return nil, err
 	}
 	return res.Pictures, nil
+}
+
+// CreateRecommendation create a series recommendation from authenticated member to a friend.
+// Require a valid token.
+func (s *ShowService) CreateRecommendation(ctx context.Context, params ShowsRecommendationParams) (*Recommendation, error) {
+	var res recommendationResponse
+	if err := s.doRequest(ctx, http.MethodPost, "/shows/recommendation", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Recommendation, nil
+}
+
+// UpdateRecommendation update the status of a recommendation.
+// Require a valid token.
+func (s *ShowService) UpdateRecommendation(ctx context.Context, params ShowsUpdateRecommendationParams) (*Recommendation, error) {
+	var res recommendationResponse
+	if err := s.doRequest(ctx, http.MethodPut, "/shows/recommendation", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Recommendation, nil
+}
+
+// DeleteRecommendation delete a recommendation.
+// Require a valid token.
+func (s *ShowService) DeleteRecommendation(ctx context.Context, params ShowsDeleteRecommendationParams) (*Recommendation, error) {
+	var res recommendationResponse
+	if err := s.doRequest(ctx, http.MethodDelete, "/shows/recommendation", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Recommendation, nil
 }

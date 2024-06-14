@@ -11,9 +11,10 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func setup(t *testing.T, expectedURL string, expectedJSON string) (*httptest.Server, *Client) {
+func setup(t *testing.T, expectedMethod, expectedURL string, expectedJSON string) (*httptest.Server, *Client) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		assert.Equal(t, expectedURL, r.URL.String())
+		assert.Equal(t, expectedMethod, r.Method)
 		_, _ = w.Write([]byte(expectedJSON))
 	}))
 
@@ -61,6 +62,46 @@ func TestNewRequest(t *testing.T) {
 	assert.Equal(t, "http://api.test.com/test", req.URL.String())
 	assert.Equal(t, "gotaseries-user-agent", req.Header.Get("User-Agent"))
 	assert.Equal(t, "api_key", req.Header.Get("X-BetaSeries-Key"))
+	assert.Equal(t, "3.0", req.Header.Get("X-BetaSeries-Version"))
+}
+
+func TestNewRequestWithToken(t *testing.T) {
+	client := NewClient("api_key")
+	client.Token = "token"
+	apiURL, err := url.Parse("http://api.test.com")
+	assert.NoError(t, err)
+
+	client.baseURL = *apiURL
+	client.userAgent = "gotaseries-user-agent"
+	client.apiKey = "api_key"
+
+	req, err := client.newRequest(context.Background(), "GET", "/test", ShowsListParams{})
+	assert.NoError(t, err)
+
+	assert.Equal(t, "http://api.test.com/test", req.URL.String())
+	assert.Equal(t, "gotaseries-user-agent", req.Header.Get("User-Agent"))
+	assert.Equal(t, "api_key", req.Header.Get("X-BetaSeries-Key"))
+	assert.Equal(t, "token", req.Header.Get("X-BetaSeries-Token"))
+	assert.Equal(t, "3.0", req.Header.Get("X-BetaSeries-Version"))
+}
+
+func TestNewRequestWithInvalidToken(t *testing.T) {
+	client := NewClient("api_key")
+	client.Token = "invalid_token"
+	apiURL, err := url.Parse("http://api.test.com")
+	assert.NoError(t, err)
+
+	client.baseURL = *apiURL
+	client.userAgent = "gotaseries-user-agent"
+	client.apiKey = "api_key"
+
+	req, err := client.newRequest(context.Background(), "GET", "/test", ShowsListParams{})
+	assert.NoError(t, err)
+
+	assert.Equal(t, "http://api.test.com/test", req.URL.String())
+	assert.Equal(t, "gotaseries-user-agent", req.Header.Get("User-Agent"))
+	assert.Equal(t, "api_key", req.Header.Get("X-BetaSeries-Key"))
+	assert.NotEqual(t, "token", req.Header.Get("X-BetaSeries-Token"))
 	assert.Equal(t, "3.0", req.Header.Get("X-BetaSeries-Version"))
 }
 

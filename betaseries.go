@@ -25,6 +25,7 @@ type Client struct {
 	baseURL    url.URL
 	userAgent  string
 	apiKey     string
+	Token      string
 	Locale     LocaleType
 	httpClient *http.Client
 
@@ -47,6 +48,7 @@ func NewClient(apiKey string) *Client {
 		baseURL:    *u,
 		userAgent:  "gotaseries/" + version,
 		apiKey:     apiKey,
+		Token:      "",
 		Locale:     "",
 		httpClient: httpClient,
 	}
@@ -95,6 +97,10 @@ func (c *Client) newRequest(ctx context.Context, method, url string, params any)
 	req.Header.Set("X-BetaSeries-Version", version)
 	req.Header.Set("X-BetaSeries-Key", c.apiKey)
 
+	if c.Token != "" {
+		req.Header.Set("X-BetaSeries-Token", c.Token)
+	}
+
 	return req, nil
 }
 
@@ -119,9 +125,18 @@ func (c *Client) buildURL(urlStr string, params any) (*url.URL, error) {
 	v := reflect.ValueOf(params)
 	paramMap := make(map[string]any, v.NumField())
 	for i := 0; i < v.NumField(); i++ {
+		if v.Field(i).Kind() != reflect.Ptr {
+			tag := v.Type().Field(i).Tag.Get("url")
+			if tag != "" {
+				paramMap[tag] = v.Field(i).Interface()
+			}
+			continue
+		}
+
 		if v.Field(i).IsNil() {
 			continue
 		}
+
 		tag := v.Type().Field(i).Tag.Get("url")
 		if tag != "" {
 			paramMap[tag] = v.Field(i).Elem().Interface()
@@ -152,6 +167,8 @@ func (c *Client) buildURL(urlStr string, params any) (*url.URL, error) {
 			case OrderDateType:
 				q.Set(k, string(val))
 			case FormatType:
+				q.Set(k, string(val))
+			case RecommendationStatus:
 				q.Set(k, string(val))
 			}
 		}
