@@ -108,6 +108,7 @@ func TestShowService_DisplayWithToken(t *testing.T) {
 	assert.Equal(t, Int(1216277), show.User.Next.ID)
 	assert.Equal(t, "S10E10", show.User.Next.Code)
 	assert.Equal(t, "2018-12-12", show.User.Next.Date.String())
+	assert.Equal(t, "test user", show.User.FriendsWatching[0].Login)
 }
 
 func TestShowService_DisplayNotFound(t *testing.T) {
