@@ -102,3 +102,16 @@ func (d *DateTime) UnmarshalJSON(data []byte) error {
 func (d DateTime) String() string {
 	return time.Time(d).Format("2006-01-02 15:04:05")
 }
+
+func (rs *RecommendationStatus) UnmarshalJSON(data []byte) error {
+	var status string
+	if err := json.Unmarshal(data, &status); err != nil {
+		return err
+	}
+	tempStatus := RecommendationStatus(status)
+	if err := tempStatus.IsValid(); err != nil {
+		return err
+	}
+	*rs = tempStatus
+	return nil
+}

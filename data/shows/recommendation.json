@@ -1,0 +1,11 @@
+{
+  "recommendation": {
+    "id": 106602,
+    "from_id": 5678,
+    "to_id": 1234,
+    "show_id": 1456,
+    "status": "wait",
+    "comments": "Test"
+  },
+  "errors": []
+}

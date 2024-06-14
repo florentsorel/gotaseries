@@ -26,6 +26,8 @@ func main() {
 	betaseries := gotaseries.NewClient("YOUR_API_KEY")
 	// You can set locale for each request globally instead of passing it to each params
 	betaseries.Locale = gotaseries.LocaleEN
+	// If request need authentication, you must set your token
+	betaseries.Token = "YOUR_TOKEN"
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -269,9 +271,9 @@ func main() {
   - [ ] Remove a series from the member's account (DELETE /shows/show) - Token
   - [ ] Archive a series in the member's account (POST /shows/archive) - Token
   - [ ] Remove a series from the archives of the member's account (DELETE /shows/archive) - Token
-  - [ ] Create a series recommendation from a member to a friend (POST /shows/recommendation) - Token
-  - [ ] Delete a sent or received series recommendation (DELETE /shows/recommendation) - Token
-  - [ ] Change the status of a received series recommendation (PUT /shows/recommendation) - Token
+  - [x] Create a series recommendation from a member to a friend (POST /shows/recommendation) - Token
+  - [x] Delete a sent or received series recommendation (DELETE /shows/recommendation) - Token
+  - [x] Change the status of a received series recommendation (PUT /shows/recommendation) - Token
   - [ ] Retrieve recommendations received by the identified user (GET /shows/recommendation) - Token
   - [x] Retrieve series marked as similar (GET /shows/similars)
   - [x] Retrieve videos associated with the series (GET /shows/videos)
