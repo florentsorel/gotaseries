@@ -1,0 +1,213 @@
+{
+  "shows": [
+    {
+      "id": 33619,
+      "thetvdb_id": 424271,
+      "imdb_id": "tt14036920",
+      "themoviedb_id": 209663,
+      "slug": "eat-the-rich-the-gamestop-saga",
+      "title": "GameStop : Les geeks défient Wall Street",
+      "original_title": "Eat the Rich: The GameStop Saga",
+      "description": "Des traders amateurs élaborent un plan audacieux pour s'enrichir rapidement et semer la pagaille sur les marchés. Pourront-ils battre Wall Street à son propre jeu ?",
+      "seasons": "1",
+      "seasons_details": [
+        {
+          "number": 1,
+          "episodes": 3
+        }
+      ],
+      "episodes": "3",
+      "followers": "349",
+      "comments": 0,
+      "similars": "0",
+      "characters": "0",
+      "creation": "2022",
+      "showrunner": null,
+      "showrunners": [],
+      "genres": {
+        "Documentary": "Documentaire",
+        "Mini-Series": "Mini-série"
+      },
+      "length": "42",
+      "network": "Netflix",
+      "country": "États-Unis",
+      "rating": "",
+      "status": "Ended",
+      "language": "en",
+      "notes": {
+        "total": 30,
+        "mean": 3.9333,
+        "user": 0
+      },
+      "in_account": false,
+      "images": {
+        "show": "https://pictures.betaseries.com/fonds/show/33619_1663332733.jpg",
+        "banner": null,
+        "box": null,
+        "poster": "https://pictures.betaseries.com/fonds/poster/11753a6a32b2000b2ddf630be1efce68.jpg"
+      },
+      "aliases": {
+        "93462": "Eat the Rich: The GameStop Saga",
+        "93463": "GameStop Contra Wall Street",
+        "93464": "GameStop : Les geeks défient Wall Street",
+        "94139": "Corte de mangas a Wall Street: La saga GameStop"
+      },
+      "social_links": [],
+      "user": {
+        "archived": false,
+        "favorited": false,
+        "remaining": 0,
+        "status": 0,
+        "last": "S00E00",
+        "tags": null,
+        "next": {
+          "id": null,
+          "code": "S00E00",
+          "date": null,
+          "title": null,
+          "image": null
+        },
+        "friends_watching": []
+      },
+      "next_trailer": "x8dqmfd",
+      "next_trailer_host": "dailymotion",
+      "resource_url": "https://www.betaseries.com/serie/eat-the-rich-the-gamestop-saga",
+      "platforms": {
+        "svods": [
+          {
+            "id": 1,
+            "name": "Netflix",
+            "tag": null,
+            "color": "#000000",
+            "link_url": "https://www.betaseries.com/link/33619/1/us",
+            "available": {
+              "last": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/1.jpg"
+          }
+        ],
+        "svod": {
+          "id": 1,
+          "name": "Netflix",
+          "tag": null,
+          "color": "#000000",
+          "link_url": "https://www.betaseries.com/link/33619/1/us",
+          "available": {
+            "last": 1
+          },
+          "logo": "https://pictures.betaseries.com/platforms/1.jpg"
+        }
+      }
+    },
+    {
+      "id": 15825,
+      "thetvdb_id": 327007,
+      "imdb_id": "tt7163698",
+      "themoviedb_id": 72426,
+      "slug": "gamers",
+      "title": "Gamers!",
+      "original_title": "Gamers!",
+      "description": "Le lycée Otobuki possède un club rassemblant des passionnés de jeux vidéo. On y trouve parmi eux Keita Amano, un jeune garçon seul qui y joue régulièrement, Karen Tendô, la jolie présidente du club, mais aussi Chiaki Hoshinomori, qui se bat constamment avec Keita, et enfin, Tasuku Uehara, qui s'efforce de dissimuler sa passion.",
+      "seasons": "1",
+      "seasons_details": [
+        {
+          "number": 1,
+          "episodes": 12
+        }
+      ],
+      "episodes": "12",
+      "followers": "581",
+      "comments": 6,
+      "similars": "2",
+      "characters": "0",
+      "creation": "2017",
+      "showrunner": null,
+      "showrunners": [],
+      "genres": {
+        "Animation": "Animation",
+        "Comedy": "Comédie",
+        "Romance": "Romance"
+      },
+      "length": "25",
+      "network": "AT-X",
+      "country": "Japon",
+      "rating": "TV-14",
+      "status": "Ended",
+      "language": "en",
+      "notes": {
+        "total": 82,
+        "mean": 3.6098,
+        "user": 0
+      },
+      "in_account": false,
+      "images": {
+        "show": "https://pictures.betaseries.com/fonds/show/15825_1220331.jpg",
+        "banner": "https://pictures.betaseries.com/fonds/banner/15825_1220329.jpg",
+        "box": "https://pictures.betaseries.com/fonds/box/15825_1220329.jpg",
+        "poster": null,
+        "clearlogo": {
+          "url": "https://pictures.betaseries.com/clearlogo/en/15825_62764253.png",
+          "width": "800",
+          "height": "310"
+        }
+      },
+      "aliases": {
+        "13149": "Gamers!",
+        "19370": "ゲーマーズ！",
+        "37239": "Геймеры!"
+      },
+      "social_links": [
+        {
+          "type": "twitter",
+          "external_id": "gamers_tvanime"
+        }
+      ],
+      "user": {
+        "archived": false,
+        "favorited": false,
+        "remaining": 0,
+        "status": 0,
+        "last": "S00E00",
+        "tags": null,
+        "next": {
+          "id": null,
+          "code": "S00E00",
+          "date": null,
+          "title": null,
+          "image": null
+        },
+        "friends_watching": []
+      },
+      "next_trailer": null,
+      "next_trailer_host": null,
+      "resource_url": "https://www.betaseries.com/serie/gamers",
+      "platforms": {
+        "svods": [
+          {
+            "id": 221,
+            "name": "Crunchyroll",
+            "tag": null,
+            "color": "#F37621",
+            "link_url": "https://www.betaseries.com/link/15825/221/us",
+            "available": {
+              "last": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/221.jpg"
+          }
+        ],
+        "svod": {
+          "id": 221,
+          "name": "Crunchyroll",
+          "tag": null,
+          "color": "#F37621",
+          "link_url": "https://www.betaseries.com/link/15825/221/us",
+          "available": {
+            "last": 1
+          },
+          "logo": "https://pictures.betaseries.com/platforms/221.jpg"
+        }
+      }
+    }
+  ],
+  "errors": []
+}

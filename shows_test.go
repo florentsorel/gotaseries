@@ -10,6 +10,59 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestShowService_Note(t *testing.T) {
+	data, err := os.ReadFile("data/shows/note_post.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "POST", fmt.Sprintf("/%s", "shows/note?id=1161&note=4"), string(data))
+	defer ts.Close()
+
+	show, err := bc.Shows.AddNote(context.Background(), ShowsAddNoteParams{
+		ID:   Int(1161),
+		Note: 4,
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 4, *show.Note.User)
+}
+
+func TestShowService_DeleteNote(t *testing.T) {
+	data, err := os.ReadFile("data/shows/note_delete.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "DELETE", fmt.Sprintf("/%s", "shows/note?id=1161"), string(data))
+	defer ts.Close()
+
+	show, err := bc.Shows.DeleteNote(context.Background(), ShowsDeleteNoteParams{
+		ID: Int(1161),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 0, *show.Note.User)
+}
+
+func TestShowService_Search(t *testing.T) {
+	data, err := os.ReadFile("data/shows/search.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "GET", fmt.Sprintf("/%s", "shows/search?platforms=1%2C221&title=game"), string(data))
+	defer ts.Close()
+
+	shows, err := bc.Shows.Search(context.Background(), ShowsSearchParams{
+		Title:     String("game"),
+		Platforms: []int{1, 221},
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 2, len(shows))
+
+	assert.Equal(t, "GameStop : Les geeks défient Wall Street", shows[0].Title)
+	assert.Equal(t, 1, shows[0].Platforms.Svod.ID)
+
+	assert.Equal(t, "Gamers!", shows[1].Title)
+	assert.Equal(t, 221, shows[1].Platforms.Svod.ID)
+}
+
 func TestShowService_Display(t *testing.T) {
 	testCases := []struct {
 		url      string
@@ -693,35 +746,4 @@ func TestShowService_DeleteRecommendation(t *testing.T) {
 			}
 		})
 	}
-}
-
-func TestShowService_Note(t *testing.T) {
-	data, err := os.ReadFile("data/shows/note_post.json")
-	assert.NoError(t, err)
-
-	ts, bc := setup(t, "POST", fmt.Sprintf("/%s", "shows/note?id=1161&note=4"), string(data))
-	defer ts.Close()
-
-	show, err := bc.Shows.AddNote(context.Background(), ShowsAddNoteParams{
-		ID:   Int(1161),
-		Note: 4,
-	})
-	assert.NoError(t, err)
-
-	assert.Equal(t, 4, *show.Note.User)
-}
-
-func TestShowService_DeleteNote(t *testing.T) {
-	data, err := os.ReadFile("data/shows/note_delete.json")
-	assert.NoError(t, err)
-
-	ts, bc := setup(t, "DELETE", fmt.Sprintf("/%s", "shows/note?id=1161"), string(data))
-	defer ts.Close()
-
-	show, err := bc.Shows.DeleteNote(context.Background(), ShowsDeleteNoteParams{
-		ID: Int(1161),
-	})
-	assert.NoError(t, err)
-
-	assert.Equal(t, 0, *show.Note.User)
 }
