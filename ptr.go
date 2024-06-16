@@ -41,3 +41,11 @@ func OrderDate(v OrderDateType) *OrderDateType {
 func Time(v time.Time) *time.Time {
 	return &v
 }
+
+func OrderFavorite(v OrderFavoriteType) *OrderFavoriteType {
+	return &v
+}
+
+func StatusFavorite(v StatusFavoriteType) *StatusFavoriteType {
+	return &v
+}
