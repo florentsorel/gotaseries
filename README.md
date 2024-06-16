@@ -267,14 +267,14 @@ func main() {
   - [x] Display the list of all series (GET /shows/list)
   - [x] Display a random series (GET /shows/random)
   - [x] Display episodes of a series (GET /shows/episodes)
-  - [ ] Add a series to the member's account (POST /shows/show) - Token
-  - [ ] Remove a series from the member's account (DELETE /shows/show) - Token
-  - [ ] Archive a series in the member's account (POST /shows/archive) - Token
-  - [ ] Remove a series from the archives of the member's account (DELETE /shows/archive) - Token
+  - [x] Add a series to the member's account (POST /shows/show) - Token
+  - [x] Remove a series from the member's account (DELETE /shows/show) - Token
+  - [x] Archive a series in the member's account (POST /shows/archive) - Token
+  - [x] Remove a series from the archives of the member's account (DELETE /shows/archive) - Token
   - [x] Create a series recommendation from a member to a friend (POST /shows/recommendation) - Token
   - [x] Delete a sent or received series recommendation (DELETE /shows/recommendation) - Token
   - [x] Change the status of a received series recommendation (PUT /shows/recommendation) - Token
-  - [ ] Retrieve recommendations received by the identified user (GET /shows/recommendation) - Token
+  - [x] Retrieve recommendations received by the identified user (GET /shows/recommendation) - Token
   - [x] Retrieve series marked as similar (GET /shows/similars)
   - [x] Retrieve videos associated with the series (GET /shows/videos)
   - [x] Retrieve characters of the series (GET /shows/characters)
