@@ -8,6 +8,7 @@ import (
 
 const (
 	OrderAlphabetical OrderType = "alphabetical"
+	OrderTitle        OrderType = "title"
 	OrderPopularity   OrderType = "popularity"
 	OrderFollowers    OrderType = "followers"
 )
@@ -145,6 +146,18 @@ type ShowsDeleteNoteParams struct {
 	Locale    *LocaleType `url:"locale"`
 }
 
+type ShowsSearchParams struct {
+	Title     *string     `url:"title"`
+	Summary   *bool       `url:"summary"`
+	Order     *OrderType  `url:"order"`
+	Recent    *bool       `url:"recent"`
+	Platforms []int       `url:"platforms"`
+	Country   *string     `url:"country"`
+	PerPage   *int        `url:"nbpp"`
+	Page      *int        `url:"page"`
+	Locale    *LocaleType `url:"locale"`
+}
+
 type ShowsDisplayParams struct {
 	ID        *int        `url:"id"`
 	TheTvdbID *int        `url:"thetvdb_id"`
@@ -161,7 +174,7 @@ type ShowsListParams struct {
 	Start     *int        `url:"start"`
 	Limit     *int        `url:"limit"`
 	Filter    *string     `url:"filter"`
-	Platforms *int        `url:"Platforms"`
+	Platforms *string     `url:"platforms"`
 	Country   *string     `url:"country"`
 	Summary   *bool       `url:"summary"`
 	Locale    *LocaleType `url:"locale"`
@@ -252,6 +265,15 @@ func (s *ShowService) DeleteNote(ctx context.Context, params ShowsDeleteNotePara
 		return nil, err
 	}
 	return &res.Show, nil
+}
+
+// Search returns a list of series matching the search query, with member information if a  token is provided.
+func (s *ShowService) Search(ctx context.Context, params ShowsSearchParams) ([]Show, error) {
+	var res showsResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/search", params, &res); err != nil {
+		return nil, err
+	}
+	return res.Shows, nil
 }
 
 // Display returns information about a series.

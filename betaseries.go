@@ -8,6 +8,7 @@ import (
 	"net/url"
 	"reflect"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -155,6 +156,15 @@ func (c *Client) buildURL(urlStr string, params any) (*url.URL, error) {
 				q.Set(k, strconv.FormatBool(val))
 			case int:
 				q.Set(k, strconv.Itoa(val))
+			case []int:
+				if len(val) == 0 {
+					continue
+				}
+				var strInts []string
+				for _, num := range val {
+					strInts = append(strInts, strconv.Itoa(num))
+				}
+				q.Set(k, strings.Join(strInts, ","))
 			case string:
 				q.Set(k, val)
 			case time.Time:
