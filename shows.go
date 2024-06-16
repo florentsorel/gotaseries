@@ -87,7 +87,7 @@ type Show struct {
 	Rating         string          `json:"rating"`
 	Status         string          `json:"status"`
 	Language       string          `json:"language"`
-	Notes          Note            `json:"notes"`
+	Note           Note            `json:"notes"`
 	InAccount      bool            `json:"in_account"`
 	Image          struct {
 		Show   string `json:"show"`
@@ -130,6 +130,19 @@ type Show struct {
 	NextTrailerHost *string    `json:"next_trailer_host"`
 	ResourceURL     string     `json:"resource_url"`
 	Platforms       *Platforms `json:"Platforms"`
+}
+
+type ShowsAddNoteParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	Note      int         `url:"note"`
+	Locale    *LocaleType `url:"locale"`
+}
+
+type ShowsDeleteNoteParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	Locale    *LocaleType `url:"locale"`
 }
 
 type ShowsDisplayParams struct {
@@ -219,6 +232,26 @@ type ShowsUpdateRecommendationParams struct {
 type ShowsDeleteRecommendationParams struct {
 	ID     int         `url:"id"`
 	Locale *LocaleType `url:"locale"`
+}
+
+// AddNote rate a series.
+// Require a valid token.
+func (s *ShowService) AddNote(ctx context.Context, params ShowsAddNoteParams) (*Show, error) {
+	var res showResponse
+	if err := s.doRequest(ctx, http.MethodPost, "/shows/note", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Show, nil
+}
+
+// DeleteNote delete a series rating.
+// Require a valid token.
+func (s *ShowService) DeleteNote(ctx context.Context, params ShowsDeleteNoteParams) (*Show, error) {
+	var res showResponse
+	if err := s.doRequest(ctx, http.MethodDelete, "/shows/note", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Show, nil
 }
 
 // Display returns information about a series.

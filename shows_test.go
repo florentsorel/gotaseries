@@ -460,7 +460,7 @@ func TestShowService_Recommendation(t *testing.T) {
 				ID: Int(1456),
 				To: 1234,
 			},
-			file: "data/shows/recommendation.json",
+			file: "data/shows/recommendation_post.json",
 			expected: &Recommendation{
 				ID:      106602,
 				From:    5678,
@@ -478,7 +478,7 @@ func TestShowService_Recommendation(t *testing.T) {
 				ID: Int(1456),
 				To: 1234,
 			},
-			file:          "data/shows/recommendation_already_recommended.json",
+			file:          "data/shows/recommendation_post_already_recommended.json",
 			expected:      "Code: 0, Message: L'utilisateur a déjà recommandé cette série à ce membre.\n",
 			expectedError: true,
 		},
@@ -489,7 +489,7 @@ func TestShowService_Recommendation(t *testing.T) {
 				ID: Int(1456),
 				To: 1234,
 			},
-			file:          "data/shows/recommendation_in_account.json",
+			file:          "data/shows/recommendation_post_in_account.json",
 			expected:      "Code: 2003, Message: L'utilisateur a déjà cette série dans son compte.\n",
 			expectedError: true,
 		},
@@ -500,7 +500,7 @@ func TestShowService_Recommendation(t *testing.T) {
 				ID: Int(1456),
 				To: 1234,
 			},
-			file:          "data/shows/recommendation_not_friends.json",
+			file:          "data/shows/recommendation_post_not_friends.json",
 			expected:      "Code: 0, Message: Les membres ne sont pas amis entre eux.\n",
 			expectedError: true,
 		},
@@ -693,4 +693,35 @@ func TestShowService_DeleteRecommendation(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestShowService_Note(t *testing.T) {
+	data, err := os.ReadFile("data/shows/note_post.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "POST", fmt.Sprintf("/%s", "shows/note?id=1161&note=4"), string(data))
+	defer ts.Close()
+
+	show, err := bc.Shows.AddNote(context.Background(), ShowsAddNoteParams{
+		ID:   Int(1161),
+		Note: 4,
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 4, *show.Note.User)
+}
+
+func TestShowService_DeleteNote(t *testing.T) {
+	data, err := os.ReadFile("data/shows/note_delete.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "DELETE", fmt.Sprintf("/%s", "shows/note?id=1161"), string(data))
+	defer ts.Close()
+
+	show, err := bc.Shows.DeleteNote(context.Background(), ShowsDeleteNoteParams{
+		ID: Int(1161),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 0, *show.Note.User)
 }

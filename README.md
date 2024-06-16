@@ -260,8 +260,8 @@ func main() {
 <details>
   <summary>Shows</summary>
 
-  - [ ] Rate a series (POST /shows/note) - Token
-  - [ ] Delete a series rating (DELETE /shows/note) - Token
+  - [x] Rate a series (POST /shows/note) - Token
+  - [x] Delete a series rating (DELETE /shows/note) - Token
   - [ ] Search for a series, with member information if a token is provided (GET shows/search)
   - [x] Display information about a series (GET /shows/display)
   - [x] Display the list of all series (GET /shows/list)
