@@ -12,6 +12,11 @@ const (
 
 type RecommendationStatus string
 
+type recommendationsResponse struct {
+	Recommendations []Recommendation `json:"recommendations"`
+	Errors          Errors           `json:"errors"`
+}
+
 type recommendationResponse struct {
 	Recommendation Recommendation `json:"recommendation"`
 	Errors         Errors         `json:"errors"`

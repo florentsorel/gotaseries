@@ -38,6 +38,10 @@ func (s *similarsResponse) GetErrors() Errors {
 	return s.Errors
 }
 
+func (s *recommendationsResponse) GetErrors() Errors {
+	return s.Errors
+}
+
 func (s *recommendationResponse) GetErrors() Errors {
 	return s.Errors
 }

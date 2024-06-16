@@ -328,6 +328,84 @@ func TestShowService_EpisodesNotFound(t *testing.T) {
 	assert.Equal(t, err.Error(), "Code: 0, Message: You must send an \"id\" or a \"thetvdb_id\" parameter to this API request.\n")
 }
 
+func TestShowService_Add(t *testing.T) {
+	data, err := os.ReadFile("data/shows/add_post.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "POST", fmt.Sprintf("/%s", "shows/show?episode_id=24341&id=2"), string(data))
+	defer ts.Close()
+
+	show, err := bc.Shows.Add(context.Background(), ShowsAddParams{
+		ID:        Int(2),
+		EpisodeID: Int(24341),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, "S01E03", show.User.Last)
+	assert.Equal(t, Int(24342), show.User.Next.ID)
+	assert.Equal(t, "S01E04", show.User.Next.Code)
+}
+
+func TestShowService_Add_AlreadyInAccount(t *testing.T) {
+	data, err := os.ReadFile("data/shows/add_post_already_in_account.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "POST", fmt.Sprintf("/%s", "shows/show?episode_id=24341&id=2"), string(data))
+	defer ts.Close()
+
+	_, err = bc.Shows.Add(context.Background(), ShowsAddParams{
+		ID:        Int(2),
+		EpisodeID: Int(24341),
+	})
+	assert.Error(t, err)
+
+	assert.Equal(t, err.Error(), "Code: 2003, Message: L'utilisateur a déjà cette série dans son compte.\n")
+}
+
+func TestShowService_Delete(t *testing.T) {
+	data, err := os.ReadFile("data/shows/delete_delete.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "DELETE", fmt.Sprintf("/%s", "shows/show?id=2"), string(data))
+	defer ts.Close()
+
+	show, err := bc.Shows.Delete(context.Background(), ShowsDeleteParams{
+		ID: Int(2),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, "S01E03", show.User.Last)
+	assert.Equal(t, Int(24342), show.User.Next.ID)
+	assert.Equal(t, "S01E04", show.User.Next.Code)
+}
+
+func TestShowService_Archive(t *testing.T) {
+	data := `{"show": {"user":{"archived":true}}}`
+
+	ts, bc := setup(t, "POST", fmt.Sprintf("/%s", "shows/archive?id=2"), data)
+	defer ts.Close()
+
+	show, err := bc.Shows.Archive(context.Background(), ShowsArchiveParams{
+		ID: Int(2),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, true, show.User.Archived)
+}
+
+func TestShowService_Unarchive(t *testing.T) {
+	data := `{"show": {"user":{"archived":false}}}`
+	ts, bc := setup(t, "DELETE", fmt.Sprintf("/%s", "shows/archive?id=2"), data)
+	defer ts.Close()
+
+	show, err := bc.Shows.Unarchive(context.Background(), ShowsUnarchiveParams{
+		ID: Int(2),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, false, show.User.Archived)
+}
+
 func TestShowService_Similars(t *testing.T) {
 	data, err := os.ReadFile("data/shows/similars.json")
 	assert.NoError(t, err)
@@ -501,7 +579,7 @@ func TestShowService_Recommendation(t *testing.T) {
 	testCases := []struct {
 		title         string
 		url           string
-		params        ShowsRecommendationParams
+		params        ShowsCreateRecommendationParams
 		file          string
 		expected      any
 		expectedError bool
@@ -509,7 +587,7 @@ func TestShowService_Recommendation(t *testing.T) {
 		{
 			title: "OK",
 			url:   "shows/recommendation?id=1456&to=1234",
-			params: ShowsRecommendationParams{
+			params: ShowsCreateRecommendationParams{
 				ID: Int(1456),
 				To: 1234,
 			},
@@ -527,7 +605,7 @@ func TestShowService_Recommendation(t *testing.T) {
 		{
 			title: "Already recommended",
 			url:   "shows/recommendation?id=1456&to=1234",
-			params: ShowsRecommendationParams{
+			params: ShowsCreateRecommendationParams{
 				ID: Int(1456),
 				To: 1234,
 			},
@@ -538,7 +616,7 @@ func TestShowService_Recommendation(t *testing.T) {
 		{
 			title: "In account",
 			url:   "shows/recommendation?id=1456&to=1234",
-			params: ShowsRecommendationParams{
+			params: ShowsCreateRecommendationParams{
 				ID: Int(1456),
 				To: 1234,
 			},
@@ -549,7 +627,7 @@ func TestShowService_Recommendation(t *testing.T) {
 		{
 			title: "Not friends",
 			url:   "shows/recommendation?id=1456&to=1234",
-			params: ShowsRecommendationParams{
+			params: ShowsCreateRecommendationParams{
 				ID: Int(1456),
 				To: 1234,
 			},
@@ -746,4 +824,44 @@ func TestShowService_DeleteRecommendation(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestShowService_Recommendations(t *testing.T) {
+	data := `{
+  "recommendations": [
+    {
+      "id": 106623,
+      "from_id": 1234,
+      "to_id": 5678,
+      "show_id": 1456,
+      "status": "wait",
+      "comments": "I recommend this show to you"
+    },
+    {
+      "id": 106630,
+      "from_id": 5678,
+      "to_id": 1234,
+      "show_id": 22028,
+      "status": "wait",
+      "comments": null
+    },
+    {
+      "id": 106631,
+      "from_id": 5678,
+      "to_id": 1234,
+      "show_id": 23439,
+      "status": "wait",
+      "comments": null
+    }
+  ],
+  "errors": []
+}`
+
+	ts, bc := setup(t, "GET", fmt.Sprintf("/%s", "shows/recommendations"), data)
+	defer ts.Close()
+
+	recommendations, err := bc.Shows.Recommendations(context.Background(), ShowsRecommendationsParams{})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 3, len(recommendations))
 }

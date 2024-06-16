@@ -119,14 +119,14 @@ type Show struct {
 			Date  *Date   `json:"date"`
 			Title *string `json:"title"`
 			Image *string `json:"image"`
-		}
+		} `json:"next"`
 		FriendsWatching []struct {
 			ID     int    `json:"id"`
 			Login  string `json:"login"`
 			Note   *int   `json:"note"`
 			Avatar string `json:"avatar"`
 		} `json:"friends_watching"`
-	}
+	} `json:"user"`
 	NextTrailer     *string    `json:"next_trailer"`
 	NextTrailerHost *string    `json:"next_trailer_host"`
 	ResourceURL     string     `json:"resource_url"`
@@ -195,6 +195,33 @@ type ShowsEpisodesParams struct {
 	Locale    *LocaleType `url:"locale"`
 }
 
+type ShowsAddParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	ImdbID    *string     `url:"imdb_id"`
+	EpisodeID *int        `url:"episode_id"`
+	Locale    *LocaleType `url:"locale"`
+}
+
+type ShowsDeleteParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	ImdbID    *string     `url:"imdb_id"`
+	Locale    *LocaleType `url:"locale"`
+}
+
+type ShowsArchiveParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	Locale    *LocaleType `url:"locale"`
+}
+
+type ShowsUnarchiveParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	Locale    *LocaleType `url:"locale"`
+}
+
 type ShowsSimilarsParams struct {
 	ID        *int        `url:"id"`
 	TheTvdbID *int        `url:"thetvdb_id"`
@@ -228,7 +255,7 @@ type ShowsPicturesParams struct {
 	Locale    *LocaleType    `url:"locale"`
 }
 
-type ShowsRecommendationParams struct {
+type ShowsCreateRecommendationParams struct {
 	ID        *int        `url:"id"`
 	TheTvdbID *int        `url:"thetvdb_id"`
 	To        int         `url:"to"`
@@ -244,6 +271,10 @@ type ShowsUpdateRecommendationParams struct {
 
 type ShowsDeleteRecommendationParams struct {
 	ID     int         `url:"id"`
+	Locale *LocaleType `url:"locale"`
+}
+
+type ShowsRecommendationsParams struct {
 	Locale *LocaleType `url:"locale"`
 }
 
@@ -337,6 +368,44 @@ func (s *ShowService) Episodes(ctx context.Context, params ShowsEpisodesParams) 
 	return res.Episodes, nil
 }
 
+// Add add a series to the member's account.
+// Require a valid token.
+func (s *ShowService) Add(ctx context.Context, params ShowsAddParams) (*Show, error) {
+	var res showResponse
+	if err := s.doRequest(ctx, http.MethodPost, "/shows/show", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Show, nil
+}
+
+// Delete remove a series from the member's account.
+// Require a valid token.
+func (s *ShowService) Delete(ctx context.Context, params ShowsDeleteParams) (*Show, error) {
+	var res showResponse
+	if err := s.doRequest(ctx, http.MethodDelete, "/shows/show", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Show, nil
+}
+
+// Archive archive a series in the member's account.
+func (s *ShowService) Archive(ctx context.Context, params ShowsArchiveParams) (*Show, error) {
+	var res showResponse
+	if err := s.doRequest(ctx, http.MethodPost, "/shows/archive", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Show, nil
+}
+
+// Unarchive remove a series from the archives of the member's account.
+func (s *ShowService) Unarchive(ctx context.Context, params ShowsUnarchiveParams) (*Show, error) {
+	var res showResponse
+	if err := s.doRequest(ctx, http.MethodDelete, "/shows/archive", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Show, nil
+}
+
 // Similars returns a list of characters for the series.
 func (s *ShowService) Similars(ctx context.Context, params ShowsSimilarsParams) ([]SimilarShow, error) {
 	var res similarsResponse
@@ -375,12 +444,22 @@ func (s *ShowService) Pictures(ctx context.Context, params ShowsPicturesParams) 
 
 // CreateRecommendation create a series recommendation from authenticated member to a friend.
 // Require a valid token.
-func (s *ShowService) CreateRecommendation(ctx context.Context, params ShowsRecommendationParams) (*Recommendation, error) {
+func (s *ShowService) CreateRecommendation(ctx context.Context, params ShowsCreateRecommendationParams) (*Recommendation, error) {
 	var res recommendationResponse
 	if err := s.doRequest(ctx, http.MethodPost, "/shows/recommendation", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Recommendation, nil
+}
+
+// Recommendations returns a list of recommendations send and received for the authenticated member.
+// Require a valid token.
+func (s *ShowService) Recommendations(ctx context.Context, params ShowsRecommendationsParams) ([]Recommendation, error) {
+	var res recommendationsResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/recommendations", params, &res); err != nil {
+		return nil, err
+	}
+	return res.Recommendations, nil
 }
 
 // UpdateRecommendation update the status of a recommendation.

@@ -1,0 +1,73 @@
+{
+  "show": {
+    "id": 2,
+    "thetvdb_id": 80346,
+    "imdb_id": "tt1076180",
+    "themoviedb_id": 6713,
+    "slug": "james-mays-20th-century",
+    "title": "James May's 20th Century",
+    "original_title": "James May's 20th Century",
+    "description": "The world in 1999 would have been unrecognisable to anyone from 1900. James May takes a look at some of the greatest developments of the 20th century, and reveals how they shaped the times we live in now.",
+    "seasons": "1",
+    "seasons_details": [
+      {
+        "number": 1,
+        "episodes": 6
+      }
+    ],
+    "episodes": "6",
+    "followers": "17",
+    "comments": 0,
+    "similars": "0",
+    "characters": "0",
+    "creation": "2007",
+    "showrunner": null,
+    "showrunners": [],
+    "genres": {
+      "Documentary": "Documentaire"
+    },
+    "length": "30",
+    "network": "BBC Two",
+    "country": "Royaume-Uni",
+    "rating": "",
+    "status": "Ended",
+    "language": "en",
+    "notes": {
+      "total": 2,
+      "mean": 4.5,
+      "user": 0
+    },
+    "in_account": false,
+    "images": {
+      "show": "https://pictures.betaseries.com/fonds/show/2_31144.jpg",
+      "banner": "https://pictures.betaseries.com/fonds/banner/2_766861.jpg",
+      "box": "https://pictures.betaseries.com/fonds/box/2_766861.jpg",
+      "poster": null
+    },
+    "aliases": {
+      "43903": "XX век глазами Джеймса Мэя"
+    },
+    "social_links": [],
+    "user": {
+      "archived": false,
+      "favorited": false,
+      "remaining": 3,
+      "status": 50,
+      "last": "S01E03",
+      "tags": "",
+      "next": {
+        "id": 24342,
+        "code": "S01E04",
+        "date": "2007-07-17",
+        "title": "Take Cover",
+        "image": "https://pictures.betaseries.com/banners/episodes/80346/332123.jpg"
+      },
+      "friends_watching": []
+    },
+    "next_trailer": null,
+    "next_trailer_host": null,
+    "resource_url": "https://www.betaseries.com/serie/james-mays-20th-century",
+    "platforms": null
+  },
+  "errors": []
+}
