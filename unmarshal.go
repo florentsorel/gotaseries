@@ -77,8 +77,8 @@ func (d *Date) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (d Date) String() string {
-	return time.Time(d).Format("2006-01-02")
+func (d *Date) String() string {
+	return time.Time(*d).Format("2006-01-02")
 }
 
 type DateTime time.Time
@@ -99,8 +99,8 @@ func (d *DateTime) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (d DateTime) String() string {
-	return time.Time(d).Format("2006-01-02 15:04:05")
+func (d *DateTime) String() string {
+	return time.Time(*d).Format("2006-01-02 15:04:05")
 }
 
 func (rs *RecommendationStatus) UnmarshalJSON(data []byte) error {

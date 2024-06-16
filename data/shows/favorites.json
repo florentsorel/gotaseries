@@ -1,0 +1,413 @@
+{
+  "shows": [
+    {
+      "id": 87,
+      "thetvdb_id": 73545,
+      "imdb_id": "tt0407362",
+      "themoviedb_id": 1972,
+      "slug": "battlestargalactica",
+      "title": "Battlestar Galactica",
+      "original_title": "Battlestar Galactica (2003)",
+      "description": "Les Cylons, robots humanoïdes créés par les humains et devenus ennemis jurés de ceux-ci, ont complètement disparu de l'univers connu depuis la signature d'une trêve il y a une quarantaine d'années. Grâce à ce répit, les humains ont reconstruit leurs mondes (les douze Colonies de Kobol), créant de nouveaux vaisseaux et vivant désormais dans une certaine insouciance du passé. Le vieux Battlestar Galactica qui a rendu de fiers services lors de la première guerre contre les Cylons est sur le point d'être démilitarisé et transformé en musée.",
+      "seasons": "4",
+      "seasons_details": [
+        {
+          "number": 1,
+          "episodes": 13
+        },
+        {
+          "number": 2,
+          "episodes": 30
+        },
+        {
+          "number": 3,
+          "episodes": 22
+        },
+        {
+          "number": 4,
+          "episodes": 20
+        }
+      ],
+      "episodes": "85",
+      "followers": "21058",
+      "comments": 118,
+      "similars": "28",
+      "characters": "26",
+      "creation": "2005",
+      "showrunner": {
+        "id": "95775",
+        "name": "Glen A. Larson",
+        "picture": "https://pictures.betaseries.com/persons/gjjq4P8ovyasSWb82CviFNz4T7o.jpg"
+      },
+      "showrunners": [
+        {
+          "id": "11193",
+          "name": "Ronald D. Moore",
+          "slug": "ronald-d-moore",
+          "picture": "https://pictures.betaseries.com/persons/6A086Blwpv0nuckrzPgvETlkfo1.jpg"
+        },
+        {
+          "id": "95775",
+          "name": "Glen A. Larson",
+          "slug": "glen-a-larson",
+          "picture": "https://pictures.betaseries.com/persons/gjjq4P8ovyasSWb82CviFNz4T7o.jpg"
+        }
+      ],
+      "genres": {
+        "Action": "Action",
+        "Adventure": "Aventure",
+        "Drama": "Drame",
+        "Science Fiction": "Science-fiction"
+      },
+      "length": "44",
+      "network": "Syfy",
+      "country": "Royaume-Uni",
+      "rating": "TV-14",
+      "status": "Ended",
+      "language": "en",
+      "notes": {
+        "total": 2024,
+        "mean": 4.5934,
+        "user": 0
+      },
+      "in_account": false,
+      "images": {
+        "show": "https://pictures.betaseries.com/fonds/show/87_42603.jpg",
+        "banner": "https://pictures.betaseries.com/fonds/banner/87_1439225620.jpg",
+        "box": "https://pictures.betaseries.com/fonds/box/87_1439225620.jpg",
+        "poster": "https://pictures.betaseries.com/fonds/poster/fe18fe6b5e8a8cee89393dcad897f93e.jpg",
+        "clearlogo": {
+          "url": "https://pictures.betaseries.com/clearlogo/en/87_62749071.png",
+          "width": "800",
+          "height": "165"
+        }
+      },
+      "aliases": {
+        "1270": "Battlestar Galactica",
+        "24850": "Battlestar Galáctica (2003)",
+        "32798": "Звёздный крейсер «Галактика» (2003)",
+        "85108": "Звёздный крейсер «Галактика»"
+      },
+      "social_links": [],
+      "user": {
+        "archived": false,
+        "favorited": false,
+        "remaining": 0,
+        "status": 0,
+        "last": "S00E00",
+        "tags": null,
+        "next": {
+          "id": null,
+          "code": "S00E00",
+          "date": null,
+          "title": null,
+          "image": null
+        },
+        "friends_watching": []
+      },
+      "next_trailer": null,
+      "next_trailer_host": null,
+      "resource_url": "https://www.betaseries.com/serie/battlestargalactica",
+      "platforms": {
+        "svods": [
+          {
+            "id": 3,
+            "name": "Prime Video",
+            "tag": null,
+            "color": "#002964",
+            "link_url": "https://www.betaseries.com/link/87/3/us",
+            "available": {
+              "last": 4,
+              "first": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/3.jpg"
+          },
+          {
+            "id": 283,
+            "name": "Peacock",
+            "tag": null,
+            "color": "#000000",
+            "link_url": "https://www.betaseries.com/link/87/283/us",
+            "available": {
+              "last": 4,
+              "first": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/283.jpg"
+          },
+          {
+            "id": 232,
+            "name": "USA Network",
+            "tag": null,
+            "color": "#3B8DD0",
+            "link_url": "https://www.betaseries.com/link/87/232/us",
+            "available": {
+              "last": 4
+            },
+            "logo": null
+          }
+        ],
+        "svod": {
+          "id": 3,
+          "name": "Prime Video",
+          "tag": null,
+          "color": "#002964",
+          "link_url": "https://www.betaseries.com/link/87/3/us",
+          "available": {
+            "last": 4,
+            "first": 1
+          },
+          "logo": "https://pictures.betaseries.com/platforms/3.jpg"
+        }
+      },
+      "userVisited": {
+        "in_account": true,
+        "archived": true,
+        "favorited": true,
+        "remaining": 0,
+        "status": 100,
+        "last": "S04E21",
+        "next": {
+          "id": null,
+          "code": "S00E00",
+          "date": null,
+          "title": null,
+          "image": null
+        }
+      }
+    },
+    {
+      "id": 1161,
+      "thetvdb_id": 121361,
+      "imdb_id": "tt0944947",
+      "themoviedb_id": 1399,
+      "slug": "gameofthrones",
+      "title": "Game of Thrones",
+      "original_title": "Game of Thrones",
+      "description": "Il y a très longtemps, à une époque oubliée, une force a détruit l'équilibre des saisons. Dans un pays où l'été peut durer plusieurs années et l'hiver toute une vie, des forces sinistres et surnaturelles se pressent aux portes du Royaume des Sept Couronnes. La confrérie de la Garde de Nuit, protégeant le Royaume de toute créature pouvant provenir d'au-delà du Mur protecteur, n'a plus les ressources nécessaires pour assurer la sécurité de tous. Après un été de dix années, un hiver rigoureux s'abat sur le Royaume avec la promesse d'un avenir des plus sombres. Pendant ce temps, complots et rivalités se jouent sur le continent pour s'emparer du Trône de Fer, le symbole du pouvoir absolu.",
+      "seasons": "8",
+      "seasons_details": [
+        {
+          "number": 1,
+          "episodes": 10
+        },
+        {
+          "number": 2,
+          "episodes": 10
+        },
+        {
+          "number": 3,
+          "episodes": 10
+        },
+        {
+          "number": 4,
+          "episodes": 10
+        },
+        {
+          "number": 5,
+          "episodes": 10
+        },
+        {
+          "number": 6,
+          "episodes": 10
+        },
+        {
+          "number": 7,
+          "episodes": 7
+        },
+        {
+          "number": 8,
+          "episodes": 7
+        }
+      ],
+      "episodes": "74",
+      "followers": "237278",
+      "comments": 1542,
+      "similars": "61",
+      "characters": "79",
+      "creation": "2011",
+      "showrunner": {
+        "id": "14604",
+        "name": "David Benioff",
+        "picture": "https://pictures.betaseries.com/persons/xvNN5huL0X8yJ7h3IZfGG4O2zBD.jpg"
+      },
+      "showrunners": [
+        {
+          "id": "14604",
+          "name": "David Benioff",
+          "slug": "david-benioff",
+          "picture": "https://pictures.betaseries.com/persons/xvNN5huL0X8yJ7h3IZfGG4O2zBD.jpg"
+        },
+        {
+          "id": "15100",
+          "name": "D. B. Weiss",
+          "slug": "d-b-weiss",
+          "picture": "https://pictures.betaseries.com/persons/2RMejaT793U9KRk2IEbFfteQntE.jpg"
+        }
+      ],
+      "genres": {
+        "Action": "Action",
+        "Adventure": "Aventure",
+        "Drama": "Drame",
+        "Fantasy": "Fantastique"
+      },
+      "length": "52",
+      "network": "HBO",
+      "country": "États-Unis",
+      "rating": "TV-MA",
+      "status": "Ended",
+      "language": "en",
+      "notes": {
+        "total": 19757,
+        "mean": 4.66933,
+        "user": 0
+      },
+      "in_account": false,
+      "images": {
+        "show": "https://pictures.betaseries.com/fonds/show/1161_1521643782.jpg",
+        "banner": "https://pictures.betaseries.com/fonds/banner/1161_1502049726.jpg",
+        "box": "https://pictures.betaseries.com/fonds/box/1161_1502049726.jpg",
+        "poster": "https://pictures.betaseries.com/fonds/poster/4d09984be7bf0c385b21e2974bc12e8b.jpg",
+        "clearlogo": {
+          "url": "https://pictures.betaseries.com/clearlogo/en/1161_62748344.png",
+          "width": "800",
+          "height": "310"
+        }
+      },
+      "aliases": {
+        "1900": "Le Trône De Fer",
+        "6432": "Game of Thrones",
+        "14224": "Juego de Tronos",
+        "32708": "Il Trono di Spade",
+        "32709": "Gra o tron",
+        "32710": "Игра престолов",
+        "93496": "A Guerra dos Tronos"
+      },
+      "social_links": [
+        {
+          "type": "facebook",
+          "external_id": "GameOfThrones"
+        },
+        {
+          "type": "twitter",
+          "external_id": "GameOfThrones"
+        },
+        {
+          "type": "instagram",
+          "external_id": "gameofthrones"
+        }
+      ],
+      "user": {
+        "archived": false,
+        "favorited": false,
+        "remaining": 0,
+        "status": 0,
+        "last": "S00E00",
+        "tags": null,
+        "next": {
+          "id": null,
+          "code": "S00E00",
+          "date": null,
+          "title": null,
+          "image": null
+        },
+        "friends_watching": []
+      },
+      "next_trailer": "x86esn8",
+      "next_trailer_host": "dailymotion",
+      "resource_url": "https://www.betaseries.com/serie/gameofthrones",
+      "platforms": {
+        "svods": [
+          {
+            "id": 52,
+            "name": "HBO Go",
+            "tag": null,
+            "color": "#3B8DD0",
+            "link_url": "https://www.betaseries.com/link/1161/52/us",
+            "available": {
+              "last": 8,
+              "first": 1
+            },
+            "logo": null
+          },
+          {
+            "id": 281,
+            "name": "HBO Max",
+            "tag": null,
+            "color": "#7515D9",
+            "link_url": "https://www.betaseries.com/link/1161/281/us",
+            "available": {
+              "last": 8,
+              "first": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/281.jpg"
+          },
+          {
+            "id": 32,
+            "name": "HBO Now",
+            "tag": null,
+            "color": "#3B8DD0",
+            "link_url": "https://www.betaseries.com/link/1161/32/us",
+            "available": {
+              "last": 8,
+              "first": 1
+            },
+            "logo": null
+          },
+          {
+            "id": 206,
+            "name": "HBO Now Amazon Channel",
+            "tag": null,
+            "color": "#3B8DD0",
+            "link_url": "https://www.betaseries.com/link/1161/206/us",
+            "available": {
+              "last": 8,
+              "first": 1
+            },
+            "logo": null
+          },
+          {
+            "id": 378,
+            "name": "Spectrum On Demand",
+            "tag": null,
+            "color": "#3B8DD0",
+            "link_url": "https://www.betaseries.com/link/1161/378/us",
+            "available": {
+              "last": 8,
+              "first": 1
+            },
+            "logo": null
+          }
+        ],
+        "svod": {
+          "id": 52,
+          "name": "HBO Go",
+          "tag": null,
+          "color": "#3B8DD0",
+          "link_url": "https://www.betaseries.com/link/1161/52/us",
+          "available": {
+            "last": 8,
+            "first": 1
+          },
+          "logo": null
+        }
+      },
+      "userVisited": {
+        "in_account": true,
+        "archived": true,
+        "favorited": true,
+        "remaining": 0,
+        "status": 100,
+        "last": "S08E06",
+        "next": {
+          "id": null,
+          "code": "S00E00",
+          "date": null,
+          "title": null,
+          "image": null
+        }
+      }
+    }
+  ],
+  "total": 5,
+  "errors": []
+}

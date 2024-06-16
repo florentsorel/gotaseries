@@ -222,6 +222,29 @@ type ShowsUnarchiveParams struct {
 	Locale    *LocaleType `url:"locale"`
 }
 
+type ShowsCreateRecommendationParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	To        int         `url:"to"`
+	Comment   *string     `url:"comments"`
+	Locale    *LocaleType `url:"locale"`
+}
+
+type ShowsUpdateRecommendationParams struct {
+	ID     int                  `url:"id"`
+	Status RecommendationStatus `url:"status"`
+	Locale *LocaleType          `url:"locale"`
+}
+
+type ShowsDeleteRecommendationParams struct {
+	ID     int         `url:"id"`
+	Locale *LocaleType `url:"locale"`
+}
+
+type ShowsRecommendationsParams struct {
+	Locale *LocaleType `url:"locale"`
+}
+
 type ShowsSimilarsParams struct {
 	ID        *int        `url:"id"`
 	TheTvdbID *int        `url:"thetvdb_id"`
@@ -255,27 +278,14 @@ type ShowsPicturesParams struct {
 	Locale    *LocaleType    `url:"locale"`
 }
 
-type ShowsCreateRecommendationParams struct {
-	ID        *int        `url:"id"`
-	TheTvdbID *int        `url:"thetvdb_id"`
-	To        int         `url:"to"`
-	Comment   *string     `url:"comments"`
-	Locale    *LocaleType `url:"locale"`
-}
-
-type ShowsUpdateRecommendationParams struct {
-	ID     int                  `url:"id"`
-	Status RecommendationStatus `url:"status"`
-	Locale *LocaleType          `url:"locale"`
-}
-
-type ShowsDeleteRecommendationParams struct {
-	ID     int         `url:"id"`
-	Locale *LocaleType `url:"locale"`
-}
-
-type ShowsRecommendationsParams struct {
-	Locale *LocaleType `url:"locale"`
+type ShowsFavoritesParams struct {
+	ID      *int                `url:"id"`
+	Order   *OrderFavoriteType  `url:"order"`
+	Limit   *int                `url:"limit"`
+	Offset  *int                `url:"offset"`
+	Status  *StatusFavoriteType `url:"status"`
+	Summary *bool               `url:"summary"`
+	Locale  *LocaleType         `url:"locale"`
 }
 
 // AddNote rate a series.
@@ -406,6 +416,46 @@ func (s *ShowService) Unarchive(ctx context.Context, params ShowsUnarchiveParams
 	return &res.Show, nil
 }
 
+// CreateRecommendation create a series recommendation from authenticated member to a friend.
+// Require a valid token.
+func (s *ShowService) CreateRecommendation(ctx context.Context, params ShowsCreateRecommendationParams) (*Recommendation, error) {
+	var res recommendationResponse
+	if err := s.doRequest(ctx, http.MethodPost, "/shows/recommendation", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Recommendation, nil
+}
+
+// UpdateRecommendation update the status of a recommendation.
+// Require a valid token.
+func (s *ShowService) UpdateRecommendation(ctx context.Context, params ShowsUpdateRecommendationParams) (*Recommendation, error) {
+	var res recommendationResponse
+	if err := s.doRequest(ctx, http.MethodPut, "/shows/recommendation", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Recommendation, nil
+}
+
+// DeleteRecommendation delete a recommendation.
+// Require a valid token.
+func (s *ShowService) DeleteRecommendation(ctx context.Context, params ShowsDeleteRecommendationParams) (*Recommendation, error) {
+	var res recommendationResponse
+	if err := s.doRequest(ctx, http.MethodDelete, "/shows/recommendation", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Recommendation, nil
+}
+
+// Recommendations returns a list of recommendations send and received for the authenticated member.
+// Require a valid token.
+func (s *ShowService) Recommendations(ctx context.Context, params ShowsRecommendationsParams) ([]Recommendation, error) {
+	var res recommendationsResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/recommendations", params, &res); err != nil {
+		return nil, err
+	}
+	return res.Recommendations, nil
+}
+
 // Similars returns a list of characters for the series.
 func (s *ShowService) Similars(ctx context.Context, params ShowsSimilarsParams) ([]SimilarShow, error) {
 	var res similarsResponse
@@ -442,42 +492,11 @@ func (s *ShowService) Pictures(ctx context.Context, params ShowsPicturesParams) 
 	return res.Pictures, nil
 }
 
-// CreateRecommendation create a series recommendation from authenticated member to a friend.
-// Require a valid token.
-func (s *ShowService) CreateRecommendation(ctx context.Context, params ShowsCreateRecommendationParams) (*Recommendation, error) {
-	var res recommendationResponse
-	if err := s.doRequest(ctx, http.MethodPost, "/shows/recommendation", params, &res); err != nil {
+// Favorites returns a list of favorite series for the authenticated member or ID member. (ID member has priority over token)
+func (s *ShowService) Favorites(ctx context.Context, params ShowsFavoritesParams) (*FavoritesResponse, error) {
+	var res FavoritesResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/favorites", params, &res); err != nil {
 		return nil, err
 	}
-	return &res.Recommendation, nil
-}
-
-// Recommendations returns a list of recommendations send and received for the authenticated member.
-// Require a valid token.
-func (s *ShowService) Recommendations(ctx context.Context, params ShowsRecommendationsParams) ([]Recommendation, error) {
-	var res recommendationsResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/recommendations", params, &res); err != nil {
-		return nil, err
-	}
-	return res.Recommendations, nil
-}
-
-// UpdateRecommendation update the status of a recommendation.
-// Require a valid token.
-func (s *ShowService) UpdateRecommendation(ctx context.Context, params ShowsUpdateRecommendationParams) (*Recommendation, error) {
-	var res recommendationResponse
-	if err := s.doRequest(ctx, http.MethodPut, "/shows/recommendation", params, &res); err != nil {
-		return nil, err
-	}
-	return &res.Recommendation, nil
-}
-
-// DeleteRecommendation delete a recommendation.
-// Require a valid token.
-func (s *ShowService) DeleteRecommendation(ctx context.Context, params ShowsDeleteRecommendationParams) (*Recommendation, error) {
-	var res recommendationResponse
-	if err := s.doRequest(ctx, http.MethodDelete, "/shows/recommendation", params, &res); err != nil {
-		return nil, err
-	}
-	return &res.Recommendation, nil
+	return &res, nil
 }
