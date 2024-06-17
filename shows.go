@@ -61,6 +61,8 @@ type Svod struct {
 	Logo      *string   `json:"logo"`
 }
 
+type Tags []string
+
 type Show struct {
 	ID             int             `json:"id"`
 	TheTvdbID      int             `json:"thetvdb_id"`
@@ -112,7 +114,7 @@ type Show struct {
 		Remaining int     `json:"remaining"`
 		Status    float64 `json:"status"`
 		Last      string  `json:"last"`
-		Tags      string  `json:"tags"`
+		Tags      Tags    `json:"tags"`
 		Next      struct {
 			ID    *int    `json:"id"`
 			Code  string  `json:"code"`
@@ -289,13 +291,18 @@ type ShowsFavoritesParams struct {
 }
 
 type ShowsAddFavoriteParams struct {
-	ID     *int        `url:"id"`
+	ID     int         `url:"id"`
 	Locale *LocaleType `url:"locale"`
 }
 
 type ShowsDeleteFavoriteParams struct {
-	ID     *int        `url:"id"`
+	ID     int         `url:"id"`
 	Locale *LocaleType `url:"locale"`
+}
+
+type ShowsUpdateTagsParams struct {
+	ID   int      `url:"id"`
+	Tags []string `url:"tags"`
 }
 
 // AddNote rate a series.
@@ -526,6 +533,16 @@ func (s *ShowService) AddFavorite(ctx context.Context, params ShowsAddFavoritePa
 func (s *ShowService) DeleteFavorite(ctx context.Context, params ShowsDeleteFavoriteParams) (*Show, error) {
 	var res showResponse
 	if err := s.doRequest(ctx, http.MethodDelete, "/shows/favorite", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Show, nil
+}
+
+// UpdateTags update the tags of a series for authenticated member.
+// Require a valid token.
+func (s *ShowService) UpdateTags(ctx context.Context, params ShowsUpdateTagsParams) (*Show, error) {
+	var res showResponse
+	if err := s.doRequest(ctx, http.MethodPost, "/shows/tags", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil

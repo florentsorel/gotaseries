@@ -893,7 +893,7 @@ func TestShowService_AddFavorite(t *testing.T) {
 	defer ts.Close()
 
 	show, err := bc.Shows.AddFavorite(context.Background(), ShowsAddFavoriteParams{
-		ID: Int(2),
+		ID: 2,
 	})
 	assert.NoError(t, err)
 
@@ -907,9 +907,24 @@ func TestShowService_DeleteFavorite(t *testing.T) {
 	defer ts.Close()
 
 	show, err := bc.Shows.DeleteFavorite(context.Background(), ShowsDeleteFavoriteParams{
-		ID: Int(2),
+		ID: 2,
 	})
 	assert.NoError(t, err)
 
 	assert.Equal(t, false, show.User.Favorited)
+}
+
+func TestShowService_AddTags(t *testing.T) {
+	data := `{"show": {"user":{"tags":"tag1, tag2"}}}`
+
+	ts, bc := setup(t, "POST", fmt.Sprintf("/%s", "shows/tags?id=2&tags=tag1%2Ctag2"), data)
+	defer ts.Close()
+
+	show, err := bc.Shows.UpdateTags(context.Background(), ShowsUpdateTagsParams{
+		ID:   2,
+		Tags: []string{"tag1", "tag2"},
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, Tags{"tag1", "tag2"}, show.User.Tags)
 }
