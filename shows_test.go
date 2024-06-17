@@ -885,3 +885,31 @@ func TestShowService_Favorites(t *testing.T) {
 	assert.Equal(t, 5, shows.Total)
 
 }
+
+func TestShowService_AddFavorite(t *testing.T) {
+	data := `{"show": {"user":{"favorited":true}}}`
+
+	ts, bc := setup(t, "POST", fmt.Sprintf("/%s", "shows/favorite?id=2"), data)
+	defer ts.Close()
+
+	show, err := bc.Shows.AddFavorite(context.Background(), ShowsAddFavoriteParams{
+		ID: Int(2),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, true, show.User.Favorited)
+}
+
+func TestShowService_DeleteFavorite(t *testing.T) {
+	data := `{"show": {"user":{"favorited":false}}}`
+
+	ts, bc := setup(t, "DELETE", fmt.Sprintf("/%s", "shows/favorite?id=2"), data)
+	defer ts.Close()
+
+	show, err := bc.Shows.DeleteFavorite(context.Background(), ShowsDeleteFavoriteParams{
+		ID: Int(2),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, false, show.User.Favorited)
+}

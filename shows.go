@@ -288,6 +288,16 @@ type ShowsFavoritesParams struct {
 	Locale  *LocaleType         `url:"locale"`
 }
 
+type ShowsAddFavoriteParams struct {
+	ID     *int        `url:"id"`
+	Locale *LocaleType `url:"locale"`
+}
+
+type ShowsDeleteFavoriteParams struct {
+	ID     *int        `url:"id"`
+	Locale *LocaleType `url:"locale"`
+}
+
 // AddNote rate a series.
 // Require a valid token.
 func (s *ShowService) AddNote(ctx context.Context, params ShowsAddNoteParams) (*Show, error) {
@@ -499,4 +509,24 @@ func (s *ShowService) Favorites(ctx context.Context, params ShowsFavoritesParams
 		return nil, err
 	}
 	return &res, nil
+}
+
+// AddFavorite add a series to the member's favorite list.
+// Require a valid token.
+func (s *ShowService) AddFavorite(ctx context.Context, params ShowsAddFavoriteParams) (*Show, error) {
+	var res showResponse
+	if err := s.doRequest(ctx, http.MethodPost, "/shows/favorite", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Show, nil
+}
+
+// DeleteFavorite delete a series from the member's favorite.
+// Require a valid token.
+func (s *ShowService) DeleteFavorite(ctx context.Context, params ShowsDeleteFavoriteParams) (*Show, error) {
+	var res showResponse
+	if err := s.doRequest(ctx, http.MethodDelete, "/shows/favorite", params, &res); err != nil {
+		return nil, err
+	}
+	return &res.Show, nil
 }

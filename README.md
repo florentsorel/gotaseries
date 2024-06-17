@@ -279,9 +279,9 @@ func main() {
   - [x] Retrieve videos associated with the series (GET /shows/videos)
   - [x] Retrieve characters of the series (GET /shows/characters)
   - [x] Retrieve images of the series (GET /shows/pictures)
-  - [ ] Retrieve the favorite series of the member (GET /shows/favorites) - Token or ID parameter
-  - [ ] Add a favorite series to the profile of the identified member (POST /shows/favorite) - Token
-  - [ ] Remove a favorite series from the profile of the identified member (DELETE /shows/favorite) - Token
+  - [x] Retrieve the favorite series of the member (GET /shows/favorites) - Token or ID parameter
+  - [x] Add a favorite series to the profile of the identified member (POST /shows/favorite) - Token
+  - [x] Remove a favorite series from the profile of the identified member (DELETE /shows/favorite) - Token
   - [ ] Update tags for the given series of the identified member (POST /shows/tags) - Token
   - [ ] Display the list of all series of the member with tags (GET /shows/member) - Token or ID parameter
   - [ ] Display the list of series to discover (GET /shows/discover)
