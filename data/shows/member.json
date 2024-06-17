@@ -1,0 +1,421 @@
+{
+  "shows": [
+    {
+      "id": 11935,
+      "thetvdb_id": 300472,
+      "imdb_id": "tt5016504",
+      "themoviedb_id": 64230,
+      "slug": "preacher",
+      "title": "Preacher",
+      "original_title": "Preacher",
+      "description": "Au premier coup d’œil, le révérend Jesse Custer n'a rien de spécial. Après tout, il n'est qu'un homme d'Église d'une petite ville, perdant peu à peu ses fidèles et laissant s'éteindre sa foi. Mais il va bientôt avoir la preuve que Dieu existe bel et bien. Et qu'Il est un sacré fils de... Avec sa petite amie Tulip et un vampire nommé Cassidy, le voilà parti sur les routes américaines pour le trouver...",
+      "seasons": "4",
+      "seasons_details": [
+        {
+          "number": 1,
+          "episodes": 10
+        },
+        {
+          "number": 2,
+          "episodes": 13
+        },
+        {
+          "number": 3,
+          "episodes": 10
+        },
+        {
+          "number": 4,
+          "episodes": 10
+        }
+      ],
+      "episodes": "43",
+      "followers": "18301",
+      "comments": 128,
+      "similars": "36",
+      "characters": "28",
+      "creation": "2016",
+      "showrunner": {
+        "id": "6538",
+        "name": "Seth Rogen",
+        "picture": "https://pictures.betaseries.com/persons/2dPFskUtoiG0xafsSEGl9Oz4teA.jpg"
+      },
+      "showrunners": [
+        {
+          "id": "6538",
+          "name": "Seth Rogen",
+          "slug": "seth-rogen",
+          "picture": "https://pictures.betaseries.com/persons/2dPFskUtoiG0xafsSEGl9Oz4teA.jpg"
+        },
+        {
+          "id": "31055",
+          "name": "Evan Goldberg",
+          "slug": "evan-goldberg",
+          "picture": "https://pictures.betaseries.com/persons/uKZFcTB7FS47WvRFcp5wv3f7hJM.jpg"
+        },
+        {
+          "id": "248181",
+          "name": "Sam Catlin",
+          "slug": "sam-catlin",
+          "picture": "https://pictures.betaseries.com/persons/xc9Ax2kpvQLayUaFL1d1NTUQ7df.jpg"
+        }
+      ],
+      "genres": {
+        "Adventure": "Aventure",
+        "Drama": "Drame",
+        "Fantasy": "Fantastique",
+        "Horror": "Horreur",
+        "Mystery": "Mystère"
+      },
+      "length": "42",
+      "network": "AMC",
+      "country": "États-Unis",
+      "rating": "TV-MA",
+      "status": "Ended",
+      "language": "en",
+      "notes": {
+        "total": 1220,
+        "mean": 4.1213,
+        "user": 0
+      },
+      "in_account": false,
+      "images": {
+        "show": "https://pictures.betaseries.com/fonds/show/11935_1203315.jpg",
+        "banner": "https://pictures.betaseries.com/fonds/banner/11935_1462457595.jpg",
+        "box": "https://pictures.betaseries.com/fonds/box/11935_1462457595.jpg",
+        "poster": "https://pictures.betaseries.com/fonds/poster/5561c1339ca0f098945b0d9c033d9838.jpg",
+        "clearlogo": {
+          "url": "https://pictures.betaseries.com/clearlogo/en/11935_62752247.png",
+          "width": "800",
+          "height": "310"
+        }
+      },
+      "aliases": {
+        "11232": "Preacher",
+        "33762": "Пастырь",
+        "61847": "Vaiz",
+        "98279": "Проповедник"
+      },
+      "social_links": [
+        {
+          "type": "facebook",
+          "external_id": "PreacherAMC"
+        },
+        {
+          "type": "twitter",
+          "external_id": "preacheramc"
+        },
+        {
+          "type": "instagram",
+          "external_id": "preacheramc"
+        }
+      ],
+      "user": {
+        "archived": false,
+        "favorited": false,
+        "remaining": 0,
+        "status": 0,
+        "last": "S00E00",
+        "tags": null,
+        "next": {
+          "id": null,
+          "code": "S00E00",
+          "date": null,
+          "title": null,
+          "image": null
+        },
+        "friends_watching": []
+      },
+      "next_trailer": "x86fu59",
+      "next_trailer_host": "dailymotion",
+      "resource_url": "https://www.betaseries.com/serie/preacher",
+      "platforms": {
+        "svods": [
+          {
+            "id": 3,
+            "name": "Prime Video",
+            "tag": null,
+            "color": "#002964",
+            "link_url": "https://www.betaseries.com/link/11935/3/us",
+            "available": {
+              "last": 4,
+              "first": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/3.jpg"
+          },
+          {
+            "id": 29,
+            "name": "Hulu",
+            "tag": null,
+            "color": "#0B181F",
+            "link_url": "https://www.betaseries.com/link/11935/29/us",
+            "available": {
+              "last": 4,
+              "first": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/29.jpg"
+          },
+          {
+            "id": 105,
+            "name": "Sling TV",
+            "tag": null,
+            "color": "#3B8DD0",
+            "link_url": "https://www.betaseries.com/link/11935/105/us",
+            "available": {
+              "last": 2,
+              "first": 1
+            },
+            "logo": null
+          }
+        ],
+        "svod": {
+          "id": 3,
+          "name": "Prime Video",
+          "tag": null,
+          "color": "#002964",
+          "link_url": "https://www.betaseries.com/link/11935/3/us",
+          "available": {
+            "last": 4,
+            "first": 1
+          },
+          "logo": "https://pictures.betaseries.com/platforms/3.jpg"
+        }
+      },
+      "userVisited": {
+        "in_account": true,
+        "archived": false,
+        "favorited": false,
+        "remaining": 5,
+        "status": 88.37,
+        "last": "S04E05",
+        "next": {
+          "id": 1379349,
+          "code": "S04E06",
+          "date": "2019-09-01",
+          "title": "The Lost Apostle",
+          "image": "https://pictures.betaseries.com/banners/episodes/11935/8112daa230cbcb450267cdf63ec6dade.jpg"
+        }
+      }
+    },
+    {
+      "id": 807,
+      "thetvdb_id": 95011,
+      "imdb_id": "tt1442437",
+      "themoviedb_id": 1421,
+      "slug": "modernfamily",
+      "title": "Modern Family",
+      "original_title": "Modern Family",
+      "description": "Quand les familles voisines Pritchett, Delgado et Dunphy acceptent qu'un documentaire soit tourné sur leurs vies, elles étaient loin d'imaginer qu'elles allaient tant en révéler... Jay Pritchett a rencontré la très sexy Colombienne Gloria Delgado le jour où sa femme l'a quitté. Leur différence d'âge est pour lui un challenge de tous les jours. Sa fille, Claire, a elle-même bien du mal à gérer sa vie de famille depuis que son mari, Phil, est persuadé d'être en phase avec ses enfants adolescents alors qu'il ne fait que les embarrasser ! Quant au frère de Claire, Mitchell, il vit avec son petit-ami Cameron et ils viennent d'adopter Lily, une petite Vietnamienne...",
+      "seasons": "11",
+      "seasons_details": [
+        {
+          "number": 1,
+          "episodes": 24
+        },
+        {
+          "number": 2,
+          "episodes": 24
+        },
+        {
+          "number": 3,
+          "episodes": 24
+        },
+        {
+          "number": 4,
+          "episodes": 24
+        },
+        {
+          "number": 5,
+          "episodes": 24
+        },
+        {
+          "number": 6,
+          "episodes": 24
+        },
+        {
+          "number": 7,
+          "episodes": 22
+        },
+        {
+          "number": 8,
+          "episodes": 22
+        },
+        {
+          "number": 9,
+          "episodes": 22
+        },
+        {
+          "number": 10,
+          "episodes": 22
+        },
+        {
+          "number": 11,
+          "episodes": 19
+        }
+      ],
+      "episodes": "251",
+      "followers": "45837",
+      "comments": 155,
+      "similars": "34",
+      "characters": "13",
+      "creation": "2009",
+      "showrunner": {
+        "id": "36372",
+        "name": "Christopher Lloyd",
+        "picture": "https://pictures.betaseries.com/persons/jqdMLOeJvxp9cvJ3jZDtsoCK9fq.jpg"
+      },
+      "showrunners": [
+        {
+          "id": "36372",
+          "name": "Christopher Lloyd",
+          "slug": "christopher-lloyd",
+          "picture": "https://pictures.betaseries.com/persons/jqdMLOeJvxp9cvJ3jZDtsoCK9fq.jpg"
+        },
+        {
+          "id": "40066",
+          "name": "Steven Levitan",
+          "slug": "steven-levitan",
+          "picture": "https://pictures.betaseries.com/persons/xPT11b4ABpd9idTMBpoaaCH801J.jpg"
+        }
+      ],
+      "genres": {
+        "Comedy": "Comédie"
+      },
+      "length": "21",
+      "network": "ABC (US)",
+      "country": "États-Unis",
+      "rating": "TV-14",
+      "status": "Ended",
+      "language": "en",
+      "notes": {
+        "total": 2788,
+        "mean": 4.4656,
+        "user": 0
+      },
+      "in_account": false,
+      "images": {
+        "show": "https://pictures.betaseries.com/fonds/show/807_1443696312.jpg",
+        "banner": "https://pictures.betaseries.com/fonds/banner/807_1416182400.jpg",
+        "box": "https://pictures.betaseries.com/fonds/box/807_1416182400.jpg",
+        "poster": "https://pictures.betaseries.com/fonds/poster/fc717f69b61a82c0ac9e3ff8cf2d4118.jpg",
+        "clearlogo": {
+          "url": "https://pictures.betaseries.com/clearlogo/en/807_62748562.png",
+          "width": "800",
+          "height": "310"
+        }
+      },
+      "aliases": {
+        "1669": "Modern Family",
+        "5153": "Famille moderne",
+        "19191": "モダン・ファミリー",
+        "22521": "Monguer Family",
+        "22528": "Monguer Family!",
+        "33244": "Współczesna rodzina",
+        "33245": "Uma Família Muito Moderna",
+        "33246": "Американская семейка",
+        "69546": "Família Moderna"
+      },
+      "social_links": [
+        {
+          "type": "facebook",
+          "external_id": "ModernFamily"
+        },
+        {
+          "type": "twitter",
+          "external_id": "ModernFam"
+        },
+        {
+          "type": "instagram",
+          "external_id": "abcmodernfam"
+        }
+      ],
+      "user": {
+        "archived": false,
+        "favorited": false,
+        "remaining": 0,
+        "status": 0,
+        "last": "S00E00",
+        "tags": null,
+        "next": {
+          "id": null,
+          "code": "S00E00",
+          "date": null,
+          "title": null,
+          "image": null
+        },
+        "friends_watching": []
+      },
+      "next_trailer": "x86erx5",
+      "next_trailer_host": "dailymotion",
+      "resource_url": "https://www.betaseries.com/serie/modernfamily",
+      "platforms": {
+        "svods": [
+          {
+            "id": 29,
+            "name": "Hulu",
+            "tag": null,
+            "color": "#0B181F",
+            "link_url": "https://www.betaseries.com/link/807/29/us",
+            "available": {
+              "last": 10,
+              "first": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/29.jpg"
+          },
+          {
+            "id": 283,
+            "name": "Peacock",
+            "tag": null,
+            "color": "#000000",
+            "link_url": "https://www.betaseries.com/link/807/283/us",
+            "available": {
+              "last": 11,
+              "first": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/283.jpg"
+          },
+          {
+            "id": 53,
+            "name": "ABC",
+            "tag": null,
+            "color": "#3B8DD0",
+            "link_url": "https://www.betaseries.com/link/807/53/us",
+            "available": {
+              "last": 11
+            },
+            "logo": null
+          }
+        ],
+        "svod": {
+          "id": 29,
+          "name": "Hulu",
+          "tag": null,
+          "color": "#0B181F",
+          "link_url": "https://www.betaseries.com/link/807/29/us",
+          "available": {
+            "last": 10,
+            "first": 1
+          },
+          "logo": "https://pictures.betaseries.com/platforms/29.jpg"
+        }
+      },
+      "userVisited": {
+        "in_account": true,
+        "archived": false,
+        "favorited": false,
+        "remaining": 31,
+        "status": 87.6,
+        "last": "S10E09",
+        "next": {
+          "id": 1216277,
+          "code": "S10E10",
+          "date": "2018-12-12",
+          "title": "Stuck in a Moment",
+          "image": "https://pictures.betaseries.com/banners/episodes/807/6821a165cc773d43701513613163faf0.jpg"
+        }
+      }
+    }
+  ],
+  "total": 13,
+  "totalMissingShows": 150,
+  "errors": []
+}

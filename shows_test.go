@@ -883,7 +883,6 @@ func TestShowService_Favorites(t *testing.T) {
 
 	assert.Equal(t, 2, len(shows.Shows))
 	assert.Equal(t, 5, shows.Total)
-
 }
 
 func TestShowService_AddFavorite(t *testing.T) {
@@ -927,4 +926,24 @@ func TestShowService_AddTags(t *testing.T) {
 	assert.NoError(t, err)
 
 	assert.Equal(t, Tags{"tag1", "tag2"}, show.User.Tags)
+}
+
+func TestShowService_Member(t *testing.T) {
+	data, err := os.ReadFile("data/shows/member.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "GET", fmt.Sprintf("/%s", "shows/member?id=1&limit=2&order=progression&status=current"), string(data))
+	defer ts.Close()
+
+	shows, err := bc.Shows.Member(context.Background(), ShowsMemberParams{
+		ID:     Int(1),
+		Order:  OrderShowMember(OrderShowMemberProgression),
+		Limit:  Int(2),
+		Status: StatusShowMember(StatusShowMemberCurrent),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 2, len(shows.Shows))
+	assert.Equal(t, 13, shows.Total)
+	assert.Equal(t, 150, shows.TotalMissingShows)
 }

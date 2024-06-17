@@ -2,6 +2,7 @@ package gotaseries
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"time"
 )
@@ -11,11 +12,52 @@ const (
 	OrderTitle        OrderType = "title"
 	OrderPopularity   OrderType = "popularity"
 	OrderFollowers    OrderType = "followers"
+
+	OrderShowMemberAlphabetical      OrderShowMemberType = "alphabetical"
+	OrderShowMemberProgression       OrderShowMemberType = "progression"
+	OrderShowMemberRemainingTime     OrderShowMemberType = "remaining_time"
+	OrderShowMemberRemainingEpisodes OrderShowMemberType = "remaining_episodes"
+	OrderShowMemberLastSeen          OrderShowMemberType = "last_seen"
+	OrderShowMemberLastAdded         OrderShowMemberType = "last_added"
+	OrderShowMemberRating            OrderShowMemberType = "rating"
+	OrderShowMemberAvgRating         OrderShowMemberType = "avg_rating"
+	OrderShowMemberCustom            OrderShowMemberType = "custom"
+	OrderShowMemberNextDate          OrderShowMemberType = "next_date"
+
+	StatusShowMemberCurrent                 StatusShowMemberType = "current"
+	StatusShowMemberActive                  StatusShowMemberType = "active"
+	StatusShowMemberArchived                StatusShowMemberType = "archived"
+	StatusShowMemberArchivedAndCompleted    StatusShowMemberType = "archived_and_completed"
+	StatusShowMemberArchivedAndNotCompleted StatusShowMemberType = "archived_and_not_completed"
+	StatusShowMemberCompleted               StatusShowMemberType = "completed"
+	StatusShowMemberActiveAndCompleted      StatusShowMemberType = "active_and_completed"
+	StatusShowMemberNotStarted              StatusShowMemberType = "not_started"
+	StatusShowMemberStopped                 StatusShowMemberType = "stopped"
 )
 
 type ShowService Service
 
 type OrderType string
+
+type OrderShowMemberType string
+
+func (osm *OrderShowMemberType) IsValid() error {
+	switch *osm {
+	case OrderShowMemberAlphabetical, OrderShowMemberProgression, OrderShowMemberRemainingTime, OrderShowMemberRemainingEpisodes, OrderShowMemberLastSeen, OrderShowMemberLastAdded, OrderShowMemberRating, OrderShowMemberAvgRating, OrderShowMemberCustom, OrderShowMemberNextDate:
+		return nil
+	}
+	return errors.New("invalid OrderShowMemberType")
+}
+
+type StatusShowMemberType string
+
+func (ssm *StatusShowMemberType) IsValid() error {
+	switch *ssm {
+	case StatusShowMemberCurrent, StatusShowMemberActive, StatusShowMemberArchived, StatusShowMemberArchivedAndCompleted, StatusShowMemberArchivedAndNotCompleted, StatusShowMemberCompleted, StatusShowMemberActiveAndCompleted, StatusShowMemberNotStarted, StatusShowMemberStopped:
+		return nil
+	}
+	return errors.New("invalid OrderShowMemberType")
+}
 
 type showsResponse struct {
 	Shows  []Show `json:"shows"`
@@ -25,6 +67,13 @@ type showsResponse struct {
 type showResponse struct {
 	Show   Show   `json:"show"`
 	Errors Errors `json:"errors"`
+}
+
+type ShowsMemberResponse struct {
+	Shows             []Show `json:"shows"`
+	Total             int    `json:"total"`
+	TotalMissingShows int    `json:"totalMissingShows"`
+	Errors            Errors `json:"errors"`
 }
 
 type Year int
@@ -305,6 +354,22 @@ type ShowsUpdateTagsParams struct {
 	Tags []string `url:"tags"`
 }
 
+type ShowsMemberParams struct {
+	ID               *int                  `url:"id"`
+	Order            *OrderShowMemberType  `url:"order"`
+	Limit            *int                  `url:"limit"`
+	Offset           *int                  `url:"offset"`
+	Status           *StatusShowMemberType `url:"status"`
+	ExcludedGenres   *string               `url:"excluded_genres"`
+	ExcludedNetworks *string               `url:"excluded_networks"`
+	ExcludedStatus   *string               `url:"excluded_status"`
+	Tags             *string               `url:"tags"`
+	ExcludedTags     *string               `url:"excluded_tags"`
+	Summary          *bool                 `url:"summary"`
+	Platforms        *string               `url:"platforms"`
+	Locale           *LocaleType           `url:"locale"`
+}
+
 // AddNote rate a series.
 // Require a valid token.
 func (s *ShowService) AddNote(ctx context.Context, params ShowsAddNoteParams) (*Show, error) {
@@ -546,4 +611,13 @@ func (s *ShowService) UpdateTags(ctx context.Context, params ShowsUpdateTagsPara
 		return nil, err
 	}
 	return &res.Show, nil
+}
+
+// Member returns a list of series which belongs to the authenticated member or ID member. (ID member has priority over token)
+func (s *ShowService) Member(ctx context.Context, params ShowsMemberParams) (*ShowsMemberResponse, error) {
+	var res ShowsMemberResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/member", params, &res); err != nil {
+		return nil, err
+	}
+	return &res, nil
 }

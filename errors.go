@@ -22,6 +22,10 @@ func (s *picturesShowResponse) GetErrors() Errors {
 	return s.Errors
 }
 
+func (s *ShowsMemberResponse) GetErrors() Errors {
+	return s.Errors
+}
+
 func (s *videosShowResponse) GetErrors() Errors {
 	return s.Errors
 }

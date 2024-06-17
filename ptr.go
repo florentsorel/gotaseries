@@ -46,6 +46,14 @@ func OrderFavorite(v OrderFavoriteType) *OrderFavoriteType {
 	return &v
 }
 
+func OrderShowMember(v OrderShowMemberType) *OrderShowMemberType {
+	return &v
+}
+
 func StatusFavorite(v StatusFavoriteType) *StatusFavoriteType {
+	return &v
+}
+
+func StatusShowMember(v StatusShowMemberType) *StatusShowMemberType {
 	return &v
 }
