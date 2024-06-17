@@ -2,6 +2,7 @@ package gotaseries
 
 import (
 	"encoding/json"
+	"strings"
 	"time"
 )
 
@@ -113,5 +114,23 @@ func (rs *RecommendationStatus) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	*rs = tempStatus
+	return nil
+}
+
+func (t *Tags) UnmarshalJSON(data []byte) error {
+	if string(data) == "\"\"" {
+		*t = []string{}
+		return nil
+	}
+
+	var tags string
+	if err := json.Unmarshal(data, &tags); err != nil {
+		return err
+	}
+
+	result := strings.Split(tags, ", ")
+
+	*t = result
+
 	return nil
 }

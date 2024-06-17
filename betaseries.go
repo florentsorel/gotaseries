@@ -165,6 +165,11 @@ func (c *Client) buildURL(urlStr string, params any) (*url.URL, error) {
 					strInts = append(strInts, strconv.Itoa(num))
 				}
 				q.Set(k, strings.Join(strInts, ","))
+			case []string:
+				if len(val) == 0 {
+					continue
+				}
+				q.Set(k, strings.Join(val, ","))
 			case string:
 				q.Set(k, val)
 			case time.Time:
