@@ -181,6 +181,8 @@ func (c *Client) buildURL(urlStr string, params any) (*url.URL, error) {
 				q.Set(k, string(val))
 			case OrderFavoriteType:
 				q.Set(k, string(val))
+			case OrderShowMemberType:
+				q.Set(k, string(val))
 			case OrderDateType:
 				q.Set(k, string(val))
 			case FormatType:
@@ -188,6 +190,8 @@ func (c *Client) buildURL(urlStr string, params any) (*url.URL, error) {
 			case RecommendationStatus:
 				q.Set(k, string(val))
 			case StatusFavoriteType:
+				q.Set(k, string(val))
+			case StatusShowMemberType:
 				q.Set(k, string(val))
 			}
 		}
