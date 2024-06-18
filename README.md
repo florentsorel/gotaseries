@@ -8,6 +8,11 @@ Gotaseries is a Go client for [Betaseries API](https://developers.betaseries.com
 go get github.com/florentsorel/gotaseries
 ```
 
+## Documentation
+
+- [Documentation](https://pkg.go.dev/github.com/florentsorel/gotaseries)
+- [Betaseries documentation](https://developers.betaseries.com/docs/making-requests)
+
 ## Usage
 
 ```go
