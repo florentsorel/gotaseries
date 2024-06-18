@@ -54,6 +54,10 @@ func (s *FavoritesResponse) GetErrors() Errors {
 	return s.Errors
 }
 
+func (s *genresResponse) GetErrors() Errors {
+	return s.Errors
+}
+
 type Error struct {
 	Code    int    `json:"code"`
 	Message string `json:"text"`

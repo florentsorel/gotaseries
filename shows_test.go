@@ -947,3 +947,41 @@ func TestShowService_Member(t *testing.T) {
 	assert.Equal(t, 13, shows.Total)
 	assert.Equal(t, 150, shows.TotalMissingShows)
 }
+
+func TestShowService_Discover(t *testing.T) {
+	data, err := os.ReadFile("data/shows/discover.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "GET", fmt.Sprintf("/%s", "shows/discover?limit=2"), string(data))
+	defer ts.Close()
+
+	shows, err := bc.Shows.Discover(context.Background(), ShowsDiscoverParams{
+		Limit: Int(2),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 2, len(shows))
+}
+
+func TestShowService_DiscoverPlatform(t *testing.T) {
+	ts, bc := setup(t, "GET", fmt.Sprintf("/%s", "shows/discover_platform"), `{"shows": [{"title": "Breaking Bad"}]}`)
+	defer ts.Close()
+
+	shows, err := bc.Shows.DiscoverPlatform(context.Background(), ShowsDiscoverPlatformsParams{})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 1, len(shows))
+}
+
+func TestShowService_Genres(t *testing.T) {
+	data, err := os.ReadFile("data/shows/genres.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "GET", fmt.Sprintf("/%s", "shows/genres"), string(data))
+	defer ts.Close()
+
+	genres, err := bc.Shows.Genres(context.Background(), ShowsGenreParams{})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 35, len(genres))
+}

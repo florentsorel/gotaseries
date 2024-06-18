@@ -284,9 +284,9 @@ func main() {
   - [x] Remove a favorite series from the profile of the identified member (DELETE /shows/favorite) - Token
   - [x] Update tags for the given series of the identified member (POST /shows/tags) - Token
   - [x] Display the list of all series of the member with tags (GET /shows/member) - Token or ID parameter
-  - [ ] Display the list of series to discover (GET /shows/discover)
-  - [ ] Display the list of series to discover on major SVoD platforms (GET /shows/discover_platforms)
-  - [ ] Display the list of available series genres (GET /shows/genres)
+  - [x] Display the list of series to discover (GET /shows/discover)
+  - [x] Display the list of series to discover on major SVoD platforms (GET /shows/discover_platforms)
+  - [x] Display the list of available series genres (GET /shows/genres)
   - [ ] Display the seasons of the series (GET /shows/seasons)
   - [ ] Display blog articles that talk about the series (GET /shows/articles)
   - [ ] Retrieve the list of finished and unrated series (GET /shows/unrated) - Token

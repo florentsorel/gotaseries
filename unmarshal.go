@@ -2,6 +2,7 @@ package gotaseries
 
 import (
 	"encoding/json"
+	"sort"
 	"strings"
 	"time"
 )
@@ -43,6 +44,8 @@ func (genres *Genres) UnmarshalJSON(data []byte) error {
 	for _, value := range g {
 		result = append(result, value)
 	}
+
+	sort.Strings(result)
 
 	*genres = result
 
