@@ -63,6 +63,27 @@ func (b *BoolFromInt) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+type BoolFromString bool
+
+func (b *BoolFromString) UnmarshalJSON(data []byte) error {
+	if string(data) == "true" {
+		*b = true
+		return nil
+	}
+
+	if string(data) == "false" {
+		*b = false
+		return nil
+	}
+
+	var str string
+	if err := json.Unmarshal(data, &str); err != nil {
+		return err
+	}
+	*b = str != "0"
+	return nil
+}
+
 type Date time.Time
 
 func (d *Date) UnmarshalJSON(data []byte) error {

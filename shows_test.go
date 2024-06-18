@@ -1000,3 +1000,20 @@ func TestShowService_Seasons(t *testing.T) {
 
 	assert.Equal(t, 8, len(seasons))
 }
+
+func TestShowService_Articles(t *testing.T) {
+	data, err := os.ReadFile("data/shows/articles.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "GET", fmt.Sprintf("/%s", "shows/articles?id=1456"), string(data))
+	defer ts.Close()
+
+	articles, err := bc.Shows.Articles(context.Background(), ShowsArticlesParams{
+		ID: 1456,
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 7, len(articles))
+
+	assert.Equal(t, BoolFromString(true), articles[0].Sticky)
+}
