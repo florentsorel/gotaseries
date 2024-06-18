@@ -985,3 +985,18 @@ func TestShowService_Genres(t *testing.T) {
 
 	assert.Equal(t, 35, len(genres))
 }
+
+func TestShowService_Seasons(t *testing.T) {
+	data, err := os.ReadFile("data/shows/seasons.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "GET", fmt.Sprintf("/%s", "shows/seasons?id=1161"), string(data))
+	defer ts.Close()
+
+	seasons, err := bc.Shows.Seasons(context.Background(), ShowsSeasonsParams{
+		ID: Int(1161),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 8, len(seasons))
+}
