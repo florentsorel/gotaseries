@@ -62,6 +62,10 @@ func (s *seasonsResponse) GetErrors() Errors {
 	return s.Errors
 }
 
+func (b *badgeResponse) GetErrors() Errors {
+	return b.Errors
+}
+
 func (a *articlesResponse) GetErrors() Errors {
 	return a.Errors
 }
