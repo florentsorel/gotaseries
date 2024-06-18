@@ -392,6 +392,11 @@ type ShowsSeasonsParams struct {
 	Locale    *LocaleType `url:"locale"`
 }
 
+type ShowsArticlesParams struct {
+	ID     int         `url:"id"`
+	Locale *LocaleType `url:"locale"`
+}
+
 // AddNote rate a series.
 // Require a valid token.
 func (s *ShowService) AddNote(ctx context.Context, params ShowsAddNoteParams) (*Show, error) {
@@ -679,4 +684,13 @@ func (s *ShowService) Seasons(ctx context.Context, params ShowsSeasonsParams) ([
 		return nil, err
 	}
 	return res.Seasons, nil
+}
+
+// Articles returns the list of articles for a series.
+func (s *ShowService) Articles(ctx context.Context, params ShowsArticlesParams) ([]Article, error) {
+	var res articlesResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/articles", params, &res); err != nil {
+		return nil, err
+	}
+	return res.Articles, nil
 }

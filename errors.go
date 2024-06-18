@@ -62,6 +62,10 @@ func (s *seasonsResponse) GetErrors() Errors {
 	return s.Errors
 }
 
+func (a *articlesResponse) GetErrors() Errors {
+	return a.Errors
+}
+
 type Error struct {
 	Code    int    `json:"code"`
 	Message string `json:"text"`
