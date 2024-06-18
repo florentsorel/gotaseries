@@ -397,6 +397,13 @@ type ShowsArticlesParams struct {
 	Locale *LocaleType `url:"locale"`
 }
 
+type ShowsUnratedParams struct {
+	PerPage *int        `url:"nbpp"`
+	Page    *int        `url:"page"`
+	Date    *string     `url:"date"`
+	Locale  *LocaleType `url:"locale"`
+}
+
 // AddNote rate a series.
 // Require a valid token.
 func (s *ShowService) AddNote(ctx context.Context, params ShowsAddNoteParams) (*Show, error) {
@@ -693,4 +700,14 @@ func (s *ShowService) Articles(ctx context.Context, params ShowsArticlesParams) 
 		return nil, err
 	}
 	return res.Articles, nil
+}
+
+// Unrated retrieve the list of finished and unrated series for the authenticated member.
+// Require a valid token.
+func (s *ShowService) Unrated(ctx context.Context, params ShowsUnratedParams) ([]Show, error) {
+	var res showsResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/unrated", params, &res); err != nil {
+		return nil, err
+	}
+	return res.Shows, nil
 }

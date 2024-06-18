@@ -1017,3 +1017,19 @@ func TestShowService_Articles(t *testing.T) {
 
 	assert.Equal(t, BoolFromString(true), articles[0].Sticky)
 }
+
+func TestShowService_Unrated(t *testing.T) {
+	data, err := os.ReadFile("data/shows/unrated.json")
+	assert.NoError(t, err)
+
+	ts, bc := setup(t, "GET", fmt.Sprintf("/%s", "shows/unrated?date=all"), string(data))
+	defer ts.Close()
+
+	shows, err := bc.Shows.Unrated(context.Background(), ShowsUnratedParams{
+		Date: String("all"),
+	})
+	assert.NoError(t, err)
+
+	assert.Equal(t, 10, len(shows))
+
+}

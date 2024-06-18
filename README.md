@@ -289,7 +289,7 @@ func main() {
   - [x] Display the list of available series genres (GET /shows/genres)
   - [x] Display the seasons of the series (GET /shows/seasons)
   - [x] Display blog articles that talk about the series (GET /shows/articles)
-  - [ ] Retrieve the list of finished and unrated series (GET /shows/unrated) - Token
+  - [x] Retrieve the list of finished and unrated series (GET /shows/unrated) - Token
 </details>
 <details>
   <summary>Subtitles</summary>
