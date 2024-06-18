@@ -1,0 +1,83 @@
+{
+  "shows": [
+    {
+      "id": 30703,
+      "thetvdb_id": 411959,
+      "imdb_id": "tt13016388",
+      "themoviedb_id": 108545,
+      "title": "Le Problème à 3 corps",
+      "seasons": "1",
+      "episodes": "17",
+      "followers": "13060",
+      "creation": "2024",
+      "poster": "https://pictures.betaseries.com/fonds/poster/8c841b7d4d6983e374402a9d736bd9ea.jpg",
+      "platforms": {
+        "svods": [
+          {
+            "id": 1,
+            "name": "Netflix",
+            "tag": null,
+            "color": "#000000",
+            "link_url": "https://www.betaseries.com/link/30703/1/us",
+            "available": {
+              "last": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/1.jpg"
+          }
+        ],
+        "svod": {
+          "id": 1,
+          "name": "Netflix",
+          "tag": null,
+          "color": "#000000",
+          "link_url": "https://www.betaseries.com/link/30703/1/us",
+          "available": {
+            "last": 1
+          },
+          "logo": "https://pictures.betaseries.com/platforms/1.jpg"
+        }
+      },
+      "resource_url": "https://www.betaseries.com/serie/three-body-problem"
+    },
+    {
+      "id": 25646,
+      "thetvdb_id": 416744,
+      "imdb_id": "tt12637874",
+      "themoviedb_id": 106379,
+      "title": "Fallout",
+      "seasons": "1",
+      "episodes": "8",
+      "followers": "12008",
+      "creation": "2024",
+      "poster": "https://pictures.betaseries.com/fonds/poster/ffb69a7e691fd28240d2894c450d5138.jpg",
+      "platforms": {
+        "svods": [
+          {
+            "id": 3,
+            "name": "Prime Video",
+            "tag": null,
+            "color": "#002964",
+            "link_url": "https://www.betaseries.com/link/25646/3/us",
+            "available": {
+              "last": 1
+            },
+            "logo": "https://pictures.betaseries.com/platforms/3.jpg"
+          }
+        ],
+        "svod": {
+          "id": 3,
+          "name": "Prime Video",
+          "tag": null,
+          "color": "#002964",
+          "link_url": "https://www.betaseries.com/link/25646/3/us",
+          "available": {
+            "last": 1
+          },
+          "logo": "https://pictures.betaseries.com/platforms/3.jpg"
+        }
+      },
+      "resource_url": "https://www.betaseries.com/serie/fallout"
+    }
+  ],
+  "errors": []
+}

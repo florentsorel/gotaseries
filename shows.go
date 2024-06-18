@@ -370,6 +370,22 @@ type ShowsMemberParams struct {
 	Locale           *LocaleType           `url:"locale"`
 }
 
+type ShowsDiscoverParams struct {
+	Limit   *int        `url:"limit"`
+	Offset  *int        `url:"offset"`
+	Summary *bool       `url:"summary"`
+	Locale  *LocaleType `url:"locale"`
+}
+
+type ShowsDiscoverPlatformsParams struct {
+	Summary *bool       `url:"summary"`
+	Locale  *LocaleType `url:"locale"`
+}
+
+type ShowsGenreParams struct {
+	Locale *LocaleType `url:"locale"`
+}
+
 // AddNote rate a series.
 // Require a valid token.
 func (s *ShowService) AddNote(ctx context.Context, params ShowsAddNoteParams) (*Show, error) {
@@ -620,4 +636,32 @@ func (s *ShowService) Member(ctx context.Context, params ShowsMemberParams) (*Sh
 		return nil, err
 	}
 	return &res, nil
+}
+
+// Discover returns a list of series to discover.
+func (s *ShowService) Discover(ctx context.Context, params ShowsDiscoverParams) ([]Show, error) {
+	var res showsResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/discover", params, &res); err != nil {
+		return nil, err
+	}
+	return res.Shows, nil
+}
+
+// DiscoverPlatform returns a list of series to discover on major SVoD platforms.
+func (s *ShowService) DiscoverPlatform(ctx context.Context, params ShowsDiscoverPlatformsParams) ([]Show, error) {
+	var res showsResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/discover_platform", params, &res); err != nil {
+		return nil, err
+	}
+	return res.Shows, nil
+}
+
+// Genres returns the list of available series genres.
+func (s *ShowService) Genres(ctx context.Context, params ShowsGenreParams) (Genres, error) {
+	var res genresResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/genres", params, &res); err != nil {
+		return nil, err
+	}
+
+	return res.Genres, nil
 }
