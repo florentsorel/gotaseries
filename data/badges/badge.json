@@ -1,0 +1,12 @@
+{
+  "badge": {
+    "id": 106,
+    "name": "Marathonien",
+    "description": "Vous avez regardé 6 épisodes en plein dimanche, c'est un grand chelem !",
+    "picture_url": "https://www.betaseries.com/images/badges/marathonien.png",
+    "width": 256,
+    "height": 256,
+    "level": null
+  },
+  "errors": []
+}

@@ -1031,5 +1031,4 @@ func TestShowService_Unrated(t *testing.T) {
 	assert.NoError(t, err)
 
 	assert.Equal(t, 10, len(shows))
-
 }

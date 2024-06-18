@@ -32,6 +32,7 @@ type Client struct {
 
 	common Service
 	Shows  *ShowService
+	Badges *BadgeService
 }
 
 // NewClient returns a new Betaseries client. You need to provide an API key.
@@ -56,17 +57,18 @@ func NewClient(apiKey string) *Client {
 
 	c.common.client = c
 	c.Shows = (*ShowService)(&c.common)
+	c.Badges = (*BadgeService)(&c.common)
 
 	return c
 }
 
-func (s *ShowService) doRequest(ctx context.Context, method, urlStr string, params any, response errorableResponse) error {
-	req, err := s.client.newRequest(ctx, method, urlStr, params)
+func (c *Client) doRequest(ctx context.Context, method, urlStr string, params any, response errorableResponse) error {
+	req, err := c.newRequest(ctx, method, urlStr, params)
 	if err != nil {
 		return err
 	}
 
-	err = s.client.do(req, response)
+	err = c.do(req, response)
 	if err != nil {
 		return err
 	}

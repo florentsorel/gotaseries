@@ -30,6 +30,7 @@ func setup(t *testing.T, expectedMethod, expectedURL string, expectedJSON string
 
 	c.common.client = c
 	c.Shows = (*ShowService)(&c.common)
+	c.Badges = (*BadgeService)(&c.common)
 
 	return ts, c
 }

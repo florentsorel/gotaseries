@@ -408,7 +408,7 @@ type ShowsUnratedParams struct {
 // Require a valid token.
 func (s *ShowService) AddNote(ctx context.Context, params ShowsAddNoteParams) (*Show, error) {
 	var res showResponse
-	if err := s.doRequest(ctx, http.MethodPost, "/shows/note", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodPost, "/shows/note", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil
@@ -418,7 +418,7 @@ func (s *ShowService) AddNote(ctx context.Context, params ShowsAddNoteParams) (*
 // Require a valid token.
 func (s *ShowService) DeleteNote(ctx context.Context, params ShowsDeleteNoteParams) (*Show, error) {
 	var res showResponse
-	if err := s.doRequest(ctx, http.MethodDelete, "/shows/note", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodDelete, "/shows/note", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil
@@ -427,7 +427,7 @@ func (s *ShowService) DeleteNote(ctx context.Context, params ShowsDeleteNotePara
 // Search returns a list of series matching the search query, with member information if a  token is provided.
 func (s *ShowService) Search(ctx context.Context, params ShowsSearchParams) ([]Show, error) {
 	var res showsResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/search", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/search", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Shows, nil
@@ -449,7 +449,7 @@ func (s *ShowService) Search(ctx context.Context, params ShowsSearchParams) ([]S
 //	fmt.Printf("%+v\n", show)
 func (s *ShowService) Display(ctx context.Context, params ShowsDisplayParams) (*Show, error) {
 	var res showResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/display", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/display", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil
@@ -470,7 +470,7 @@ func (s *ShowService) Display(ctx context.Context, params ShowsDisplayParams) (*
 //	}
 func (s *ShowService) List(ctx context.Context, params ShowsListParams) ([]Show, error) {
 	var res showsResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/list", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/list", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Shows, nil
@@ -479,7 +479,7 @@ func (s *ShowService) List(ctx context.Context, params ShowsListParams) ([]Show,
 // Random returns a list of random series.
 func (s *ShowService) Random(ctx context.Context, params ShowsRandomParams) ([]Show, error) {
 	var res showsResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/random", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/random", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Shows, nil
@@ -488,7 +488,7 @@ func (s *ShowService) Random(ctx context.Context, params ShowsRandomParams) ([]S
 // Episodes returns a list of episodes for the series.
 func (s *ShowService) Episodes(ctx context.Context, params ShowsEpisodesParams) ([]Episode, error) {
 	var res episodesResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/episodes", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/episodes", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Episodes, nil
@@ -498,7 +498,7 @@ func (s *ShowService) Episodes(ctx context.Context, params ShowsEpisodesParams) 
 // Require a valid token.
 func (s *ShowService) Add(ctx context.Context, params ShowsAddParams) (*Show, error) {
 	var res showResponse
-	if err := s.doRequest(ctx, http.MethodPost, "/shows/show", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodPost, "/shows/show", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil
@@ -508,7 +508,7 @@ func (s *ShowService) Add(ctx context.Context, params ShowsAddParams) (*Show, er
 // Require a valid token.
 func (s *ShowService) Delete(ctx context.Context, params ShowsDeleteParams) (*Show, error) {
 	var res showResponse
-	if err := s.doRequest(ctx, http.MethodDelete, "/shows/show", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodDelete, "/shows/show", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil
@@ -517,7 +517,7 @@ func (s *ShowService) Delete(ctx context.Context, params ShowsDeleteParams) (*Sh
 // Archive archive a series in the member's account.
 func (s *ShowService) Archive(ctx context.Context, params ShowsArchiveParams) (*Show, error) {
 	var res showResponse
-	if err := s.doRequest(ctx, http.MethodPost, "/shows/archive", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodPost, "/shows/archive", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil
@@ -526,7 +526,7 @@ func (s *ShowService) Archive(ctx context.Context, params ShowsArchiveParams) (*
 // Unarchive remove a series from the archives of the member's account.
 func (s *ShowService) Unarchive(ctx context.Context, params ShowsUnarchiveParams) (*Show, error) {
 	var res showResponse
-	if err := s.doRequest(ctx, http.MethodDelete, "/shows/archive", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodDelete, "/shows/archive", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil
@@ -536,7 +536,7 @@ func (s *ShowService) Unarchive(ctx context.Context, params ShowsUnarchiveParams
 // Require a valid token.
 func (s *ShowService) CreateRecommendation(ctx context.Context, params ShowsCreateRecommendationParams) (*Recommendation, error) {
 	var res recommendationResponse
-	if err := s.doRequest(ctx, http.MethodPost, "/shows/recommendation", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodPost, "/shows/recommendation", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Recommendation, nil
@@ -546,7 +546,7 @@ func (s *ShowService) CreateRecommendation(ctx context.Context, params ShowsCrea
 // Require a valid token.
 func (s *ShowService) UpdateRecommendation(ctx context.Context, params ShowsUpdateRecommendationParams) (*Recommendation, error) {
 	var res recommendationResponse
-	if err := s.doRequest(ctx, http.MethodPut, "/shows/recommendation", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodPut, "/shows/recommendation", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Recommendation, nil
@@ -556,7 +556,7 @@ func (s *ShowService) UpdateRecommendation(ctx context.Context, params ShowsUpda
 // Require a valid token.
 func (s *ShowService) DeleteRecommendation(ctx context.Context, params ShowsDeleteRecommendationParams) (*Recommendation, error) {
 	var res recommendationResponse
-	if err := s.doRequest(ctx, http.MethodDelete, "/shows/recommendation", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodDelete, "/shows/recommendation", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Recommendation, nil
@@ -566,7 +566,7 @@ func (s *ShowService) DeleteRecommendation(ctx context.Context, params ShowsDele
 // Require a valid token.
 func (s *ShowService) Recommendations(ctx context.Context, params ShowsRecommendationsParams) ([]Recommendation, error) {
 	var res recommendationsResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/recommendations", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/recommendations", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Recommendations, nil
@@ -575,7 +575,7 @@ func (s *ShowService) Recommendations(ctx context.Context, params ShowsRecommend
 // Similars returns a list of characters for the series.
 func (s *ShowService) Similars(ctx context.Context, params ShowsSimilarsParams) ([]SimilarShow, error) {
 	var res similarsResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/similars", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/similars", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Similars, nil
@@ -584,7 +584,7 @@ func (s *ShowService) Similars(ctx context.Context, params ShowsSimilarsParams) 
 // Videos returns a list of videos for the series.
 func (s *ShowService) Videos(ctx context.Context, params ShowsVideosParams) ([]VideoShow, error) {
 	var res videosShowResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/videos", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/videos", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Videos, nil
@@ -593,7 +593,7 @@ func (s *ShowService) Videos(ctx context.Context, params ShowsVideosParams) ([]V
 // Characters returns a list of characters for the series.
 func (s *ShowService) Characters(ctx context.Context, params ShowsCharactersParams) ([]CharacterShow, error) {
 	var res charactersShowResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/characters", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/characters", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Characters, nil
@@ -602,7 +602,7 @@ func (s *ShowService) Characters(ctx context.Context, params ShowsCharactersPara
 // Pictures returns a list of pictures for the series.
 func (s *ShowService) Pictures(ctx context.Context, params ShowsPicturesParams) ([]PictureShow, error) {
 	var res picturesShowResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/pictures", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/pictures", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Pictures, nil
@@ -611,7 +611,7 @@ func (s *ShowService) Pictures(ctx context.Context, params ShowsPicturesParams) 
 // Favorites returns a list of favorite series for the authenticated member or ID member. (ID member has priority over token)
 func (s *ShowService) Favorites(ctx context.Context, params ShowsFavoritesParams) (*FavoritesResponse, error) {
 	var res FavoritesResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/favorites", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/favorites", params, &res); err != nil {
 		return nil, err
 	}
 	return &res, nil
@@ -621,7 +621,7 @@ func (s *ShowService) Favorites(ctx context.Context, params ShowsFavoritesParams
 // Require a valid token.
 func (s *ShowService) AddFavorite(ctx context.Context, params ShowsAddFavoriteParams) (*Show, error) {
 	var res showResponse
-	if err := s.doRequest(ctx, http.MethodPost, "/shows/favorite", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodPost, "/shows/favorite", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil
@@ -631,7 +631,7 @@ func (s *ShowService) AddFavorite(ctx context.Context, params ShowsAddFavoritePa
 // Require a valid token.
 func (s *ShowService) DeleteFavorite(ctx context.Context, params ShowsDeleteFavoriteParams) (*Show, error) {
 	var res showResponse
-	if err := s.doRequest(ctx, http.MethodDelete, "/shows/favorite", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodDelete, "/shows/favorite", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil
@@ -641,7 +641,7 @@ func (s *ShowService) DeleteFavorite(ctx context.Context, params ShowsDeleteFavo
 // Require a valid token.
 func (s *ShowService) UpdateTags(ctx context.Context, params ShowsUpdateTagsParams) (*Show, error) {
 	var res showResponse
-	if err := s.doRequest(ctx, http.MethodPost, "/shows/tags", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodPost, "/shows/tags", params, &res); err != nil {
 		return nil, err
 	}
 	return &res.Show, nil
@@ -650,7 +650,7 @@ func (s *ShowService) UpdateTags(ctx context.Context, params ShowsUpdateTagsPara
 // Member returns a list of series which belongs to the authenticated member or ID member. (ID member has priority over token)
 func (s *ShowService) Member(ctx context.Context, params ShowsMemberParams) (*ShowsMemberResponse, error) {
 	var res ShowsMemberResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/member", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/member", params, &res); err != nil {
 		return nil, err
 	}
 	return &res, nil
@@ -659,7 +659,7 @@ func (s *ShowService) Member(ctx context.Context, params ShowsMemberParams) (*Sh
 // Discover returns a list of series to discover.
 func (s *ShowService) Discover(ctx context.Context, params ShowsDiscoverParams) ([]Show, error) {
 	var res showsResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/discover", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/discover", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Shows, nil
@@ -668,7 +668,7 @@ func (s *ShowService) Discover(ctx context.Context, params ShowsDiscoverParams) 
 // DiscoverPlatform returns a list of series to discover on major SVoD platforms.
 func (s *ShowService) DiscoverPlatform(ctx context.Context, params ShowsDiscoverPlatformsParams) ([]Show, error) {
 	var res showsResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/discover_platform", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/discover_platform", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Shows, nil
@@ -677,7 +677,7 @@ func (s *ShowService) DiscoverPlatform(ctx context.Context, params ShowsDiscover
 // Genres returns the list of available series genres.
 func (s *ShowService) Genres(ctx context.Context, params ShowsGenreParams) (Genres, error) {
 	var res genresResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/genres", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/genres", params, &res); err != nil {
 		return nil, err
 	}
 
@@ -687,7 +687,7 @@ func (s *ShowService) Genres(ctx context.Context, params ShowsGenreParams) (Genr
 // Seasons returns the list of seasons for a series.
 func (s *ShowService) Seasons(ctx context.Context, params ShowsSeasonsParams) ([]Season, error) {
 	var res seasonsResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/seasons", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/seasons", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Seasons, nil
@@ -696,7 +696,7 @@ func (s *ShowService) Seasons(ctx context.Context, params ShowsSeasonsParams) ([
 // Articles returns the list of articles for a series.
 func (s *ShowService) Articles(ctx context.Context, params ShowsArticlesParams) ([]Article, error) {
 	var res articlesResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/articles", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/articles", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Articles, nil
@@ -706,7 +706,7 @@ func (s *ShowService) Articles(ctx context.Context, params ShowsArticlesParams) 
 // Require a valid token.
 func (s *ShowService) Unrated(ctx context.Context, params ShowsUnratedParams) ([]Show, error) {
 	var res showsResponse
-	if err := s.doRequest(ctx, http.MethodGet, "/shows/unrated", params, &res); err != nil {
+	if err := s.client.doRequest(ctx, http.MethodGet, "/shows/unrated", params, &res); err != nil {
 		return nil, err
 	}
 	return res.Shows, nil

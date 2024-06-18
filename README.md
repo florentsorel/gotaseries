@@ -61,7 +61,7 @@ func main() {
 <details>
   <summary>Badges</summary>
 
-  - [ ] Returns badge details (GET /badges/badge)
+  - [x] Returns badge details (GET /badges/badge)
 </details>
 
 <details>
