@@ -386,6 +386,12 @@ type ShowsGenreParams struct {
 	Locale *LocaleType `url:"locale"`
 }
 
+type ShowsSeasonsParams struct {
+	ID        *int        `url:"id"`
+	TheTvdbID *int        `url:"thetvdb_id"`
+	Locale    *LocaleType `url:"locale"`
+}
+
 // AddNote rate a series.
 // Require a valid token.
 func (s *ShowService) AddNote(ctx context.Context, params ShowsAddNoteParams) (*Show, error) {
@@ -664,4 +670,13 @@ func (s *ShowService) Genres(ctx context.Context, params ShowsGenreParams) (Genr
 	}
 
 	return res.Genres, nil
+}
+
+// Seasons returns the list of seasons for a series.
+func (s *ShowService) Seasons(ctx context.Context, params ShowsSeasonsParams) ([]Season, error) {
+	var res seasonsResponse
+	if err := s.doRequest(ctx, http.MethodGet, "/shows/seasons", params, &res); err != nil {
+		return nil, err
+	}
+	return res.Seasons, nil
 }

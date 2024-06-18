@@ -1,0 +1,109 @@
+{
+  "seasons": [
+    {
+      "number": 1,
+      "episodes": 10,
+      "seen": false,
+      "hidden": false,
+      "image": "https://pictures.betaseries.com/fonds/seasons/1161/5cc751cfeb87d.jpg",
+      "has_subtitles": true,
+      "notes": {
+        "total": 3989,
+        "mean": 4.5605,
+        "user": 0
+      }
+    },
+    {
+      "number": 2,
+      "episodes": 10,
+      "seen": false,
+      "hidden": false,
+      "image": "https://pictures.betaseries.com/fonds/seasons/1161/5cc751f2f3b33.jpg",
+      "has_subtitles": true,
+      "notes": {
+        "total": 2911,
+        "mean": 4.5404,
+        "user": 0
+      }
+    },
+    {
+      "number": 3,
+      "episodes": 10,
+      "seen": false,
+      "hidden": false,
+      "image": "https://pictures.betaseries.com/fonds/seasons/1161/5cc752208d21c.jpg",
+      "has_subtitles": true,
+      "notes": {
+        "total": 2951,
+        "mean": 4.5388,
+        "user": 0
+      }
+    },
+    {
+      "number": 4,
+      "episodes": 10,
+      "seen": false,
+      "hidden": false,
+      "image": "https://pictures.betaseries.com/fonds/seasons/1161/5cc7524ff0bab.jpg",
+      "has_subtitles": true,
+      "notes": {
+        "total": 3795,
+        "mean": 4.5628,
+        "user": 0
+      }
+    },
+    {
+      "number": 5,
+      "episodes": 10,
+      "seen": false,
+      "hidden": false,
+      "image": "https://pictures.betaseries.com/fonds/seasons/1161/5cc75288f1efc.jpg",
+      "has_subtitles": true,
+      "notes": {
+        "total": 3619,
+        "mean": 4.4778,
+        "user": 0
+      }
+    },
+    {
+      "number": 6,
+      "episodes": 10,
+      "seen": false,
+      "hidden": false,
+      "image": "https://pictures.betaseries.com/fonds/seasons/1161/5cc752a358f31.jpg",
+      "has_subtitles": true,
+      "notes": {
+        "total": 4721,
+        "mean": 4.4902,
+        "user": 0
+      }
+    },
+    {
+      "number": 7,
+      "episodes": 7,
+      "seen": false,
+      "hidden": false,
+      "image": "https://pictures.betaseries.com/fonds/seasons/1161/5cc75340ed474.jpg",
+      "has_subtitles": true,
+      "notes": {
+        "total": 4574,
+        "mean": 4.617,
+        "user": 0
+      }
+    },
+    {
+      "number": 8,
+      "episodes": 6,
+      "seen": false,
+      "hidden": false,
+      "image": null,
+      "has_subtitles": true,
+      "notes": {
+        "total": 0,
+        "mean": 0,
+        "user": 0
+      }
+    }
+  ],
+  "errors": []
+}

@@ -287,7 +287,7 @@ func main() {
   - [x] Display the list of series to discover (GET /shows/discover)
   - [x] Display the list of series to discover on major SVoD platforms (GET /shows/discover_platforms)
   - [x] Display the list of available series genres (GET /shows/genres)
-  - [ ] Display the seasons of the series (GET /shows/seasons)
+  - [x] Display the seasons of the series (GET /shows/seasons)
   - [ ] Display blog articles that talk about the series (GET /shows/articles)
   - [ ] Retrieve the list of finished and unrated series (GET /shows/unrated) - Token
 </details>

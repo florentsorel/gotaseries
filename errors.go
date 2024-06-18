@@ -18,20 +18,20 @@ func (s *showResponse) GetErrors() Errors {
 	return s.Errors
 }
 
-func (s *picturesShowResponse) GetErrors() Errors {
-	return s.Errors
+func (p *picturesShowResponse) GetErrors() Errors {
+	return p.Errors
 }
 
 func (s *ShowsMemberResponse) GetErrors() Errors {
 	return s.Errors
 }
 
-func (s *videosShowResponse) GetErrors() Errors {
-	return s.Errors
+func (v *videosShowResponse) GetErrors() Errors {
+	return v.Errors
 }
 
-func (s *charactersShowResponse) GetErrors() Errors {
-	return s.Errors
+func (c *charactersShowResponse) GetErrors() Errors {
+	return c.Errors
 }
 
 func (e *episodesResponse) GetErrors() Errors {
@@ -42,19 +42,23 @@ func (s *similarsResponse) GetErrors() Errors {
 	return s.Errors
 }
 
-func (s *recommendationsResponse) GetErrors() Errors {
-	return s.Errors
+func (r *recommendationsResponse) GetErrors() Errors {
+	return r.Errors
 }
 
-func (s *recommendationResponse) GetErrors() Errors {
-	return s.Errors
+func (r *recommendationResponse) GetErrors() Errors {
+	return r.Errors
 }
 
-func (s *FavoritesResponse) GetErrors() Errors {
-	return s.Errors
+func (f *FavoritesResponse) GetErrors() Errors {
+	return f.Errors
 }
 
-func (s *genresResponse) GetErrors() Errors {
+func (g *genresResponse) GetErrors() Errors {
+	return g.Errors
+}
+
+func (s *seasonsResponse) GetErrors() Errors {
 	return s.Errors
 }
 
